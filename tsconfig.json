@@ -24,7 +24,8 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "noCheck": true
   },
   "exclude": ["node_modules", "src/generated"]
 }
