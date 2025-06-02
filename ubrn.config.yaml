@@ -1,0 +1,3 @@
+rust:
+  directory: ./loro-rn
+  manifestPath: Cargo.toml
