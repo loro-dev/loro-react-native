@@ -4,6 +4,8 @@ React native binding for Loro
 
 ## Installation
 
+Not available yet
+
 ```sh
 npm install loro-react-native
 ```
@@ -12,13 +14,32 @@ npm install loro-react-native
 
 
 ```js
-import { multiply } from 'loro-react-native';
+import { LoroDoc } from 'loro-react-native';
 
 // ...
 
-const result = multiply(3, 7);
+const doc = new LoroDoc();
 ```
 
+## Dev
+
+Follow the [getting started](https://jhugman.github.io/uniffi-bindgen-react-native/guides/pre-installation.html) to set up the environment.
+
+### IOS
+
+```
+yarn
+yarn ubrn:ios
+yarn example ios
+```
+
+### Android
+
+```
+yarn
+yarn ubrn:android
+yarn example android
+```
 
 ## Contributing
 

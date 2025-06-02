@@ -87,3 +87,4 @@ nitrogen/
 
 # Cargo
 target/
+*.xcframework
