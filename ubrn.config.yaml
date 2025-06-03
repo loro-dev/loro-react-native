@@ -1,3 +1,5 @@
 rust:
   directory: ./loro-rn
-  manifestPath: Cargo.toml
+
+ios:
+  frameworkName: build/RustFramework

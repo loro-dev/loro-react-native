@@ -88,3 +88,11 @@ nitrogen/
 # Cargo
 target/
 *.xcframework
+*.tar.gz
+*.podspec
+rust_modules/
+*.a
+cpp/
+*.podspec
+src/gen/
+*.tgz

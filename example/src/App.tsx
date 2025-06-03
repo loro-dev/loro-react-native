@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet } from 'react-native';
-import { LoroDoc } from '../../src';
+import { LoroDoc } from 'loro-react-native';
 
 export default function App() {
   const doc = new LoroDoc();
