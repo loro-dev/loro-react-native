@@ -74,70 +74,7 @@ declare module "./generated/loro" {
 
 }
 
-declare global {
-    interface String {
-        asContainerId(ty: ContainerType): ContainerId;
-        asLoroValue(): LoroValue;
-    }
-
-    interface Number {
-        asLoroValue(): LoroValue;
-    }
-
-    interface Boolean {
-        asLoroValue(): LoroValue;
-    }
-
-    interface Uint8Array {
-        asLoroValue(): LoroValue;
-    }
-
-    interface Array<T> {
-        asLoroValue(): LoroValue;
-    }
-
-    interface Map<K extends string, V extends LoroValue> {
-        asLoroValue(): LoroValue;
-    }
-}
-
 export type Container = LoroText | LoroCounter | LoroList | LoroMap | LoroTree | LoroMovableList;
-
-String.prototype.asContainerId = function (ty: ContainerType): ContainerId {
-    return new ContainerId.Root({
-        name: this as string,
-        containerType: ty,
-    });
-};
-
-String.prototype.asLoroValue = function (): LoroValue {
-    return new LoroValue.String({
-        value: this as string,
-    })
-};
-
-Number.prototype.asLoroValue = function (): LoroValue {
-    if (Number.isInteger(this as number)) {
-        return new LoroValue.I64({ value: this as unknown as bigint });
-    }
-    return new LoroValue.Double({ value: this as number });
-};
-
-Boolean.prototype.asLoroValue = function (): LoroValue {
-    return new LoroValue.Bool({ value: this as boolean });
-};
-
-Uint8Array.prototype.asLoroValue = function (): LoroValue {
-    return new LoroValue.Binary({ value: this as unknown as ArrayBuffer });
-};
-
-Array.prototype.asLoroValue = function (): LoroValue {
-    return new LoroValue.List({ value: this as LoroValue[] });
-};
-
-Map.prototype.asLoroValue = function (): LoroValue {
-    return new LoroValue.Map({ value: this as Map<string, LoroValue> });
-};
 
 ContainerId.Root.prototype.asContainerId = function (_ty: ContainerType): ContainerId {
     return this;

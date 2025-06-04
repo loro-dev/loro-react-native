@@ -16,6 +16,7 @@ export default function App() {
   const map = doc.getMap("map");
   const list = map.insertContainer("container", new LoroList());
   list.insert(0, true);
+  list.insert(1, 123);
   map.insert("number", 123);
   map.insert("bool", true);
   map.insert("float", 123.456);
@@ -24,7 +25,7 @@ export default function App() {
   map.insert("map", { "key": "value" });
   map.insert("null", null);
   map.insert("undefined", undefined);
-  console.log(loroValueToJsValue(map.getValue()));
+  console.log(map.getValue().inner.value);
   doc.commit();
 
   return (
