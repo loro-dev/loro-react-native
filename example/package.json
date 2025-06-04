@@ -10,7 +10,7 @@
     "build:ios": "react-native build-ios --mode Debug"
   },
   "dependencies": {
-    "loro-react-native": "file:../loro-react-native-0.2.1.tgz",
+    "loro-react-native": "file:../loro-react-native-0.2.2.tgz",
     "react": "19.0.0",
     "react-native": "0.79.2"
   },

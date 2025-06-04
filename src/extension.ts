@@ -1,5 +1,11 @@
-import { LoroCounter, LoroList, LoroMap, LoroText, LoroTree, LoroMovableList, ContainerId, ContainerType, Frontiers, IdSpan, LoroDoc, VersionVector, UndoManager, LoroValue } from './generated/loro';
-import Object from './generated/loro';
+import {
+    Id, LoroCounter, LoroList, LoroMap, LoroText, LoroTree,
+    LoroMovableList, ContainerId, ContainerType, Frontiers, IdSpan,
+    LoroDoc, VersionVector, UndoManager, LoroValue, UndoOrRedo,
+    CounterSpan, UndoItemMeta, DiffEvent
+} from './generated/loro';
+
+import type { ChangeAncestorsTraveler, ChangeMeta } from './generated/loro';
 
 export type Value =
     | ContainerId
@@ -15,7 +21,13 @@ export type Value =
 // Extend the LoroDoc interface
 declare module "./generated/loro" {
     interface LoroDoc {
-        export(mode: ExportMode): Uint8Array;
+        export(mode: ExportMode): ArrayBuffer;
+        getText(id: ContainerId | string): LoroText;
+        getCounter(id: ContainerId | string): LoroCounter;
+        getList(id: ContainerId | string): LoroList;
+        getMap(id: ContainerId | string): LoroMap;
+        getTree(id: ContainerId | string): LoroTree;
+        getMovableList(id: ContainerId | string): LoroMovableList;
         travelChangeAncestors(ids: Array<Id>, travel: (change: ChangeMeta) => boolean): void;
         subscribeRoot(cb: (diff: DiffEvent) => void): SubscriptionInterface;
         subscribe(containerId: ContainerId, cb: (diff: DiffEvent) => void): SubscriptionInterface;
@@ -60,9 +72,6 @@ declare module "./generated/loro" {
         ) => UndoItemMeta | undefined): void;
     }
 
-    interface ContainerId {
-        asContainerId(ty: ContainerType): ContainerId;
-    }
 }
 
 declare global {
@@ -83,11 +92,11 @@ declare global {
         asLoroValue(): LoroValue;
     }
 
-    interface Array<T extends Value> {
+    interface Array<T> {
         asLoroValue(): LoroValue;
     }
 
-    interface Object<T extends Record<string, Value>> {
+    interface Map<K extends string, V extends LoroValue> {
         asLoroValue(): LoroValue;
     }
 }
@@ -112,7 +121,7 @@ String.prototype.asLoroValue = function (): LoroValue {
 
 Number.prototype.asLoroValue = function (): LoroValue {
     if (Number.isInteger(this as number)) {
-        return new LoroValue.I64({ value: this as number });
+        return new LoroValue.I64({ value: this as unknown as bigint });
     }
     return new LoroValue.Double({ value: this as number });
 };
@@ -122,7 +131,7 @@ Boolean.prototype.asLoroValue = function (): LoroValue {
 };
 
 Uint8Array.prototype.asLoroValue = function (): LoroValue {
-    return new LoroValue.Binary({ value: this as Uint8Array });
+    return new LoroValue.Binary({ value: this as unknown as ArrayBuffer });
 };
 
 Array.prototype.asLoroValue = function (): LoroValue {
@@ -161,7 +170,7 @@ export type ExportMode = {
     frontiers: Frontiers,
 }
 
-LoroDoc.prototype.export = function (mode: ExportMode): Uint8Array {
+LoroDoc.prototype.export = function (mode: ExportMode): ArrayBuffer {
     switch (mode.mode) {
         case "snapshot":
             return this.exportSnapshot();
@@ -178,16 +187,83 @@ LoroDoc.prototype.export = function (mode: ExportMode): Uint8Array {
     }
 }
 
-const originalTravelChangeAncestors = LoroDoc.prototype.travelChangeAncestors;
+const originalGetText = LoroDoc.prototype.getText;
+LoroDoc.prototype.getText = function (id: ContainerId | string): LoroText {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.Text(),
+        });
+    }
+    return originalGetText.call(this, id);
+}
+const originalGetCounter = LoroDoc.prototype.getCounter;
+LoroDoc.prototype.getCounter = function (id: ContainerId | string): LoroCounter {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.Counter(),
+        });
+    }
+    return originalGetCounter.call(this, id);
+}
 
+const originalGetList = LoroDoc.prototype.getList;
+LoroDoc.prototype.getList = function (id: ContainerId | string): LoroList {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.List(),
+        });
+    }
+    return originalGetList.call(this, id);
+}
+
+const originalGetMap = LoroDoc.prototype.getMap;
+LoroDoc.prototype.getMap = function (id: ContainerId | string): LoroMap {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.Map(),
+        });
+    }
+    return originalGetMap.call(this, id);
+}
+
+const originalGetTree = LoroDoc.prototype.getTree;
+LoroDoc.prototype.getTree = function (id: ContainerId | string): LoroTree {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.Tree(),
+        });
+    }
+    return originalGetTree.call(this, id);
+}
+
+const originalGetMovableList = LoroDoc.prototype.getMovableList;
+LoroDoc.prototype.getMovableList = function (id: ContainerId | string): LoroMovableList {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.MovableList(),
+        });
+    }
+    return originalGetMovableList.call(this, id);
+}
+
+
+const originalTravelChangeAncestors = LoroDoc.prototype.travelChangeAncestors;
 LoroDoc.prototype.travelChangeAncestors = function (
-    ids: Array<Id>,
+    this: LoroDoc,
+    ids: Id[],
     travel: (change: ChangeMeta) => boolean
 ): void {
-    return originalTravelChangeAncestors.call(this, ids, {
-        travel
-    });
-};
+    const traveler: ChangeAncestorsTraveler = {
+        travel: travel
+    };
+    return originalTravelChangeAncestors.call(this, ids, traveler);
+} as any;
 
 const originalSubscribeRoot = LoroDoc.prototype.subscribeRoot;
 LoroDoc.prototype.subscribeRoot = function (cb: (diff: DiffEvent) => void): SubscriptionInterface {
@@ -307,25 +383,34 @@ UndoManager.prototype.setOnPop = function (onPop: (
 
 const jsValueToLoroValue = (value?: Value): LoroValue => {
     if (!value) {
-        return new LoroValue.Null({});
+        return new LoroValue.Null();
     }
+    if (value instanceof ContainerId.Root || value instanceof ContainerId.Normal) {
+        return new LoroValue.Container({
+            value: value
+        });
+    }
+
     if (typeof value === 'string') {
-        return value.asLoroValue();
+        return new LoroValue.String({ value: value });
     }
     if (typeof value === 'number') {
-        return value.asLoroValue();
+        if (Number.isInteger(value)) {
+            return new LoroValue.I64({ value: value as unknown as bigint });
+        }
+        return new LoroValue.Double({ value: value as unknown as number });
     }
     if (typeof value === 'boolean') {
-        return value.asLoroValue();
+        return new LoroValue.Bool({ value: value });
     }
     if (value instanceof Uint8Array) {
-        return value.asLoroValue();
+        return new LoroValue.Binary({ value: value as unknown as ArrayBuffer });
     }
     if (Array.isArray(value)) {
-        return value.asLoroValue();
+        return new LoroValue.List({ value: value.map(jsValueToLoroValue) as LoroValue[] });
     }
     if (value instanceof Object) {
-        return value.asLoroValue();
+        return new LoroValue.Map({ value: new Map(Object.entries(value).map(([key, value]) => [key, jsValueToLoroValue(value)])) });
     }
     throw new Error('Unsupported value type');
 }

@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       loro-react-native:
-        specifier: file:../loro-react-native-0.2.1.tgz
-        version: file:../loro-react-native-0.2.1.tgz(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@18.0.0)(@types/react@19.1.6)(react@19.0.0))(react@19.0.0)
+        specifier: file:../loro-react-native-0.2.2.tgz
+        version: file:../loro-react-native-0.2.2.tgz(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@18.0.0)(@types/react@19.1.6)(react@19.0.0))(react@19.0.0)
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -1892,9 +1892,9 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
-  loro-react-native@file:../loro-react-native-0.2.1.tgz:
-    resolution: {integrity: sha512-Q3EPhA6SzHCUfU7jz/cXXt3bJtk/SrWPYAs52FpIxmdbcNZ/lzhcwNEweBdvPljPvkyGMsSUKKhT4he90bWtEA==, tarball: file:../loro-react-native-0.2.1.tgz}
-    version: 0.2.1
+  loro-react-native@file:../loro-react-native-0.2.2.tgz:
+    resolution: {integrity: sha512-JixHDJICbi3vCnh5/GCc8mjLWqjRxxIoiOIeqyrxxg9MRf4IlZWhxne1Fp9/3Olvs0xwkCfzYmINllTMzfS1Vg==, tarball: file:../loro-react-native-0.2.2.tgz}
+    version: 0.2.2
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -4998,7 +4998,7 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  loro-react-native@file:../loro-react-native-0.2.1.tgz(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@18.0.0)(@types/react@19.1.6)(react@19.0.0))(react@19.0.0):
+  loro-react-native@file:../loro-react-native-0.2.2.tgz(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@18.0.0)(@types/react@19.1.6)(react@19.0.0))(react@19.0.0):
     dependencies:
       react: 19.0.0
       react-native: 0.79.2(@babel/core@7.27.3)(@react-native-community/cli@18.0.0)(@types/react@19.1.6)(react@19.0.0)
