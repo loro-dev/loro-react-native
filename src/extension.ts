@@ -101,10 +101,7 @@ declare global {
     }
 }
 
-export interface Container {
-    id: () => ContainerId,
-    asLoroValue: () => LoroValue
-}
+export type Container = LoroText | LoroCounter | LoroList | LoroMap | LoroTree | LoroMovableList;
 
 String.prototype.asContainerId = function (ty: ContainerType): ContainerId {
     return new ContainerId.Root({
@@ -301,19 +298,41 @@ LoroMap.prototype.insert = function (key: string, value: Value): void {
     return originalInsert.call(this, key, jsValueToLoroValue(value));
 }
 
-const originalInsertContainer = LoroMap.prototype.insertContainer;
+
 LoroMap.prototype.insertContainer = function <T extends Container>(key: string, container: T): T {
-    return originalInsertContainer.call(this, key, container.asLoroValue());
+    if (container instanceof LoroText) {
+        return this.insertTextContainer(key, container) as LoroText;
+    } else if (container instanceof LoroCounter) {
+        return this.insertCounterContainer(key, container) as LoroCounter;
+    } else if (container instanceof LoroList) {
+        return this.insertListContainer(key, container) as LoroList;
+    } else if (container instanceof LoroMap) {
+        return this.insertMapContainer(key, container) as LoroMap;
+    } else if (container instanceof LoroTree) {
+        return this.insertTreeContainer(key, container) as LoroTree;
+    } else if (container instanceof LoroMovableList) {
+        return this.insertMovableListContainer(key, container) as LoroMovableList;
+    } else {
+        throw new Error('Unsupported container type');
+    }
 }
 
-const originalGetOrCreateContainer = LoroMap.prototype.getOrCreateContainer;
 LoroMap.prototype.getOrCreateContainer = function <T extends Container>(key: string, container: T): T {
-    return originalGetOrCreateContainer.call(this, key, container.asLoroValue());
-}
-
-const originalPush = LoroList.prototype.push;
-LoroList.prototype.push = function (value: Value): void {
-    return originalPush.call(this, jsValueToLoroValue(value));
+    if (container instanceof LoroText) {
+        return this.getOrCreateText(key) as LoroText;
+    } else if (container instanceof LoroCounter) {
+        return this.getOrCreateCounter(key) as LoroCounter;
+    } else if (container instanceof LoroList) {
+        return this.getOrCreateList(key) as LoroList;
+    } else if (container instanceof LoroMap) {
+        return this.getOrCreateMap(key) as LoroMap;
+    } else if (container instanceof LoroTree) {
+        return this.getOrCreateTree(key) as LoroTree;
+    } else if (container instanceof LoroMovableList) {
+        return this.getOrCreateMovableList(key) as LoroMovableList;
+    } else {
+        throw new Error('Unsupported container type');
+    }
 }
 
 const originalListInsert = LoroList.prototype.insert;
@@ -321,14 +340,32 @@ LoroList.prototype.insert = function (pos: number, value: Value): void {
     return originalListInsert.call(this, pos, jsValueToLoroValue(value));
 }
 
-const originalListInsertContainer = LoroList.prototype.insertContainer;
-LoroList.prototype.insertContainer = function <T extends Container>(pos: number, container: T): T {
-    return originalListInsertContainer.call(this, pos, container.asLoroValue());
+LoroList.prototype.push = function (value: Value): void {
+    const pos = this.length();
+    return this.insert(pos, value);
 }
 
-const originalPushContainer = LoroList.prototype.pushContainer;
+LoroList.prototype.insertContainer = function <T extends Container>(pos: number, container: T): T {
+    if (container instanceof LoroText) {
+        return this.insertTextContainer(pos, container) as LoroText;
+    } else if (container instanceof LoroCounter) {
+        return this.insertCounterContainer(pos, container) as LoroCounter;
+    } else if (container instanceof LoroList) {
+        return this.insertListContainer(pos, container) as LoroList;
+    } else if (container instanceof LoroMap) {
+        return this.insertMapContainer(pos, container) as LoroMap;
+    } else if (container instanceof LoroTree) {
+        return this.insertTreeContainer(pos, container) as LoroTree;
+    } else if (container instanceof LoroMovableList) {
+        return this.insertMovableListContainer(pos, container) as LoroMovableList;
+    } else {
+        throw new Error('Unsupported container type');
+    }
+}
+
 LoroList.prototype.pushContainer = function <T extends Container>(container: T): T {
-    return originalPushContainer.call(this, container.asLoroValue());
+    const length = this.length();
+    return this.insertContainer(length, container);
 }
 
 const originalMovableListInsert = LoroMovableList.prototype.insert;
@@ -341,26 +378,51 @@ LoroMovableList.prototype.set = function (pos: number, value: Value): void {
     return originalMovableListSet.call(this, pos, jsValueToLoroValue(value));
 }
 
-const originalMovableListPush = LoroMovableList.prototype.push;
 LoroMovableList.prototype.push = function (value: Value): void {
-    return originalMovableListPush.call(this, jsValueToLoroValue(value));
+    const length = this.length();
+    return this.insert(length, value);
 }
 
-const originalMovableListInsertContainer = LoroMovableList.prototype.insertContainer;
 LoroMovableList.prototype.insertContainer = function <T extends Container>(pos: number, container: T): T {
-    return originalMovableListInsertContainer.call(this, pos, container.asLoroValue());
+    if (container instanceof LoroText) {
+        return this.insertTextContainer(pos, container) as LoroText;
+    } else if (container instanceof LoroCounter) {
+        return this.insertCounterContainer(pos, container) as LoroCounter;
+    } else if (container instanceof LoroList) {
+        return this.insertListContainer(pos, container) as LoroList;
+    } else if (container instanceof LoroMap) {
+        return this.insertMapContainer(pos, container) as LoroMap;
+    } else if (container instanceof LoroTree) {
+        return this.insertTreeContainer(pos, container) as LoroTree;
+    } else if (container instanceof LoroMovableList) {
+        return this.insertMovableListContainer(pos, container) as LoroMovableList;
+    } else {
+        throw new Error('Unsupported container type');
+    }
 }
 
-const originalMovableListSetContainer = LoroMovableList.prototype.setContainer;
 LoroMovableList.prototype.setContainer = function <T extends Container>(pos: number, container: T): T {
-    return originalMovableListSetContainer.call(this, pos, container.asLoroValue());
+    if (container instanceof LoroText) {
+        return this.setTextContainer(pos, container) as LoroText;
+    } else if (container instanceof LoroCounter) {
+        return this.setCounterContainer(pos, container) as LoroCounter;
+    } else if (container instanceof LoroList) {
+        return this.setListContainer(pos, container) as LoroList;
+    } else if (container instanceof LoroMap) {
+        return this.setMapContainer(pos, container) as LoroMap;
+    } else if (container instanceof LoroTree) {
+        return this.setTreeContainer(pos, container) as LoroTree;
+    } else if (container instanceof LoroMovableList) {
+        return this.setMovableListContainer(pos, container) as LoroMovableList;
+    } else {
+        throw new Error('Unsupported container type');
+    }
 }
 
 const originalTextMark = LoroText.prototype.mark;
 LoroText.prototype.mark = function (from: number, to: number, key: string, value: Value): void {
     return originalTextMark.call(this, from, to, key, jsValueToLoroValue(value));
 }
-
 
 // ############# UndoManager
 
@@ -381,6 +443,24 @@ UndoManager.prototype.setOnPop = function (onPop: (
     return originalSetOnPop.call(this, { onPop })
 }
 
+// Add asLoroValue method to all LoroValue variants
+function addAsLoroValueMethodForLoroValue(prototype: any) {
+    prototype.asLoroValue = function (): LoroValue {
+        return this;
+    }
+}
+
+addAsLoroValueMethodForLoroValue(LoroValue.Bool.prototype);
+addAsLoroValueMethodForLoroValue(LoroValue.I64.prototype);
+addAsLoroValueMethodForLoroValue(LoroValue.Double.prototype);
+addAsLoroValueMethodForLoroValue(LoroValue.String.prototype);
+addAsLoroValueMethodForLoroValue(LoroValue.Binary.prototype);
+addAsLoroValueMethodForLoroValue(LoroValue.List.prototype);
+addAsLoroValueMethodForLoroValue(LoroValue.Map.prototype);
+addAsLoroValueMethodForLoroValue(LoroValue.Container.prototype);
+addAsLoroValueMethodForLoroValue(LoroValue.Null.prototype);
+
+
 const jsValueToLoroValue = (value?: Value): LoroValue => {
     if (!value) {
         return new LoroValue.Null();
@@ -396,7 +476,7 @@ const jsValueToLoroValue = (value?: Value): LoroValue => {
     }
     if (typeof value === 'number') {
         if (Number.isInteger(value)) {
-            return new LoroValue.I64({ value: value as unknown as bigint });
+            return new LoroValue.I64({ value: BigInt(value) });
         }
         return new LoroValue.Double({ value: value as unknown as number });
     }
@@ -413,4 +493,24 @@ const jsValueToLoroValue = (value?: Value): LoroValue => {
         return new LoroValue.Map({ value: new Map(Object.entries(value).map(([key, value]) => [key, jsValueToLoroValue(value)])) });
     }
     throw new Error('Unsupported value type');
+}
+
+export const loroValueToJsValue = (value: LoroValue): Value => {
+    if (value instanceof LoroValue.Null) {
+        return null;
+    }
+    if (value instanceof LoroValue.I64) {
+        return Number(value.inner.value);
+    }
+    if (value instanceof LoroValue.List) {
+        return value.inner.value.map(loroValueToJsValue);
+    }
+    if (value instanceof LoroValue.Map) {
+        const map = new Map<string, Value>();
+        for (const key of Object.keys(value.inner.value)) {
+            map.set(key, loroValueToJsValue(value.inner.value[key]));
+        }
+        return map;
+    }
+    return value.inner.value;
 }

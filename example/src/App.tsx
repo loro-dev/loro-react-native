@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet } from 'react-native';
-import { ContainerId, LoroDoc, LoroList, ContainerType } from 'loro-react-native';
+import { ContainerId, loroValueToJsValue, LoroDoc, LoroList, ContainerType, LoroValue, type LoroValueLike } from 'loro-react-native';
 String.prototype.asContainerId = function (ty: ContainerType): ContainerId {
   return new ContainerId.Root({
     name: this as string,
@@ -11,23 +11,21 @@ export default function App() {
   const sub = doc.subscribeRoot((e) => {
     console.log(e);
   })
-  const text = doc.getText({
-    asContainerId: (ty: ContainerType) => new ContainerId.Root({
-      name: "text",
-      containerType: ty,
-    }),
-  });
+  const text = doc.getText("text");
   text.insert(0, "Hello, world!");
   const map = doc.getMap("map");
-  const list = map.insertContainer("container", text);
-  map.insert("bool", true);
+  const list = map.insertContainer("container", new LoroList());
+  list.insert(0, true);
   map.insert("number", 123);
+  map.insert("bool", true);
   map.insert("float", 123.456);
   map.insert("string", "Hello, world!");
-  map.insert("list", [1, 2, 3]);
+  map.insert("list", [1.1, 2, 3.3]);
   map.insert("map", { "key": "value" });
   map.insert("null", null);
   map.insert("undefined", undefined);
+  console.log(loroValueToJsValue(map.getValue()));
+  doc.commit();
 
   return (
     <View style={styles.container}>

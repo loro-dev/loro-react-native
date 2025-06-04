@@ -1893,7 +1893,7 @@ packages:
     hasBin: true
 
   loro-react-native@file:../loro-react-native-0.2.2.tgz:
-    resolution: {integrity: sha512-JixHDJICbi3vCnh5/GCc8mjLWqjRxxIoiOIeqyrxxg9MRf4IlZWhxne1Fp9/3Olvs0xwkCfzYmINllTMzfS1Vg==, tarball: file:../loro-react-native-0.2.2.tgz}
+    resolution: {integrity: sha512-UVk8p9vR2oEy5ywMDxp5JJMtoizMeRibn5NdTOVgp3M2WZBv6bv4J9JxG19v2krh80sjrqdhb97MWTBbE3mdEA==, tarball: file:../loro-react-native-0.2.2.tgz}
     version: 0.2.2
     peerDependencies:
       react: '*'
