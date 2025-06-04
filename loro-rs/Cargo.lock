@@ -830,7 +830,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "loro-rn"
+name = "loro-rs"
 version = "1.5.0"
 dependencies = [
  "loro-ffi",

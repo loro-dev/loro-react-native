@@ -1,5 +1,13 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { ContainerId, loroValueToJsValue, LoroDoc, LoroList, ContainerType, LoroValue, type LoroValueLike } from 'loro-react-native';
+import { StyleSheet, Text, View } from "react-native";
+import {
+  ContainerId,
+  ContainerType,
+  LoroDoc,
+  LoroList,
+  LoroValue,
+  type LoroValueLike,
+  loroValueToJsValue,
+} from "../..";
 String.prototype.asContainerId = function (ty: ContainerType): ContainerId {
   return new ContainerId.Root({
     name: this as string,
@@ -10,7 +18,7 @@ export default function App() {
   const doc = new LoroDoc();
   const sub = doc.subscribeRoot((e) => {
     console.log(e);
-  })
+  });
   const text = doc.getText("text");
   text.insert(0, "Hello, world!");
   const map = doc.getMap("map");
@@ -39,7 +47,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

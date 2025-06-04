@@ -27,7 +27,6 @@ if (!initialized) {
   initialized = true;
 }
 
-export * from './extension';
 // Export the crates as individually namespaced objects.
 export default {
   loro,

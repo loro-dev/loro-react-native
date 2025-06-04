@@ -23,1330 +23,1330 @@ interface NativeModuleInterface {
     buffer: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): string;
-  ubrn_uniffi_loro_rn_fn_clone_awareness(
+  ubrn_uniffi_loro_rs_fn_clone_awareness(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_awareness(
+  ubrn_uniffi_loro_rs_fn_free_awareness(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_awareness_new(
+  ubrn_uniffi_loro_rs_fn_constructor_awareness_new(
     peer: bigint,
     timeout: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_awareness_apply(
+  ubrn_uniffi_loro_rs_fn_method_awareness_apply(
     ptr: bigint,
     encodedPeersInfo: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_awareness_encode(
+  ubrn_uniffi_loro_rs_fn_method_awareness_encode(
     ptr: bigint,
     peers: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_awareness_encode_all(
+  ubrn_uniffi_loro_rs_fn_method_awareness_encode_all(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_awareness_get_all_states(
+  ubrn_uniffi_loro_rs_fn_method_awareness_get_all_states(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_awareness_get_local_state(
+  ubrn_uniffi_loro_rs_fn_method_awareness_get_local_state(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_awareness_peer(
+  ubrn_uniffi_loro_rs_fn_method_awareness_peer(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_awareness_remove_outdated(
+  ubrn_uniffi_loro_rs_fn_method_awareness_remove_outdated(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_awareness_set_local_state(
+  ubrn_uniffi_loro_rs_fn_method_awareness_set_local_state(
     ptr: bigint,
     value: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_changeancestorstraveler(
+  ubrn_uniffi_loro_rs_fn_clone_changeancestorstraveler(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_changeancestorstraveler(
+  ubrn_uniffi_loro_rs_fn_free_changeancestorstraveler(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_changeancestorstraveler_travel(
+  ubrn_uniffi_loro_rs_fn_method_changeancestorstraveler_travel(
     ptr: bigint,
     change: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_clone_changemodifier(
+  ubrn_uniffi_loro_rs_fn_clone_changemodifier(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_changemodifier(
+  ubrn_uniffi_loro_rs_fn_free_changemodifier(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_changemodifier_set_message(
+  ubrn_uniffi_loro_rs_fn_method_changemodifier_set_message(
     ptr: bigint,
     msg: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_changemodifier_set_timestamp(
+  ubrn_uniffi_loro_rs_fn_method_changemodifier_set_timestamp(
     ptr: bigint,
     timestamp: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_configure(
+  ubrn_uniffi_loro_rs_fn_clone_configure(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_configure(
+  ubrn_uniffi_loro_rs_fn_free_configure(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_configure_fork(
+  ubrn_uniffi_loro_rs_fn_method_configure_fork(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_configure_merge_interval(
+  ubrn_uniffi_loro_rs_fn_method_configure_merge_interval(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_configure_record_timestamp(
+  ubrn_uniffi_loro_rs_fn_method_configure_record_timestamp(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_configure_set_merge_interval(
+  ubrn_uniffi_loro_rs_fn_method_configure_set_merge_interval(
     ptr: bigint,
     interval: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_configure_set_record_timestamp(
+  ubrn_uniffi_loro_rs_fn_method_configure_set_record_timestamp(
     ptr: bigint,
     record: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_configure_text_style_config(
+  ubrn_uniffi_loro_rs_fn_method_configure_text_style_config(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_clone_containeridlike(
+  ubrn_uniffi_loro_rs_fn_clone_containeridlike(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_containeridlike(
+  ubrn_uniffi_loro_rs_fn_free_containeridlike(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_containeridlike_as_container_id(
+  ubrn_uniffi_loro_rs_fn_method_containeridlike_as_container_id(
     ptr: bigint,
     ty: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_clone_cursor(
+  ubrn_uniffi_loro_rs_fn_clone_cursor(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_cursor(
+  ubrn_uniffi_loro_rs_fn_free_cursor(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_cursor_new(
+  ubrn_uniffi_loro_rs_fn_constructor_cursor_new(
     id: Uint8Array,
     container: Uint8Array,
     side: Uint8Array,
     originPos: number,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_clone_diffbatch(
+  ubrn_uniffi_loro_rs_fn_clone_diffbatch(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_diffbatch(
+  ubrn_uniffi_loro_rs_fn_free_diffbatch(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_diffbatch_new(
+  ubrn_uniffi_loro_rs_fn_constructor_diffbatch_new(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_diffbatch_get_diff(
+  ubrn_uniffi_loro_rs_fn_method_diffbatch_get_diff(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_diffbatch_push(
+  ubrn_uniffi_loro_rs_fn_method_diffbatch_push(
     ptr: bigint,
     cid: Uint8Array,
     diff: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_clone_ephemeralstore(
+  ubrn_uniffi_loro_rs_fn_clone_ephemeralstore(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_ephemeralstore(
+  ubrn_uniffi_loro_rs_fn_free_ephemeralstore(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_ephemeralstore_new(
+  ubrn_uniffi_loro_rs_fn_constructor_ephemeralstore_new(
     timeout: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralstore_apply(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralstore_apply(
     ptr: bigint,
     data: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralstore_delete(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralstore_delete(
     ptr: bigint,
     key: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralstore_encode(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralstore_encode(
     ptr: bigint,
     key: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralstore_encode_all(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralstore_encode_all(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralstore_get(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralstore_get(
     ptr: bigint,
     key: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralstore_get_all_states(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralstore_get_all_states(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralstore_keys(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralstore_keys(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralstore_remove_outdated(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralstore_remove_outdated(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralstore_set(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralstore_set(
     ptr: bigint,
     key: Uint8Array,
     value: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralstore_subscribe(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralstore_subscribe(
     ptr: bigint,
     listener: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralstore_subscribe_local_update(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralstore_subscribe_local_update(
     ptr: bigint,
     listener: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_clone_ephemeralsubscriber(
+  ubrn_uniffi_loro_rs_fn_clone_ephemeralsubscriber(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_ephemeralsubscriber(
+  ubrn_uniffi_loro_rs_fn_free_ephemeralsubscriber(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_ephemeralsubscriber_on_ephemeral_event(
+  ubrn_uniffi_loro_rs_fn_method_ephemeralsubscriber_on_ephemeral_event(
     ptr: bigint,
     event: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_firstcommitfrompeercallback(
+  ubrn_uniffi_loro_rs_fn_clone_firstcommitfrompeercallback(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_firstcommitfrompeercallback(
+  ubrn_uniffi_loro_rs_fn_free_firstcommitfrompeercallback(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_firstcommitfrompeercallback_on_first_commit_from_peer(
+  ubrn_uniffi_loro_rs_fn_method_firstcommitfrompeercallback_on_first_commit_from_peer(
     ptr: bigint,
     payload: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_fractionalindex(
+  ubrn_uniffi_loro_rs_fn_clone_fractionalindex(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_fractionalindex(
+  ubrn_uniffi_loro_rs_fn_free_fractionalindex(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_fractionalindex_from_bytes(
+  ubrn_uniffi_loro_rs_fn_constructor_fractionalindex_from_bytes(
     bytes: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_constructor_fractionalindex_from_hex_string(
+  ubrn_uniffi_loro_rs_fn_constructor_fractionalindex_from_hex_string(
     str: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_fractionalindex_to_string(
+  ubrn_uniffi_loro_rs_fn_method_fractionalindex_to_string(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_clone_frontiers(
+  ubrn_uniffi_loro_rs_fn_clone_frontiers(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_frontiers(
+  ubrn_uniffi_loro_rs_fn_free_frontiers(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_frontiers_decode(
+  ubrn_uniffi_loro_rs_fn_constructor_frontiers_decode(
     bytes: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_constructor_frontiers_from_id(
+  ubrn_uniffi_loro_rs_fn_constructor_frontiers_from_id(
     id: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_constructor_frontiers_from_ids(
+  ubrn_uniffi_loro_rs_fn_constructor_frontiers_from_ids(
     ids: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_constructor_frontiers_new(
+  ubrn_uniffi_loro_rs_fn_constructor_frontiers_new(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_frontiers_encode(
+  ubrn_uniffi_loro_rs_fn_method_frontiers_encode(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_frontiers_eq(
+  ubrn_uniffi_loro_rs_fn_method_frontiers_eq(
     ptr: bigint,
     other: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_clone_localephemerallistener(
+  ubrn_uniffi_loro_rs_fn_clone_localephemerallistener(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_localephemerallistener(
+  ubrn_uniffi_loro_rs_fn_free_localephemerallistener(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_localephemerallistener_on_ephemeral_update(
+  ubrn_uniffi_loro_rs_fn_method_localephemerallistener_on_ephemeral_update(
     ptr: bigint,
     update: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_localupdatecallback(
+  ubrn_uniffi_loro_rs_fn_clone_localupdatecallback(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_localupdatecallback(
+  ubrn_uniffi_loro_rs_fn_free_localupdatecallback(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_localupdatecallback_on_local_update(
+  ubrn_uniffi_loro_rs_fn_method_localupdatecallback_on_local_update(
     ptr: bigint,
     update: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_lorocounter(
+  ubrn_uniffi_loro_rs_fn_clone_lorocounter(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_lorocounter(
+  ubrn_uniffi_loro_rs_fn_free_lorocounter(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_lorocounter_new(
+  ubrn_uniffi_loro_rs_fn_constructor_lorocounter_new(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorocounter_decrement(
+  ubrn_uniffi_loro_rs_fn_method_lorocounter_decrement(
     ptr: bigint,
     value: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorocounter_doc(
+  ubrn_uniffi_loro_rs_fn_method_lorocounter_doc(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorocounter_get_attached(
+  ubrn_uniffi_loro_rs_fn_method_lorocounter_get_attached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorocounter_get_value(
+  ubrn_uniffi_loro_rs_fn_method_lorocounter_get_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorocounter_id(
+  ubrn_uniffi_loro_rs_fn_method_lorocounter_id(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorocounter_increment(
+  ubrn_uniffi_loro_rs_fn_method_lorocounter_increment(
     ptr: bigint,
     value: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorocounter_is_attached(
+  ubrn_uniffi_loro_rs_fn_method_lorocounter_is_attached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorocounter_is_deleted(
+  ubrn_uniffi_loro_rs_fn_method_lorocounter_is_deleted(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_clone_lorodoc(
+  ubrn_uniffi_loro_rs_fn_clone_lorodoc(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_lorodoc(
+  ubrn_uniffi_loro_rs_fn_free_lorodoc(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_lorodoc_new(
+  ubrn_uniffi_loro_rs_fn_constructor_lorodoc_new(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_apply_diff(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_apply_diff(
     ptr: bigint,
     diff: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_attach(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_attach(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_check_state_correctness_slow(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_check_state_correctness_slow(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_checkout(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_checkout(
     ptr: bigint,
     frontiers: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_checkout_to_latest(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_checkout_to_latest(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_clear_next_commit_options(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_clear_next_commit_options(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_cmp_with_frontiers(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_cmp_with_frontiers(
     ptr: bigint,
     other: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_commit(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_commit(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_commit_with(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_commit_with(
     ptr: bigint,
     options: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_compact_change_store(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_compact_change_store(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_config(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_config(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_config_default_text_style(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_config_default_text_style(
     ptr: bigint,
     textStyle: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_config_text_style(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_config_text_style(
     ptr: bigint,
     textStyle: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_detach(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_detach(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_diff(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_diff(
     ptr: bigint,
     a: bigint,
     b: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_export_json_in_id_span(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_export_json_in_id_span(
     ptr: bigint,
     idSpan: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_export_json_updates(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_export_json_updates(
     ptr: bigint,
     startVv: bigint,
     endVv: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_export_json_updates_without_peer_compression(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_export_json_updates_without_peer_compression(
     ptr: bigint,
     startVv: bigint,
     endVv: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_export_shallow_snapshot(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_export_shallow_snapshot(
     ptr: bigint,
     frontiers: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_export_snapshot(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_export_snapshot(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_export_snapshot_at(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_export_snapshot_at(
     ptr: bigint,
     frontiers: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_export_state_only(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_export_state_only(
     ptr: bigint,
     frontiers: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_export_updates(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_export_updates(
     ptr: bigint,
     vv: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_export_updates_in_range(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_export_updates_in_range(
     ptr: bigint,
     spans: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_find_id_spans_between(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_find_id_spans_between(
     ptr: bigint,
     from: bigint,
     to: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_fork(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_fork(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_fork_at(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_fork_at(
     ptr: bigint,
     frontiers: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_free_diff_calculator(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_free_diff_calculator(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_free_history_cache(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_free_history_cache(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_frontiers_to_vv(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_frontiers_to_vv(
     ptr: bigint,
     frontiers: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_by_path(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_by_path(
     ptr: bigint,
     path: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_by_str_path(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_by_str_path(
     ptr: bigint,
     path: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_change(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_change(
     ptr: bigint,
     id: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_changed_containers_in(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_changed_containers_in(
     ptr: bigint,
     id: Uint8Array,
     len: number,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_counter(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_counter(
     ptr: bigint,
     id: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_cursor_pos(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_cursor_pos(
     ptr: bigint,
     cursor: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_deep_value(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_deep_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_deep_value_with_id(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_deep_value_with_id(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_list(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_list(
     ptr: bigint,
     id: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_map(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_map(
     ptr: bigint,
     id: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_movable_list(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_movable_list(
     ptr: bigint,
     id: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_path_to_container(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_path_to_container(
     ptr: bigint,
     id: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_pending_txn_len(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_pending_txn_len(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_text(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_text(
     ptr: bigint,
     id: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_tree(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_tree(
     ptr: bigint,
     id: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_get_value(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_get_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_has_container(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_has_container(
     ptr: bigint,
     id: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_has_history_cache(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_has_history_cache(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_import(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_import(
     ptr: bigint,
     bytes: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_import_batch(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_import_batch(
     ptr: bigint,
     bytes: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_import_json_updates(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_import_json_updates(
     ptr: bigint,
     json: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_import_with(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_import_with(
     ptr: bigint,
     bytes: Uint8Array,
     origin: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_is_detached(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_is_detached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_is_shallow(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_is_shallow(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_jsonpath(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_jsonpath(
     ptr: bigint,
     path: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_len_changes(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_len_changes(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_len_ops(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_len_ops(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_log_estimate_size(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_log_estimate_size(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_minimize_frontiers(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_minimize_frontiers(
     ptr: bigint,
     frontiers: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_oplog_frontiers(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_oplog_frontiers(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_oplog_vv(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_oplog_vv(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_peer_id(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_peer_id(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_revert_to(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_revert_to(
     ptr: bigint,
     version: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_set_change_merge_interval(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_set_change_merge_interval(
     ptr: bigint,
     interval: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_set_next_commit_message(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_set_next_commit_message(
     ptr: bigint,
     msg: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_set_next_commit_options(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_set_next_commit_options(
     ptr: bigint,
     options: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_set_next_commit_origin(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_set_next_commit_origin(
     ptr: bigint,
     origin: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_set_next_commit_timestamp(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_set_next_commit_timestamp(
     ptr: bigint,
     timestamp: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_set_peer_id(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_set_peer_id(
     ptr: bigint,
     peer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_set_record_timestamp(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_set_record_timestamp(
     ptr: bigint,
     record: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_shallow_since_vv(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_shallow_since_vv(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_state_frontiers(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_state_frontiers(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_state_vv(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_state_vv(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_subscribe(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_subscribe(
     ptr: bigint,
     containerId: Uint8Array,
     subscriber: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_subscribe_first_commit_from_peer(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_subscribe_first_commit_from_peer(
     ptr: bigint,
     callback: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_subscribe_local_update(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_subscribe_local_update(
     ptr: bigint,
     callback: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_subscribe_pre_commit(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_subscribe_pre_commit(
     ptr: bigint,
     callback: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_subscribe_root(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_subscribe_root(
     ptr: bigint,
     subscriber: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_travel_change_ancestors(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_travel_change_ancestors(
     ptr: bigint,
     ids: Uint8Array,
     f: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorodoc_vv_to_frontiers(
+  ubrn_uniffi_loro_rs_fn_method_lorodoc_vv_to_frontiers(
     ptr: bigint,
     vv: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_clone_lorolist(
+  ubrn_uniffi_loro_rs_fn_clone_lorolist(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_lorolist(
+  ubrn_uniffi_loro_rs_fn_free_lorolist(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_lorolist_new(
+  ubrn_uniffi_loro_rs_fn_constructor_lorolist_new(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_clear(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_clear(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_delete(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_delete(
     ptr: bigint,
     pos: number,
     len: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_doc(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_doc(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_get(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_get(
     ptr: bigint,
     index: number,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_get_attached(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_get_attached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_get_cursor(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_get_cursor(
     ptr: bigint,
     pos: number,
     side: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_get_deep_value(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_get_deep_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_get_id_at(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_get_id_at(
     ptr: bigint,
     pos: number,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_get_value(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_get_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_id(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_id(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_insert(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_insert(
     ptr: bigint,
     pos: number,
     v: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_insert_counter_container(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_insert_counter_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_insert_list_container(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_insert_list_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_insert_map_container(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_insert_map_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_insert_movable_list_container(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_insert_movable_list_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_insert_text_container(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_insert_text_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_insert_tree_container(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_insert_tree_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_is_attached(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_is_attached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_is_deleted(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_is_deleted(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_is_empty(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_is_empty(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_len(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_len(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_pop(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_pop(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_push(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_push(
     ptr: bigint,
     v: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorolist_to_vec(
+  ubrn_uniffi_loro_rs_fn_method_lorolist_to_vec(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_clone_loromap(
+  ubrn_uniffi_loro_rs_fn_clone_loromap(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_loromap(
+  ubrn_uniffi_loro_rs_fn_free_loromap(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_loromap_new(
+  ubrn_uniffi_loro_rs_fn_constructor_loromap_new(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_clear(
+  ubrn_uniffi_loro_rs_fn_method_loromap_clear(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_loromap_delete(
+  ubrn_uniffi_loro_rs_fn_method_loromap_delete(
     ptr: bigint,
     key: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_loromap_doc(
+  ubrn_uniffi_loro_rs_fn_method_loromap_doc(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromap_get(
-    ptr: bigint,
-    key: Uint8Array,
-    uniffi_out_err: UniffiRustCallStatus
-  ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromap_get_attached(
-    ptr: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromap_get_deep_value(
-    ptr: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromap_get_last_editor(
+  ubrn_uniffi_loro_rs_fn_method_loromap_get(
     ptr: bigint,
     key: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromap_get_or_create_counter_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_get_attached(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_rs_fn_method_loromap_get_deep_value(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_rs_fn_method_loromap_get_last_editor(
+    ptr: bigint,
+    key: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_counter_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_get_or_create_list_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_list_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_get_or_create_map_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_map_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_get_or_create_movable_list_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_movable_list_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_get_or_create_text_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_text_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_get_or_create_tree_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_tree_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_get_value(
+  ubrn_uniffi_loro_rs_fn_method_loromap_get_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromap_id(
+  ubrn_uniffi_loro_rs_fn_method_loromap_id(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromap_insert(
+  ubrn_uniffi_loro_rs_fn_method_loromap_insert(
     ptr: bigint,
     key: Uint8Array,
     v: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_loromap_insert_counter_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_insert_counter_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_insert_list_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_insert_list_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_insert_map_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_insert_map_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_insert_movable_list_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_insert_movable_list_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_insert_text_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_insert_text_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_insert_tree_container(
+  ubrn_uniffi_loro_rs_fn_method_loromap_insert_tree_container(
     ptr: bigint,
     key: Uint8Array,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromap_is_attached(
+  ubrn_uniffi_loro_rs_fn_method_loromap_is_attached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_loromap_is_deleted(
+  ubrn_uniffi_loro_rs_fn_method_loromap_is_deleted(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_loromap_is_empty(
+  ubrn_uniffi_loro_rs_fn_method_loromap_is_empty(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_loromap_keys(
+  ubrn_uniffi_loro_rs_fn_method_loromap_keys(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromap_len(
+  ubrn_uniffi_loro_rs_fn_method_loromap_len(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_loromap_values(
+  ubrn_uniffi_loro_rs_fn_method_loromap_values(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_clone_loromovablelist(
+  ubrn_uniffi_loro_rs_fn_clone_loromovablelist(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_loromovablelist(
+  ubrn_uniffi_loro_rs_fn_free_loromovablelist(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_loromovablelist_new(
+  ubrn_uniffi_loro_rs_fn_constructor_loromovablelist_new(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_clear(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_clear(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_delete(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_delete(
     ptr: bigint,
     pos: number,
     len: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_doc(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_doc(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_get(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_get(
     ptr: bigint,
     index: number,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_get_attached(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_attached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_get_creator_at(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_creator_at(
     ptr: bigint,
     pos: number,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_get_cursor(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_cursor(
     ptr: bigint,
     pos: number,
     side: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_get_deep_value(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_deep_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_get_last_editor_at(
-    ptr: bigint,
-    pos: number,
-    uniffi_out_err: UniffiRustCallStatus
-  ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_get_last_mover_at(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_last_editor_at(
     ptr: bigint,
     pos: number,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_get_value(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_last_mover_at(
+    ptr: bigint,
+    pos: number,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_id(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_id(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_insert(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert(
     ptr: bigint,
     pos: number,
     v: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_insert_counter_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_counter_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_insert_list_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_list_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_insert_map_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_map_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_insert_movable_list_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_movable_list_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_insert_text_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_text_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_insert_tree_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_tree_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_is_attached(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_is_attached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_is_deleted(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_is_deleted(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_is_empty(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_is_empty(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_len(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_len(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_mov(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_mov(
     ptr: bigint,
     from: number,
     to: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_pop(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_pop(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_push(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_push(
     ptr: bigint,
     v: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_set(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_set(
     ptr: bigint,
     pos: number,
     value: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_set_counter_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_counter_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_set_list_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_list_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_set_map_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_map_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_set_movable_list_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_movable_list_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_set_text_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_text_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_set_tree_container(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_tree_container(
     ptr: bigint,
     pos: number,
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_loromovablelist_to_vec(
+  ubrn_uniffi_loro_rs_fn_method_loromovablelist_to_vec(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_clone_lorotext(
+  ubrn_uniffi_loro_rs_fn_clone_lorotext(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_lorotext(
+  ubrn_uniffi_loro_rs_fn_free_lorotext(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_lorotext_new(
+  ubrn_uniffi_loro_rs_fn_constructor_lorotext_new(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_apply_delta(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_apply_delta(
     ptr: bigint,
     delta: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_delete(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_delete(
     ptr: bigint,
     pos: number,
     len: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_delete_utf8(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_delete_utf8(
     ptr: bigint,
     pos: number,
     len: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_doc(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_doc(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_get_attached(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_get_attached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_get_cursor(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_get_cursor(
     ptr: bigint,
     pos: number,
     side: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_get_editor_at_unicode_pos(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_get_editor_at_unicode_pos(
     ptr: bigint,
     pos: number,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_get_richtext_value(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_get_richtext_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_id(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_id(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_insert(
-    ptr: bigint,
-    pos: number,
-    s: Uint8Array,
-    uniffi_out_err: UniffiRustCallStatus
-  ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_insert_utf8(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_insert(
     ptr: bigint,
     pos: number,
     s: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_is_attached(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_insert_utf8(
+    ptr: bigint,
+    pos: number,
+    s: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_loro_rs_fn_method_lorotext_is_attached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_is_deleted(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_is_deleted(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_is_empty(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_is_empty(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_len_unicode(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_len_unicode(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_len_utf16(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_len_utf16(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_len_utf8(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_len_utf8(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_mark(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_mark(
     ptr: bigint,
     from: number,
     to: number,
@@ -1354,895 +1354,895 @@ interface NativeModuleInterface {
     value: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_push_str(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_push_str(
     ptr: bigint,
     s: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_slice(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_slice(
     ptr: bigint,
     startIndex: number,
     endIndex: number,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_splice(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_splice(
     ptr: bigint,
     pos: number,
     len: number,
     s: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_to_delta(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_to_delta(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_to_string(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_to_string(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_unmark(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_unmark(
     ptr: bigint,
     from: number,
     to: number,
     key: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_update(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_update(
     ptr: bigint,
     s: Uint8Array,
     options: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotext_update_by_line(
+  ubrn_uniffi_loro_rs_fn_method_lorotext_update_by_line(
     ptr: bigint,
     s: Uint8Array,
     options: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_lorotree(
+  ubrn_uniffi_loro_rs_fn_clone_lorotree(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_lorotree(
+  ubrn_uniffi_loro_rs_fn_free_lorotree(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_lorotree_new(
+  ubrn_uniffi_loro_rs_fn_constructor_lorotree_new(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_children(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_children(
     ptr: bigint,
     parent: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_children_num(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_children_num(
     ptr: bigint,
     parent: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_contains(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_contains(
     ptr: bigint,
     target: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_create(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_create(
     ptr: bigint,
     parent: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_create_at(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_create_at(
     ptr: bigint,
     parent: Uint8Array,
     index: number,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_delete(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_delete(
     ptr: bigint,
     target: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_disable_fractional_index(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_disable_fractional_index(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_doc(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_doc(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_enable_fractional_index(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_enable_fractional_index(
     ptr: bigint,
     jitter: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_fractional_index(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_fractional_index(
     ptr: bigint,
     target: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_get_attached(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_get_attached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_get_last_move_id(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_get_last_move_id(
     ptr: bigint,
     target: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_get_meta(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_get_meta(
     ptr: bigint,
     target: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_get_value(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_get_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_get_value_with_meta(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_get_value_with_meta(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_id(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_id(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_is_attached(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_is_attached(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_is_deleted(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_is_deleted(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_is_fractional_index_enabled(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_is_fractional_index_enabled(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_is_node_deleted(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_is_node_deleted(
     ptr: bigint,
     target: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_mov(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_mov(
     ptr: bigint,
     target: Uint8Array,
     parent: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_mov_after(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_mov_after(
     ptr: bigint,
     target: Uint8Array,
     after: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_mov_before(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_mov_before(
     ptr: bigint,
     target: Uint8Array,
     before: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_mov_to(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_mov_to(
     ptr: bigint,
     target: Uint8Array,
     parent: Uint8Array,
     to: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_nodes(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_nodes(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_parent(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_parent(
     ptr: bigint,
     target: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_lorotree_roots(
+  ubrn_uniffi_loro_rs_fn_method_lorotree_roots(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_clone_lorounknown(
+  ubrn_uniffi_loro_rs_fn_clone_lorounknown(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_lorounknown(
+  ubrn_uniffi_loro_rs_fn_free_lorounknown(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorounknown_id(
+  ubrn_uniffi_loro_rs_fn_method_lorounknown_id(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_clone_lorovaluelike(
+  ubrn_uniffi_loro_rs_fn_clone_lorovaluelike(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_lorovaluelike(
+  ubrn_uniffi_loro_rs_fn_free_lorovaluelike(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_lorovaluelike_as_loro_value(
+  ubrn_uniffi_loro_rs_fn_method_lorovaluelike_as_loro_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_clone_onpop(
+  ubrn_uniffi_loro_rs_fn_clone_onpop(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_onpop(
+  ubrn_uniffi_loro_rs_fn_free_onpop(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_onpop_on_pop(
+  ubrn_uniffi_loro_rs_fn_method_onpop_on_pop(
     ptr: bigint,
     undoOrRedo: Uint8Array,
     span: Uint8Array,
     undoMeta: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_onpush(
+  ubrn_uniffi_loro_rs_fn_clone_onpush(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_onpush(
+  ubrn_uniffi_loro_rs_fn_free_onpush(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_onpush_on_push(
+  ubrn_uniffi_loro_rs_fn_method_onpush_on_push(
     ptr: bigint,
     undoOrRedo: Uint8Array,
     span: Uint8Array,
     diffEvent: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_clone_precommitcallback(
+  ubrn_uniffi_loro_rs_fn_clone_precommitcallback(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_precommitcallback(
+  ubrn_uniffi_loro_rs_fn_free_precommitcallback(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_precommitcallback_on_pre_commit(
+  ubrn_uniffi_loro_rs_fn_method_precommitcallback_on_pre_commit(
     ptr: bigint,
     payload: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_styleconfigmap(
+  ubrn_uniffi_loro_rs_fn_clone_styleconfigmap(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_styleconfigmap(
+  ubrn_uniffi_loro_rs_fn_free_styleconfigmap(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_styleconfigmap_default_rich_text_config(
+  ubrn_uniffi_loro_rs_fn_constructor_styleconfigmap_default_rich_text_config(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_constructor_styleconfigmap_new(
+  ubrn_uniffi_loro_rs_fn_constructor_styleconfigmap_new(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_styleconfigmap_get(
+  ubrn_uniffi_loro_rs_fn_method_styleconfigmap_get(
     ptr: bigint,
     key: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_styleconfigmap_insert(
+  ubrn_uniffi_loro_rs_fn_method_styleconfigmap_insert(
     ptr: bigint,
     key: Uint8Array,
     value: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_subscriber(
+  ubrn_uniffi_loro_rs_fn_clone_subscriber(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_subscriber(
+  ubrn_uniffi_loro_rs_fn_free_subscriber(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_subscriber_on_diff(
+  ubrn_uniffi_loro_rs_fn_method_subscriber_on_diff(
     ptr: bigint,
     diff: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_subscription(
+  ubrn_uniffi_loro_rs_fn_clone_subscription(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_subscription(
+  ubrn_uniffi_loro_rs_fn_free_subscription(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_subscription_detach(
+  ubrn_uniffi_loro_rs_fn_method_subscription_detach(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_subscription_unsubscribe(
+  ubrn_uniffi_loro_rs_fn_method_subscription_unsubscribe(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_undomanager(
+  ubrn_uniffi_loro_rs_fn_clone_undomanager(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_undomanager(
+  ubrn_uniffi_loro_rs_fn_free_undomanager(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_undomanager_new(
+  ubrn_uniffi_loro_rs_fn_constructor_undomanager_new(
     doc: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_undomanager_add_exclude_origin_prefix(
+  ubrn_uniffi_loro_rs_fn_method_undomanager_add_exclude_origin_prefix(
     ptr: bigint,
     prefix: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_undomanager_can_redo(
+  ubrn_uniffi_loro_rs_fn_method_undomanager_can_redo(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_undomanager_can_undo(
+  ubrn_uniffi_loro_rs_fn_method_undomanager_can_undo(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_undomanager_record_new_checkpoint(
+  ubrn_uniffi_loro_rs_fn_method_undomanager_record_new_checkpoint(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_undomanager_redo(
+  ubrn_uniffi_loro_rs_fn_method_undomanager_redo(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_undomanager_set_max_undo_steps(
+  ubrn_uniffi_loro_rs_fn_method_undomanager_set_max_undo_steps(
     ptr: bigint,
     size: number,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_undomanager_set_merge_interval(
+  ubrn_uniffi_loro_rs_fn_method_undomanager_set_merge_interval(
     ptr: bigint,
     interval: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_undomanager_set_on_pop(
+  ubrn_uniffi_loro_rs_fn_method_undomanager_set_on_pop(
     ptr: bigint,
     onPop: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_undomanager_set_on_push(
+  ubrn_uniffi_loro_rs_fn_method_undomanager_set_on_push(
     ptr: bigint,
     onPush: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_undomanager_undo(
+  ubrn_uniffi_loro_rs_fn_method_undomanager_undo(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_clone_unsubscriber(
+  ubrn_uniffi_loro_rs_fn_clone_unsubscriber(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_unsubscriber(
+  ubrn_uniffi_loro_rs_fn_free_unsubscriber(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_unsubscriber_on_unsubscribe(
+  ubrn_uniffi_loro_rs_fn_method_unsubscriber_on_unsubscribe(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_clone_valueorcontainer(
+  ubrn_uniffi_loro_rs_fn_clone_valueorcontainer(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_valueorcontainer(
+  ubrn_uniffi_loro_rs_fn_free_valueorcontainer(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_as_container(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_container(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_as_loro_counter(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_counter(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_as_loro_list(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_list(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_as_loro_map(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_map(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_as_loro_movable_list(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_movable_list(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_as_loro_text(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_text(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_as_loro_tree(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_tree(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_as_loro_unknown(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_unknown(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_as_value(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_container_type(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_container_type(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_is_container(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_is_container(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_valueorcontainer_is_value(
+  ubrn_uniffi_loro_rs_fn_method_valueorcontainer_is_value(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_clone_versionvector(
+  ubrn_uniffi_loro_rs_fn_clone_versionvector(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_free_versionvector(
+  ubrn_uniffi_loro_rs_fn_free_versionvector(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_constructor_versionvector_decode(
+  ubrn_uniffi_loro_rs_fn_constructor_versionvector_decode(
     bytes: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_constructor_versionvector_new(
+  ubrn_uniffi_loro_rs_fn_constructor_versionvector_new(
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_diff(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_diff(
     ptr: bigint,
     rhs: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_encode(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_encode(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_eq(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_eq(
     ptr: bigint,
     other: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_extend_to_include_vv(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_extend_to_include_vv(
     ptr: bigint,
     other: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_get_last(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_get_last(
     ptr: bigint,
     peer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_get_missing_span(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_get_missing_span(
     ptr: bigint,
     target: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_includes_id(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_includes_id(
     ptr: bigint,
     id: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_includes_vv(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_includes_vv(
     ptr: bigint,
     other: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_intersect_span(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_intersect_span(
     ptr: bigint,
     target: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_merge(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_merge(
     ptr: bigint,
     other: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_partial_cmp(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_partial_cmp(
     ptr: bigint,
     other: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_set_end(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_set_end(
     ptr: bigint,
     id: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_method_versionvector_set_last(
+  ubrn_uniffi_loro_rs_fn_method_versionvector_set_last(
     ptr: bigint,
     id: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
-  ubrn_uniffi_loro_rn_fn_func_decode_import_blob_meta(
+  ubrn_uniffi_loro_rs_fn_func_decode_import_blob_meta(
     bytes: Uint8Array,
     checkChecksum: number,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_fn_func_get_version(
+  ubrn_uniffi_loro_rs_fn_func_get_version(
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
-  ubrn_uniffi_loro_rn_checksum_func_decode_import_blob_meta(): number;
-  ubrn_uniffi_loro_rn_checksum_func_get_version(): number;
-  ubrn_uniffi_loro_rn_checksum_method_awareness_apply(): number;
-  ubrn_uniffi_loro_rn_checksum_method_awareness_encode(): number;
-  ubrn_uniffi_loro_rn_checksum_method_awareness_encode_all(): number;
-  ubrn_uniffi_loro_rn_checksum_method_awareness_get_all_states(): number;
-  ubrn_uniffi_loro_rn_checksum_method_awareness_get_local_state(): number;
-  ubrn_uniffi_loro_rn_checksum_method_awareness_peer(): number;
-  ubrn_uniffi_loro_rn_checksum_method_awareness_remove_outdated(): number;
-  ubrn_uniffi_loro_rn_checksum_method_awareness_set_local_state(): number;
-  ubrn_uniffi_loro_rn_checksum_method_changeancestorstraveler_travel(): number;
-  ubrn_uniffi_loro_rn_checksum_method_changemodifier_set_message(): number;
-  ubrn_uniffi_loro_rn_checksum_method_changemodifier_set_timestamp(): number;
-  ubrn_uniffi_loro_rn_checksum_method_configure_fork(): number;
-  ubrn_uniffi_loro_rn_checksum_method_configure_merge_interval(): number;
-  ubrn_uniffi_loro_rn_checksum_method_configure_record_timestamp(): number;
-  ubrn_uniffi_loro_rn_checksum_method_configure_set_merge_interval(): number;
-  ubrn_uniffi_loro_rn_checksum_method_configure_set_record_timestamp(): number;
-  ubrn_uniffi_loro_rn_checksum_method_configure_text_style_config(): number;
-  ubrn_uniffi_loro_rn_checksum_method_containeridlike_as_container_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_diffbatch_get_diff(): number;
-  ubrn_uniffi_loro_rn_checksum_method_diffbatch_push(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralstore_apply(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralstore_delete(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralstore_encode(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralstore_encode_all(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralstore_get(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralstore_get_all_states(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralstore_keys(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralstore_remove_outdated(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralstore_set(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralstore_subscribe(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralstore_subscribe_local_update(): number;
-  ubrn_uniffi_loro_rn_checksum_method_ephemeralsubscriber_on_ephemeral_event(): number;
-  ubrn_uniffi_loro_rn_checksum_method_firstcommitfrompeercallback_on_first_commit_from_peer(): number;
-  ubrn_uniffi_loro_rn_checksum_method_fractionalindex_to_string(): number;
-  ubrn_uniffi_loro_rn_checksum_method_frontiers_encode(): number;
-  ubrn_uniffi_loro_rn_checksum_method_frontiers_eq(): number;
-  ubrn_uniffi_loro_rn_checksum_method_localephemerallistener_on_ephemeral_update(): number;
-  ubrn_uniffi_loro_rn_checksum_method_localupdatecallback_on_local_update(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorocounter_decrement(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorocounter_doc(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorocounter_get_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorocounter_get_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorocounter_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorocounter_increment(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorocounter_is_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorocounter_is_deleted(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_apply_diff(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_attach(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_check_state_correctness_slow(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_checkout(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_checkout_to_latest(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_clear_next_commit_options(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_cmp_with_frontiers(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_commit(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_commit_with(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_compact_change_store(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_config(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_config_default_text_style(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_config_text_style(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_detach(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_diff(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_export_json_in_id_span(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_export_json_updates(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_export_json_updates_without_peer_compression(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_export_shallow_snapshot(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_export_snapshot(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_export_snapshot_at(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_export_state_only(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_export_updates(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_export_updates_in_range(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_find_id_spans_between(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_fork(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_fork_at(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_free_diff_calculator(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_free_history_cache(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_frontiers_to_vv(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_by_path(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_by_str_path(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_change(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_changed_containers_in(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_counter(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_cursor_pos(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_deep_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_deep_value_with_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_list(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_map(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_movable_list(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_path_to_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_pending_txn_len(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_text(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_tree(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_get_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_has_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_has_history_cache(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_import(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_import_batch(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_import_json_updates(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_import_with(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_is_detached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_is_shallow(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_jsonpath(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_len_changes(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_len_ops(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_log_estimate_size(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_minimize_frontiers(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_oplog_frontiers(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_oplog_vv(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_peer_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_revert_to(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_set_change_merge_interval(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_set_next_commit_message(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_set_next_commit_options(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_set_next_commit_origin(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_set_next_commit_timestamp(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_set_peer_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_set_record_timestamp(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_shallow_since_vv(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_state_frontiers(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_state_vv(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_subscribe(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_subscribe_first_commit_from_peer(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_subscribe_local_update(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_subscribe_pre_commit(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_subscribe_root(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_travel_change_ancestors(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorodoc_vv_to_frontiers(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_clear(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_delete(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_doc(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_get(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_get_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_get_cursor(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_get_deep_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_get_id_at(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_get_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_insert(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_insert_counter_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_insert_list_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_insert_map_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_insert_movable_list_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_insert_text_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_insert_tree_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_is_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_is_deleted(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_is_empty(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_len(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_pop(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_push(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorolist_to_vec(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_clear(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_delete(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_doc(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_get(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_get_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_get_deep_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_get_last_editor(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_get_or_create_counter_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_get_or_create_list_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_get_or_create_map_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_get_or_create_movable_list_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_get_or_create_text_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_get_or_create_tree_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_get_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_insert(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_insert_counter_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_insert_list_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_insert_map_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_insert_movable_list_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_insert_text_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_insert_tree_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_is_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_is_deleted(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_is_empty(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_keys(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_len(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromap_values(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_clear(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_delete(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_doc(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_get(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_get_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_get_creator_at(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_get_cursor(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_get_deep_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_get_last_editor_at(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_get_last_mover_at(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_get_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_insert(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_insert_counter_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_insert_list_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_insert_map_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_insert_movable_list_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_insert_text_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_insert_tree_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_is_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_is_deleted(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_is_empty(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_len(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_mov(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_pop(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_push(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_set(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_set_counter_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_set_list_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_set_map_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_set_movable_list_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_set_text_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_set_tree_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_loromovablelist_to_vec(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_apply_delta(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_delete(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_delete_utf8(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_doc(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_get_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_get_cursor(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_get_editor_at_unicode_pos(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_get_richtext_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_insert(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_insert_utf8(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_is_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_is_deleted(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_is_empty(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_len_unicode(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_len_utf16(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_len_utf8(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_mark(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_push_str(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_slice(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_splice(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_to_delta(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_to_string(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_unmark(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_update(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotext_update_by_line(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_children(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_children_num(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_contains(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_create(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_create_at(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_delete(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_disable_fractional_index(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_doc(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_enable_fractional_index(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_fractional_index(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_get_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_get_last_move_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_get_meta(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_get_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_get_value_with_meta(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_is_attached(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_is_deleted(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_is_fractional_index_enabled(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_is_node_deleted(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_mov(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_mov_after(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_mov_before(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_mov_to(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_nodes(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_parent(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorotree_roots(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorounknown_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_lorovaluelike_as_loro_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_onpop_on_pop(): number;
-  ubrn_uniffi_loro_rn_checksum_method_onpush_on_push(): number;
-  ubrn_uniffi_loro_rn_checksum_method_precommitcallback_on_pre_commit(): number;
-  ubrn_uniffi_loro_rn_checksum_method_styleconfigmap_get(): number;
-  ubrn_uniffi_loro_rn_checksum_method_styleconfigmap_insert(): number;
-  ubrn_uniffi_loro_rn_checksum_method_subscriber_on_diff(): number;
-  ubrn_uniffi_loro_rn_checksum_method_subscription_detach(): number;
-  ubrn_uniffi_loro_rn_checksum_method_subscription_unsubscribe(): number;
-  ubrn_uniffi_loro_rn_checksum_method_undomanager_add_exclude_origin_prefix(): number;
-  ubrn_uniffi_loro_rn_checksum_method_undomanager_can_redo(): number;
-  ubrn_uniffi_loro_rn_checksum_method_undomanager_can_undo(): number;
-  ubrn_uniffi_loro_rn_checksum_method_undomanager_record_new_checkpoint(): number;
-  ubrn_uniffi_loro_rn_checksum_method_undomanager_redo(): number;
-  ubrn_uniffi_loro_rn_checksum_method_undomanager_set_max_undo_steps(): number;
-  ubrn_uniffi_loro_rn_checksum_method_undomanager_set_merge_interval(): number;
-  ubrn_uniffi_loro_rn_checksum_method_undomanager_set_on_pop(): number;
-  ubrn_uniffi_loro_rn_checksum_method_undomanager_set_on_push(): number;
-  ubrn_uniffi_loro_rn_checksum_method_undomanager_undo(): number;
-  ubrn_uniffi_loro_rn_checksum_method_unsubscriber_on_unsubscribe(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_as_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_as_loro_counter(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_as_loro_list(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_as_loro_map(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_as_loro_movable_list(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_as_loro_text(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_as_loro_tree(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_as_loro_unknown(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_as_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_container_type(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_is_container(): number;
-  ubrn_uniffi_loro_rn_checksum_method_valueorcontainer_is_value(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_diff(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_encode(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_eq(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_extend_to_include_vv(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_get_last(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_get_missing_span(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_includes_id(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_includes_vv(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_intersect_span(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_merge(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_partial_cmp(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_set_end(): number;
-  ubrn_uniffi_loro_rn_checksum_method_versionvector_set_last(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_awareness_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_cursor_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_diffbatch_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_ephemeralstore_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_fractionalindex_from_bytes(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_fractionalindex_from_hex_string(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_frontiers_decode(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_frontiers_from_id(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_frontiers_from_ids(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_frontiers_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_lorocounter_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_lorodoc_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_lorolist_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_loromap_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_loromovablelist_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_lorotext_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_lorotree_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_styleconfigmap_default_rich_text_config(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_styleconfigmap_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_undomanager_new(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_versionvector_decode(): number;
-  ubrn_uniffi_loro_rn_checksum_constructor_versionvector_new(): number;
-  ubrn_ffi_loro_rn_uniffi_contract_version(): number;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_changeancestorstraveler(
+  ubrn_uniffi_loro_rs_checksum_func_decode_import_blob_meta(): number;
+  ubrn_uniffi_loro_rs_checksum_func_get_version(): number;
+  ubrn_uniffi_loro_rs_checksum_method_awareness_apply(): number;
+  ubrn_uniffi_loro_rs_checksum_method_awareness_encode(): number;
+  ubrn_uniffi_loro_rs_checksum_method_awareness_encode_all(): number;
+  ubrn_uniffi_loro_rs_checksum_method_awareness_get_all_states(): number;
+  ubrn_uniffi_loro_rs_checksum_method_awareness_get_local_state(): number;
+  ubrn_uniffi_loro_rs_checksum_method_awareness_peer(): number;
+  ubrn_uniffi_loro_rs_checksum_method_awareness_remove_outdated(): number;
+  ubrn_uniffi_loro_rs_checksum_method_awareness_set_local_state(): number;
+  ubrn_uniffi_loro_rs_checksum_method_changeancestorstraveler_travel(): number;
+  ubrn_uniffi_loro_rs_checksum_method_changemodifier_set_message(): number;
+  ubrn_uniffi_loro_rs_checksum_method_changemodifier_set_timestamp(): number;
+  ubrn_uniffi_loro_rs_checksum_method_configure_fork(): number;
+  ubrn_uniffi_loro_rs_checksum_method_configure_merge_interval(): number;
+  ubrn_uniffi_loro_rs_checksum_method_configure_record_timestamp(): number;
+  ubrn_uniffi_loro_rs_checksum_method_configure_set_merge_interval(): number;
+  ubrn_uniffi_loro_rs_checksum_method_configure_set_record_timestamp(): number;
+  ubrn_uniffi_loro_rs_checksum_method_configure_text_style_config(): number;
+  ubrn_uniffi_loro_rs_checksum_method_containeridlike_as_container_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_diffbatch_get_diff(): number;
+  ubrn_uniffi_loro_rs_checksum_method_diffbatch_push(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_apply(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_delete(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_encode(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_encode_all(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_get(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_get_all_states(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_keys(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_remove_outdated(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_set(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_subscribe(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_subscribe_local_update(): number;
+  ubrn_uniffi_loro_rs_checksum_method_ephemeralsubscriber_on_ephemeral_event(): number;
+  ubrn_uniffi_loro_rs_checksum_method_firstcommitfrompeercallback_on_first_commit_from_peer(): number;
+  ubrn_uniffi_loro_rs_checksum_method_fractionalindex_to_string(): number;
+  ubrn_uniffi_loro_rs_checksum_method_frontiers_encode(): number;
+  ubrn_uniffi_loro_rs_checksum_method_frontiers_eq(): number;
+  ubrn_uniffi_loro_rs_checksum_method_localephemerallistener_on_ephemeral_update(): number;
+  ubrn_uniffi_loro_rs_checksum_method_localupdatecallback_on_local_update(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorocounter_decrement(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorocounter_doc(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorocounter_get_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorocounter_get_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorocounter_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorocounter_increment(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorocounter_is_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorocounter_is_deleted(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_apply_diff(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_attach(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_check_state_correctness_slow(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_checkout(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_checkout_to_latest(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_clear_next_commit_options(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_cmp_with_frontiers(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_commit(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_commit_with(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_compact_change_store(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_config(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_config_default_text_style(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_config_text_style(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_detach(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_diff(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_json_in_id_span(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_json_updates(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_json_updates_without_peer_compression(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_shallow_snapshot(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_snapshot(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_snapshot_at(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_state_only(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_updates(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_updates_in_range(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_find_id_spans_between(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_fork(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_fork_at(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_free_diff_calculator(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_free_history_cache(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_frontiers_to_vv(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_by_path(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_by_str_path(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_change(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_changed_containers_in(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_counter(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_cursor_pos(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_deep_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_deep_value_with_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_list(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_map(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_movable_list(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_path_to_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_pending_txn_len(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_text(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_tree(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_has_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_has_history_cache(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_import(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_import_batch(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_import_json_updates(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_import_with(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_is_detached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_is_shallow(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_jsonpath(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_len_changes(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_len_ops(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_log_estimate_size(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_minimize_frontiers(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_oplog_frontiers(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_oplog_vv(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_peer_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_revert_to(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_change_merge_interval(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_message(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_options(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_origin(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_timestamp(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_peer_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_record_timestamp(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_shallow_since_vv(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_state_frontiers(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_state_vv(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_subscribe(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_subscribe_first_commit_from_peer(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_subscribe_local_update(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_subscribe_pre_commit(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_subscribe_root(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_travel_change_ancestors(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorodoc_vv_to_frontiers(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_clear(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_delete(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_doc(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_get(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_get_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_get_cursor(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_get_deep_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_get_id_at(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_get_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_insert(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_counter_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_list_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_map_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_movable_list_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_text_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_tree_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_is_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_is_deleted(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_is_empty(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_len(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_pop(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_push(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorolist_to_vec(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_clear(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_delete(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_doc(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_get(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_get_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_get_deep_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_get_last_editor(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_counter_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_list_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_map_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_movable_list_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_text_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_tree_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_get_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_insert(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_insert_counter_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_insert_list_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_insert_map_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_insert_movable_list_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_insert_text_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_insert_tree_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_is_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_is_deleted(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_is_empty(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_keys(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_len(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromap_values(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_clear(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_delete(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_doc(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_creator_at(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_cursor(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_deep_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_last_editor_at(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_last_mover_at(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_counter_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_list_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_map_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_movable_list_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_text_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_tree_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_is_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_is_deleted(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_is_empty(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_len(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_mov(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_pop(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_push(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_counter_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_list_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_map_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_movable_list_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_text_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_tree_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_loromovablelist_to_vec(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_apply_delta(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_delete(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_delete_utf8(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_doc(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_get_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_get_cursor(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_get_editor_at_unicode_pos(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_get_richtext_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_insert(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_insert_utf8(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_is_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_is_deleted(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_is_empty(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_len_unicode(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_len_utf16(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_len_utf8(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_mark(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_push_str(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_slice(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_splice(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_to_delta(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_to_string(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_unmark(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_update(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotext_update_by_line(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_children(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_children_num(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_contains(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_create(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_create_at(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_delete(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_disable_fractional_index(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_doc(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_enable_fractional_index(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_fractional_index(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_get_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_get_last_move_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_get_meta(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_get_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_get_value_with_meta(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_is_attached(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_is_deleted(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_is_fractional_index_enabled(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_is_node_deleted(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_mov(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_mov_after(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_mov_before(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_mov_to(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_nodes(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_parent(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorotree_roots(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorounknown_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_lorovaluelike_as_loro_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_onpop_on_pop(): number;
+  ubrn_uniffi_loro_rs_checksum_method_onpush_on_push(): number;
+  ubrn_uniffi_loro_rs_checksum_method_precommitcallback_on_pre_commit(): number;
+  ubrn_uniffi_loro_rs_checksum_method_styleconfigmap_get(): number;
+  ubrn_uniffi_loro_rs_checksum_method_styleconfigmap_insert(): number;
+  ubrn_uniffi_loro_rs_checksum_method_subscriber_on_diff(): number;
+  ubrn_uniffi_loro_rs_checksum_method_subscription_detach(): number;
+  ubrn_uniffi_loro_rs_checksum_method_subscription_unsubscribe(): number;
+  ubrn_uniffi_loro_rs_checksum_method_undomanager_add_exclude_origin_prefix(): number;
+  ubrn_uniffi_loro_rs_checksum_method_undomanager_can_redo(): number;
+  ubrn_uniffi_loro_rs_checksum_method_undomanager_can_undo(): number;
+  ubrn_uniffi_loro_rs_checksum_method_undomanager_record_new_checkpoint(): number;
+  ubrn_uniffi_loro_rs_checksum_method_undomanager_redo(): number;
+  ubrn_uniffi_loro_rs_checksum_method_undomanager_set_max_undo_steps(): number;
+  ubrn_uniffi_loro_rs_checksum_method_undomanager_set_merge_interval(): number;
+  ubrn_uniffi_loro_rs_checksum_method_undomanager_set_on_pop(): number;
+  ubrn_uniffi_loro_rs_checksum_method_undomanager_set_on_push(): number;
+  ubrn_uniffi_loro_rs_checksum_method_undomanager_undo(): number;
+  ubrn_uniffi_loro_rs_checksum_method_unsubscriber_on_unsubscribe(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_counter(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_list(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_map(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_movable_list(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_text(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_tree(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_unknown(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_container_type(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_is_container(): number;
+  ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_is_value(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_diff(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_encode(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_eq(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_extend_to_include_vv(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_get_last(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_get_missing_span(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_includes_id(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_includes_vv(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_intersect_span(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_merge(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_partial_cmp(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_set_end(): number;
+  ubrn_uniffi_loro_rs_checksum_method_versionvector_set_last(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_awareness_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_cursor_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_diffbatch_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_ephemeralstore_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_fractionalindex_from_bytes(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_fractionalindex_from_hex_string(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_frontiers_decode(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_frontiers_from_id(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_frontiers_from_ids(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_frontiers_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_lorocounter_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_lorodoc_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_lorolist_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_loromap_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_loromovablelist_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_lorotext_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_lorotree_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_styleconfigmap_default_rich_text_config(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_styleconfigmap_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_undomanager_new(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_versionvector_decode(): number;
+  ubrn_uniffi_loro_rs_checksum_constructor_versionvector_new(): number;
+  ubrn_ffi_loro_rs_uniffi_contract_version(): number;
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_changeancestorstraveler(
     vtable: UniffiVTableCallbackInterfaceChangeAncestorsTraveler
   ): void;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_containeridlike(
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_containeridlike(
     vtable: UniffiVTableCallbackInterfaceContainerIdLike
   ): void;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_ephemeralsubscriber(
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_ephemeralsubscriber(
     vtable: UniffiVTableCallbackInterfaceEphemeralSubscriber
   ): void;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_firstcommitfrompeercallback(
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_firstcommitfrompeercallback(
     vtable: UniffiVTableCallbackInterfaceFirstCommitFromPeerCallback
   ): void;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_localephemerallistener(
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_localephemerallistener(
     vtable: UniffiVTableCallbackInterfaceLocalEphemeralListener
   ): void;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_localupdatecallback(
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_localupdatecallback(
     vtable: UniffiVTableCallbackInterfaceLocalUpdateCallback
   ): void;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_lorovaluelike(
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_lorovaluelike(
     vtable: UniffiVTableCallbackInterfaceLoroValueLike
   ): void;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_onpop(
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_onpop(
     vtable: UniffiVTableCallbackInterfaceOnPop
   ): void;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_onpush(
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_onpush(
     vtable: UniffiVTableCallbackInterfaceOnPush
   ): void;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_precommitcallback(
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_precommitcallback(
     vtable: UniffiVTableCallbackInterfacePreCommitCallback
   ): void;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_subscriber(
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_subscriber(
     vtable: UniffiVTableCallbackInterfaceSubscriber
   ): void;
-  ubrn_uniffi_loro_rn_fn_init_callback_vtable_unsubscriber(
+  ubrn_uniffi_loro_rs_fn_init_callback_vtable_unsubscriber(
     vtable: UniffiVTableCallbackInterfaceUnsubscriber
   ): void;
   ubrn_uniffi_internal_fn_method_awareness_ffi__bless_pointer(

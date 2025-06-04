@@ -1,5 +1,14 @@
 rust:
-  directory: ./loro-rn
+  directory: ./loro-rs
 
 ios:
   frameworkName: build/RustFramework
+  targets:
+    - aarch64-apple-ios
+    - aarch64-apple-ios-sim
+
+android:
+  targets:
+    - arm64-v8a
+    - armeabi-v7a
+    - x86_64
