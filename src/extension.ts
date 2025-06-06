@@ -449,9 +449,9 @@ export const loroValueToJsValue = (value: LoroValue): Value => {
     }
     if (value instanceof LoroValue.Map) {
         const map = new Map<string, Value>();
-        for (const key of Object.keys(value.inner.value)) {
-            map.set(key, loroValueToJsValue(value.inner.value[key]));
-        }
+        value.inner.value.forEach((value, key) => {
+            map.set(key, loroValueToJsValue(value));
+        });
         return map;
     }
     return value.inner.value;
