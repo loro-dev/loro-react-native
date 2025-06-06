@@ -7,7 +7,7 @@ import {
   LoroValue,
   type LoroValueLike,
   loroValueToJsValue,
-} from "../..";
+} from "../../src";
 String.prototype.asContainerId = function (ty: ContainerType): ContainerId {
   return new ContainerId.Root({
     name: this as string,
@@ -33,7 +33,7 @@ export default function App() {
   map.insert("map", { "key": "value" });
   map.insert("null", null);
   map.insert("undefined", undefined);
-  console.log(map.getValue().inner.value);
+  console.log(doc.toJSON());
   doc.commit();
 
   return (

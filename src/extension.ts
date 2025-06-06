@@ -32,6 +32,7 @@ declare module "./generated/loro" {
         subscribeRoot(cb: (diff: DiffEvent) => void): SubscriptionInterface;
         subscribe(containerId: ContainerId, cb: (diff: DiffEvent) => void): SubscriptionInterface;
         subscribeLocalUpdate(cb: (update: ArrayBuffer) => void): SubscriptionInterface;
+        toJSON(): any;
     }
 
     interface LoroMap {
@@ -212,6 +213,10 @@ LoroDoc.prototype.subscribe = function (containerId: ContainerId, cb: (diff: Dif
 const originalSubscribeLocalUpdate = LoroDoc.prototype.subscribeLocalUpdate;
 LoroDoc.prototype.subscribeLocalUpdate = function (cb: (update: ArrayBuffer) => void): SubscriptionInterface {
     return originalSubscribeLocalUpdate.call(this, { onLocalUpdate: cb })
+}
+
+LoroDoc.prototype.toJSON = function (): any {
+    return loroValueToJsValue(this.getDeepValue());
 }
 
 // ############# Container
