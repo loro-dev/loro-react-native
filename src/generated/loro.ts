@@ -106,7 +106,7 @@ export function decodeImportBlobMeta(
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_func_decode_import_blob_meta(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_func_decode_import_blob_meta(
           FfiConverterArrayBuffer.lower(bytes),
           FfiConverterBool.lower(checkChecksum),
           callStatus
@@ -120,7 +120,7 @@ export function getVersion(): string {
   return FfiConverterString.lift(
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_func_get_version(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_func_get_version(
           callStatus
         );
       },
@@ -3791,6 +3791,7 @@ export enum LoroError_Tags {
   ConcurrentOpsWithSamePeerId = 'ConcurrentOpsWithSamePeerID',
   InvalidPeerId = 'InvalidPeerID',
   ContainersNotFound = 'ContainersNotFound',
+  UndoGroupAlreadyStarted = 'UndoGroupAlreadyStarted',
 }
 export const LoroError = (() => {
   class UnmatchedContext extends UniffiError {
@@ -4608,6 +4609,28 @@ export const LoroError = (() => {
       return instanceOf(e) && (e as any)[variantOrdinalSymbol] === 37;
     }
   }
+  class UndoGroupAlreadyStarted extends UniffiError {
+    /**
+     * @private
+     * This field is private and should not be used.
+     */
+    readonly [uniffiTypeNameSymbol]: string = 'LoroError';
+    /**
+     * @private
+     * This field is private and should not be used.
+     */
+    readonly [variantOrdinalSymbol] = 38;
+
+    public readonly tag = LoroError_Tags.UndoGroupAlreadyStarted;
+
+    constructor(message: string) {
+      super('LoroError', 'UndoGroupAlreadyStarted', message);
+    }
+
+    static instanceOf(e: any): e is UndoGroupAlreadyStarted {
+      return instanceOf(e) && (e as any)[variantOrdinalSymbol] === 38;
+    }
+  }
 
   // Utility function which does not rely on instanceof.
   function instanceOf(e: any): e is LoroError {
@@ -4651,6 +4674,7 @@ export const LoroError = (() => {
     ConcurrentOpsWithSamePeerId,
     InvalidPeerId,
     ContainersNotFound,
+    UndoGroupAlreadyStarted,
     instanceOf,
   };
 })();
@@ -4811,6 +4835,11 @@ const FfiConverterTypeLoroError = (() => {
 
         case 37:
           return new LoroError.ContainersNotFound(
+            FfiConverterString.read(from)
+          );
+
+        case 38:
+          return new LoroError.UndoGroupAlreadyStarted(
             FfiConverterString.read(from)
           );
 
@@ -6152,7 +6181,7 @@ export class Awareness
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_awareness_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_awareness_new(
           FfiConverterUInt64.lower(peer),
           FfiConverterInt64.lower(timeout),
           callStatus
@@ -6169,7 +6198,7 @@ export class Awareness
     return FfiConverterTypeAwarenessPeerUpdate.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_awareness_apply(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_awareness_apply(
             uniffiTypeAwarenessObjectFactory.clonePointer(this),
             FfiConverterArrayBuffer.lower(encodedPeersInfo),
             callStatus
@@ -6184,7 +6213,7 @@ export class Awareness
     return FfiConverterArrayBuffer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_awareness_encode(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_awareness_encode(
             uniffiTypeAwarenessObjectFactory.clonePointer(this),
             FfiConverterArrayUInt64.lower(peers),
             callStatus
@@ -6199,7 +6228,7 @@ export class Awareness
     return FfiConverterArrayBuffer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_awareness_encode_all(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_awareness_encode_all(
             uniffiTypeAwarenessObjectFactory.clonePointer(this),
             callStatus
           );
@@ -6213,7 +6242,7 @@ export class Awareness
     return FfiConverterMapUInt64TypePeerInfo.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_awareness_get_all_states(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_awareness_get_all_states(
             uniffiTypeAwarenessObjectFactory.clonePointer(this),
             callStatus
           );
@@ -6227,7 +6256,7 @@ export class Awareness
     return FfiConverterOptionalTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_awareness_get_local_state(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_awareness_get_local_state(
             uniffiTypeAwarenessObjectFactory.clonePointer(this),
             callStatus
           );
@@ -6241,7 +6270,7 @@ export class Awareness
     return FfiConverterUInt64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_awareness_peer(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_awareness_peer(
             uniffiTypeAwarenessObjectFactory.clonePointer(this),
             callStatus
           );
@@ -6255,7 +6284,7 @@ export class Awareness
     return FfiConverterArrayUInt64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_awareness_remove_outdated(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_awareness_remove_outdated(
             uniffiTypeAwarenessObjectFactory.clonePointer(this),
             callStatus
           );
@@ -6268,7 +6297,7 @@ export class Awareness
   public setLocalState(value: LoroValueLike): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_awareness_set_local_state(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_awareness_set_local_state(
           uniffiTypeAwarenessObjectFactory.clonePointer(this),
           FfiConverterTypeLoroValueLike.lower(value),
           callStatus
@@ -6332,7 +6361,7 @@ const uniffiTypeAwarenessObjectFactory: UniffiObjectFactory<AwarenessInterface> 
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_awareness(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_awareness(
             pointer,
             callStatus
           ),
@@ -6343,7 +6372,7 @@ const uniffiTypeAwarenessObjectFactory: UniffiObjectFactory<AwarenessInterface> 
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_awareness(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_awareness(
             pointer,
             callStatus
           ),
@@ -6385,7 +6414,7 @@ export class ChangeAncestorsTravelerImpl
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_changeancestorstraveler_travel(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_changeancestorstraveler_travel(
             uniffiTypeChangeAncestorsTravelerImplObjectFactory.clonePointer(
               this
             ),
@@ -6455,7 +6484,7 @@ const uniffiTypeChangeAncestorsTravelerImplObjectFactory: UniffiObjectFactory<Ch
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_changeancestorstraveler(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_changeancestorstraveler(
             pointer,
             callStatus
           ),
@@ -6466,7 +6495,7 @@ const uniffiTypeChangeAncestorsTravelerImplObjectFactory: UniffiObjectFactory<Ch
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_changeancestorstraveler(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_changeancestorstraveler(
             pointer,
             callStatus
           ),
@@ -6524,7 +6553,7 @@ const uniffiCallbackInterfaceChangeAncestorsTraveler: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_changeancestorstraveler(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_changeancestorstraveler(
       uniffiCallbackInterfaceChangeAncestorsTraveler.vtable
     );
   },
@@ -6553,7 +6582,7 @@ export class ChangeModifier
   public setMessage(msg: string): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_changemodifier_set_message(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_changemodifier_set_message(
           uniffiTypeChangeModifierObjectFactory.clonePointer(this),
           FfiConverterString.lower(msg),
           callStatus
@@ -6566,7 +6595,7 @@ export class ChangeModifier
   public setTimestamp(timestamp: /*i64*/ bigint): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_changemodifier_set_timestamp(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_changemodifier_set_timestamp(
           uniffiTypeChangeModifierObjectFactory.clonePointer(this),
           FfiConverterInt64.lower(timestamp),
           callStatus
@@ -6630,7 +6659,7 @@ const uniffiTypeChangeModifierObjectFactory: UniffiObjectFactory<ChangeModifierI
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_changemodifier(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_changemodifier(
             pointer,
             callStatus
           ),
@@ -6641,7 +6670,7 @@ const uniffiTypeChangeModifierObjectFactory: UniffiObjectFactory<ChangeModifierI
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_changemodifier(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_changemodifier(
             pointer,
             callStatus
           ),
@@ -6689,7 +6718,7 @@ export class Configure
     return FfiConverterTypeConfigure.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_configure_fork(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_configure_fork(
             uniffiTypeConfigureObjectFactory.clonePointer(this),
             callStatus
           );
@@ -6703,7 +6732,7 @@ export class Configure
     return FfiConverterInt64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_configure_merge_interval(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_configure_merge_interval(
             uniffiTypeConfigureObjectFactory.clonePointer(this),
             callStatus
           );
@@ -6717,7 +6746,7 @@ export class Configure
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_configure_record_timestamp(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_configure_record_timestamp(
             uniffiTypeConfigureObjectFactory.clonePointer(this),
             callStatus
           );
@@ -6730,7 +6759,7 @@ export class Configure
   public setMergeInterval(interval: /*i64*/ bigint): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_configure_set_merge_interval(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_configure_set_merge_interval(
           uniffiTypeConfigureObjectFactory.clonePointer(this),
           FfiConverterInt64.lower(interval),
           callStatus
@@ -6743,7 +6772,7 @@ export class Configure
   public setRecordTimestamp(record: boolean): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_configure_set_record_timestamp(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_configure_set_record_timestamp(
           uniffiTypeConfigureObjectFactory.clonePointer(this),
           FfiConverterBool.lower(record),
           callStatus
@@ -6757,7 +6786,7 @@ export class Configure
     return FfiConverterTypeStyleConfigMap.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_configure_text_style_config(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_configure_text_style_config(
             uniffiTypeConfigureObjectFactory.clonePointer(this),
             callStatus
           );
@@ -6821,7 +6850,7 @@ const uniffiTypeConfigureObjectFactory: UniffiObjectFactory<ConfigureInterface> 
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_configure(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_configure(
             pointer,
             callStatus
           ),
@@ -6832,7 +6861,7 @@ const uniffiTypeConfigureObjectFactory: UniffiObjectFactory<ConfigureInterface> 
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_configure(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_configure(
             pointer,
             callStatus
           ),
@@ -6874,7 +6903,7 @@ export class ContainerIdLikeImpl
     return FfiConverterTypeContainerID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_containeridlike_as_container_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_containeridlike_as_container_id(
             uniffiTypeContainerIdLikeImplObjectFactory.clonePointer(this),
             FfiConverterTypeContainerType.lower(ty),
             callStatus
@@ -6939,7 +6968,7 @@ const uniffiTypeContainerIdLikeImplObjectFactory: UniffiObjectFactory<ContainerI
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_containeridlike(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_containeridlike(
             pointer,
             callStatus
           ),
@@ -6950,7 +6979,7 @@ const uniffiTypeContainerIdLikeImplObjectFactory: UniffiObjectFactory<ContainerI
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_containeridlike(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_containeridlike(
             pointer,
             callStatus
           ),
@@ -7009,13 +7038,15 @@ const uniffiCallbackInterfaceContainerIdLike: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_containeridlike(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_containeridlike(
       uniffiCallbackInterfaceContainerIdLike.vtable
     );
   },
 };
 
-export interface CursorInterface {}
+export interface CursorInterface {
+  encode(): ArrayBuffer;
+}
 
 export class Cursor extends UniffiAbstractObject implements CursorInterface {
   readonly [uniffiTypeNameSymbol] = 'Cursor';
@@ -7030,7 +7061,7 @@ export class Cursor extends UniffiAbstractObject implements CursorInterface {
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_cursor_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_cursor_new(
           FfiConverterOptionalTypeID.lower(id),
           FfiConverterTypeContainerID.lower(container),
           FfiConverterTypeSide.lower(side),
@@ -7042,6 +7073,37 @@ export class Cursor extends UniffiAbstractObject implements CursorInterface {
     );
     this[pointerLiteralSymbol] = pointer;
     this[destructorGuardSymbol] = uniffiTypeCursorObjectFactory.bless(pointer);
+  }
+
+  public static decode(data: ArrayBuffer): CursorInterface /*throws*/ {
+    return FfiConverterTypeCursor.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+          FfiConverterTypeLoroError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_cursor_decode(
+            FfiConverterArrayBuffer.lower(data),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  public encode(): ArrayBuffer {
+    return FfiConverterArrayBuffer.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_cursor_encode(
+            uniffiTypeCursorObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
   }
 
   /**
@@ -7097,7 +7159,10 @@ const uniffiTypeCursorObjectFactory: UniffiObjectFactory<CursorInterface> = {
     const pointer = this.pointer(obj);
     return uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_clone_cursor(pointer, callStatus),
+        nativeModule().ubrn_uniffi_loro_ffi_fn_clone_cursor(
+          pointer,
+          callStatus
+        ),
       /*liftString:*/ FfiConverterString.lift
     );
   },
@@ -7105,7 +7170,7 @@ const uniffiTypeCursorObjectFactory: UniffiObjectFactory<CursorInterface> = {
   freePointer(pointer: UnsafeMutableRawPointer): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_free_cursor(pointer, callStatus),
+        nativeModule().ubrn_uniffi_loro_ffi_fn_free_cursor(pointer, callStatus),
       /*liftString:*/ FfiConverterString.lift
     );
   },
@@ -7149,7 +7214,7 @@ export class DiffBatch
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_diffbatch_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_diffbatch_new(
           callStatus
         );
       },
@@ -7173,7 +7238,7 @@ export class DiffBatch
     return FfiConverterArrayTypeContainerIDAndDiff.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_diffbatch_get_diff(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_diffbatch_get_diff(
             uniffiTypeDiffBatchObjectFactory.clonePointer(this),
             callStatus
           );
@@ -7192,7 +7257,7 @@ export class DiffBatch
     return FfiConverterOptionalTypeDiff.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_diffbatch_push(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_diffbatch_push(
             uniffiTypeDiffBatchObjectFactory.clonePointer(this),
             FfiConverterTypeContainerID.lower(cid),
             FfiConverterTypeDiff.lower(diff),
@@ -7258,7 +7323,7 @@ const uniffiTypeDiffBatchObjectFactory: UniffiObjectFactory<DiffBatchInterface> 
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_diffbatch(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_diffbatch(
             pointer,
             callStatus
           ),
@@ -7269,7 +7334,7 @@ const uniffiTypeDiffBatchObjectFactory: UniffiObjectFactory<DiffBatchInterface> 
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_diffbatch(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_diffbatch(
             pointer,
             callStatus
           ),
@@ -7313,7 +7378,7 @@ export class EphemeralStore
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_ephemeralstore_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_ephemeralstore_new(
           FfiConverterInt64.lower(timeout),
           callStatus
         );
@@ -7328,7 +7393,7 @@ export class EphemeralStore
   public apply(data: ArrayBuffer): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralstore_apply(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_apply(
           uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
           FfiConverterArrayBuffer.lower(data),
           callStatus
@@ -7341,7 +7406,7 @@ export class EphemeralStore
   public delete_(key: string): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralstore_delete(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_delete(
           uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
           FfiConverterString.lower(key),
           callStatus
@@ -7355,7 +7420,7 @@ export class EphemeralStore
     return FfiConverterArrayBuffer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralstore_encode(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_encode(
             uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             callStatus
@@ -7370,7 +7435,7 @@ export class EphemeralStore
     return FfiConverterArrayBuffer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralstore_encode_all(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_encode_all(
             uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
             callStatus
           );
@@ -7384,7 +7449,7 @@ export class EphemeralStore
     return FfiConverterOptionalTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralstore_get(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_get(
             uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             callStatus
@@ -7399,7 +7464,7 @@ export class EphemeralStore
     return FfiConverterMapStringTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralstore_get_all_states(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_get_all_states(
             uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
             callStatus
           );
@@ -7413,7 +7478,7 @@ export class EphemeralStore
     return FfiConverterArrayString.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralstore_keys(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_keys(
             uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
             callStatus
           );
@@ -7426,7 +7491,7 @@ export class EphemeralStore
   public removeOutdated(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralstore_remove_outdated(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_remove_outdated(
           uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
           callStatus
         );
@@ -7438,7 +7503,7 @@ export class EphemeralStore
   public set(key: string, value: LoroValueLike): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralstore_set(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_set(
           uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
           FfiConverterString.lower(key),
           FfiConverterTypeLoroValueLike.lower(value),
@@ -7453,7 +7518,7 @@ export class EphemeralStore
     return FfiConverterTypeSubscription.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralstore_subscribe(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_subscribe(
             uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
             FfiConverterTypeEphemeralSubscriber.lower(listener),
             callStatus
@@ -7470,7 +7535,7 @@ export class EphemeralStore
     return FfiConverterTypeSubscription.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralstore_subscribe_local_update(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_subscribe_local_update(
             uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
             FfiConverterTypeLocalEphemeralListener.lower(listener),
             callStatus
@@ -7535,7 +7600,7 @@ const uniffiTypeEphemeralStoreObjectFactory: UniffiObjectFactory<EphemeralStoreI
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_ephemeralstore(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_ephemeralstore(
             pointer,
             callStatus
           ),
@@ -7546,7 +7611,7 @@ const uniffiTypeEphemeralStoreObjectFactory: UniffiObjectFactory<EphemeralStoreI
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_ephemeralstore(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_ephemeralstore(
             pointer,
             callStatus
           ),
@@ -7588,7 +7653,7 @@ export class EphemeralSubscriberImpl
   public onEphemeralEvent(event: EphemeralStoreEvent): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_ephemeralsubscriber_on_ephemeral_event(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralsubscriber_on_ephemeral_event(
           uniffiTypeEphemeralSubscriberImplObjectFactory.clonePointer(this),
           FfiConverterTypeEphemeralStoreEvent.lower(event),
           callStatus
@@ -7653,7 +7718,7 @@ const uniffiTypeEphemeralSubscriberImplObjectFactory: UniffiObjectFactory<Epheme
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_ephemeralsubscriber(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_ephemeralsubscriber(
             pointer,
             callStatus
           ),
@@ -7664,7 +7729,7 @@ const uniffiTypeEphemeralSubscriberImplObjectFactory: UniffiObjectFactory<Epheme
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_ephemeralsubscriber(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_ephemeralsubscriber(
             pointer,
             callStatus
           ),
@@ -7721,7 +7786,7 @@ const uniffiCallbackInterfaceEphemeralSubscriber: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_ephemeralsubscriber(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_ephemeralsubscriber(
       uniffiCallbackInterfaceEphemeralSubscriber.vtable
     );
   },
@@ -7749,7 +7814,7 @@ export class FirstCommitFromPeerCallbackImpl
   public onFirstCommitFromPeer(payload: FirstCommitFromPeerPayload): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_firstcommitfrompeercallback_on_first_commit_from_peer(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_firstcommitfrompeercallback_on_first_commit_from_peer(
           uniffiTypeFirstCommitFromPeerCallbackImplObjectFactory.clonePointer(
             this
           ),
@@ -7820,7 +7885,7 @@ const uniffiTypeFirstCommitFromPeerCallbackImplObjectFactory: UniffiObjectFactor
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_firstcommitfrompeercallback(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_firstcommitfrompeercallback(
             pointer,
             callStatus
           ),
@@ -7831,7 +7896,7 @@ const uniffiTypeFirstCommitFromPeerCallbackImplObjectFactory: UniffiObjectFactor
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_firstcommitfrompeercallback(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_firstcommitfrompeercallback(
             pointer,
             callStatus
           ),
@@ -7889,7 +7954,7 @@ const uniffiCallbackInterfaceFirstCommitFromPeerCallback: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_firstcommitfrompeercallback(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_firstcommitfrompeercallback(
       uniffiCallbackInterfaceFirstCommitFromPeerCallback.vtable
     );
   },
@@ -7918,7 +7983,7 @@ export class FractionalIndex
     return FfiConverterTypeFractionalIndex.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_fractionalindex_from_bytes(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_fractionalindex_from_bytes(
             FfiConverterArrayBuffer.lower(bytes),
             callStatus
           );
@@ -7932,7 +7997,7 @@ export class FractionalIndex
     return FfiConverterTypeFractionalIndex.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_fractionalindex_from_hex_string(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_fractionalindex_from_hex_string(
             FfiConverterString.lower(str),
             callStatus
           );
@@ -7946,7 +8011,7 @@ export class FractionalIndex
     return FfiConverterString.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_fractionalindex_to_string(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_fractionalindex_to_string(
             uniffiTypeFractionalIndexObjectFactory.clonePointer(this),
             callStatus
           );
@@ -8010,7 +8075,7 @@ const uniffiTypeFractionalIndexObjectFactory: UniffiObjectFactory<FractionalInde
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_fractionalindex(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_fractionalindex(
             pointer,
             callStatus
           ),
@@ -8021,7 +8086,7 @@ const uniffiTypeFractionalIndexObjectFactory: UniffiObjectFactory<FractionalInde
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_fractionalindex(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_fractionalindex(
             pointer,
             callStatus
           ),
@@ -8057,7 +8122,7 @@ export class Frontiers
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_frontiers_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_frontiers_new(
           callStatus
         );
       },
@@ -8075,7 +8140,7 @@ export class Frontiers
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_frontiers_decode(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_frontiers_decode(
             FfiConverterArrayBuffer.lower(bytes),
             callStatus
           );
@@ -8089,7 +8154,7 @@ export class Frontiers
     return FfiConverterTypeFrontiers.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_frontiers_from_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_frontiers_from_id(
             FfiConverterTypeID.lower(id),
             callStatus
           );
@@ -8103,7 +8168,7 @@ export class Frontiers
     return FfiConverterTypeFrontiers.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_frontiers_from_ids(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_frontiers_from_ids(
             FfiConverterArrayTypeID.lower(ids),
             callStatus
           );
@@ -8117,7 +8182,7 @@ export class Frontiers
     return FfiConverterArrayBuffer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_frontiers_encode(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_frontiers_encode(
             uniffiTypeFrontiersObjectFactory.clonePointer(this),
             callStatus
           );
@@ -8131,7 +8196,7 @@ export class Frontiers
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_frontiers_eq(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_frontiers_eq(
             uniffiTypeFrontiersObjectFactory.clonePointer(this),
             FfiConverterTypeFrontiers.lower(other),
             callStatus
@@ -8196,7 +8261,7 @@ const uniffiTypeFrontiersObjectFactory: UniffiObjectFactory<FrontiersInterface> 
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_frontiers(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_frontiers(
             pointer,
             callStatus
           ),
@@ -8207,7 +8272,7 @@ const uniffiTypeFrontiersObjectFactory: UniffiObjectFactory<FrontiersInterface> 
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_frontiers(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_frontiers(
             pointer,
             callStatus
           ),
@@ -8248,7 +8313,7 @@ export class LocalEphemeralListenerImpl
   public onEphemeralUpdate(update: ArrayBuffer): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_localephemerallistener_on_ephemeral_update(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_localephemerallistener_on_ephemeral_update(
           uniffiTypeLocalEphemeralListenerImplObjectFactory.clonePointer(this),
           FfiConverterArrayBuffer.lower(update),
           callStatus
@@ -8315,7 +8380,7 @@ const uniffiTypeLocalEphemeralListenerImplObjectFactory: UniffiObjectFactory<Loc
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_localephemerallistener(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_localephemerallistener(
             pointer,
             callStatus
           ),
@@ -8326,7 +8391,7 @@ const uniffiTypeLocalEphemeralListenerImplObjectFactory: UniffiObjectFactory<Loc
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_localephemerallistener(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_localephemerallistener(
             pointer,
             callStatus
           ),
@@ -8384,7 +8449,7 @@ const uniffiCallbackInterfaceLocalEphemeralListener: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_localephemerallistener(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_localephemerallistener(
       uniffiCallbackInterfaceLocalEphemeralListener.vtable
     );
   },
@@ -8412,7 +8477,7 @@ export class LocalUpdateCallbackImpl
   public onLocalUpdate(update: ArrayBuffer): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_localupdatecallback_on_local_update(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_localupdatecallback_on_local_update(
           uniffiTypeLocalUpdateCallbackImplObjectFactory.clonePointer(this),
           FfiConverterArrayBuffer.lower(update),
           callStatus
@@ -8477,7 +8542,7 @@ const uniffiTypeLocalUpdateCallbackImplObjectFactory: UniffiObjectFactory<LocalU
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_localupdatecallback(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_localupdatecallback(
             pointer,
             callStatus
           ),
@@ -8488,7 +8553,7 @@ const uniffiTypeLocalUpdateCallbackImplObjectFactory: UniffiObjectFactory<LocalU
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_localupdatecallback(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_localupdatecallback(
             pointer,
             callStatus
           ),
@@ -8543,7 +8608,7 @@ const uniffiCallbackInterfaceLocalUpdateCallback: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_localupdatecallback(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_localupdatecallback(
       uniffiCallbackInterfaceLocalUpdateCallback.vtable
     );
   },
@@ -8601,7 +8666,7 @@ export class LoroCounter
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_lorocounter_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_lorocounter_new(
           callStatus
         );
       },
@@ -8621,7 +8686,7 @@ export class LoroCounter
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorocounter_decrement(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorocounter_decrement(
           uniffiTypeLoroCounterObjectFactory.clonePointer(this),
           FfiConverterFloat64.lower(value),
           callStatus
@@ -8638,7 +8703,7 @@ export class LoroCounter
     return FfiConverterOptionalTypeLoroDoc.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorocounter_doc(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorocounter_doc(
             uniffiTypeLoroCounterObjectFactory.clonePointer(this),
             callStatus
           );
@@ -8655,7 +8720,7 @@ export class LoroCounter
     return FfiConverterOptionalTypeLoroCounter.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorocounter_get_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorocounter_get_attached(
             uniffiTypeLoroCounterObjectFactory.clonePointer(this),
             callStatus
           );
@@ -8672,7 +8737,7 @@ export class LoroCounter
     return FfiConverterFloat64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorocounter_get_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorocounter_get_value(
             uniffiTypeLoroCounterObjectFactory.clonePointer(this),
             callStatus
           );
@@ -8689,7 +8754,7 @@ export class LoroCounter
     return FfiConverterTypeContainerID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorocounter_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorocounter_id(
             uniffiTypeLoroCounterObjectFactory.clonePointer(this),
             callStatus
           );
@@ -8708,7 +8773,7 @@ export class LoroCounter
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorocounter_increment(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorocounter_increment(
           uniffiTypeLoroCounterObjectFactory.clonePointer(this),
           FfiConverterFloat64.lower(value),
           callStatus
@@ -8728,7 +8793,7 @@ export class LoroCounter
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorocounter_is_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorocounter_is_attached(
             uniffiTypeLoroCounterObjectFactory.clonePointer(this),
             callStatus
           );
@@ -8745,7 +8810,7 @@ export class LoroCounter
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorocounter_is_deleted(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorocounter_is_deleted(
             uniffiTypeLoroCounterObjectFactory.clonePointer(this),
             callStatus
           );
@@ -8809,7 +8874,7 @@ const uniffiTypeLoroCounterObjectFactory: UniffiObjectFactory<LoroCounterInterfa
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_lorocounter(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_lorocounter(
             pointer,
             callStatus
           ),
@@ -8820,7 +8885,7 @@ const uniffiTypeLoroCounterObjectFactory: UniffiObjectFactory<LoroCounterInterfa
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_lorocounter(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_lorocounter(
             pointer,
             callStatus
           ),
@@ -8945,6 +9010,16 @@ export interface LoroDocInterface {
    * beginning or end of the style.
    */
   configTextStyle(textStyle: StyleConfigMapInterface): void;
+  /**
+   * Delete all content from a root container and hide it from the document.
+   *
+   * When a root container is empty and hidden:
+   * - It won't show up in `get_deep_value()` results
+   * - It won't be included in document snapshots
+   *
+   * Only works on root containers (containers without parents).
+   */
+  deleteRootContainer(cid: ContainerId): void;
   /**
    * Force the document enter the detached mode.
    *
@@ -9303,6 +9378,10 @@ export interface LoroDocInterface {
    */
   setChangeMergeInterval(interval: /*i64*/ bigint): void;
   /**
+   * Set whether to hide empty root containers.
+   */
+  setHideEmptyRootContainers(hide: boolean): void;
+  /**
    * Set commit message for the current uncommitted changes
    *
    * It will be persisted.
@@ -9447,7 +9526,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_lorodoc_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_lorodoc_new(
           callStatus
         );
       },
@@ -9468,7 +9547,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_apply_diff(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_apply_diff(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterTypeDiffBatch.lower(diff),
           callStatus
@@ -9489,7 +9568,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public attach(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_attach(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_attach(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           callStatus
         );
@@ -9505,7 +9584,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public checkStateCorrectnessSlow(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_check_state_correctness_slow(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_check_state_correctness_slow(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           callStatus
         );
@@ -9530,7 +9609,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_checkout(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_checkout(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterTypeFrontiers.lower(frontiers),
           callStatus
@@ -9553,7 +9632,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public checkoutToLatest(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_checkout_to_latest(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_checkout_to_latest(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           callStatus
         );
@@ -9568,7 +9647,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public clearNextCommitOptions(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_clear_next_commit_options(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_clear_next_commit_options(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           callStatus
         );
@@ -9586,7 +9665,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeOrdering.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_cmp_with_frontiers(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_cmp_with_frontiers(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeFrontiers.lower(other),
             callStatus
@@ -9611,7 +9690,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public commit(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_commit(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_commit(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           callStatus
         );
@@ -9623,7 +9702,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public commitWith(options: CommitOptions): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_commit_with(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_commit_with(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterTypeCommitOptions.lower(options),
           callStatus
@@ -9641,7 +9720,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public compactChangeStore(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_compact_change_store(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_compact_change_store(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           callStatus
         );
@@ -9657,7 +9736,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeConfigure.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_config(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_config(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -9680,7 +9759,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public configDefaultTextStyle(textStyle: StyleConfig | undefined): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_config_default_text_style(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_config_default_text_style(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterOptionalTypeStyleConfig.lower(textStyle),
           callStatus
@@ -9702,9 +9781,31 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public configTextStyle(textStyle: StyleConfigMapInterface): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_config_text_style(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_config_text_style(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterTypeStyleConfigMap.lower(textStyle),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift
+    );
+  }
+
+  /**
+   * Delete all content from a root container and hide it from the document.
+   *
+   * When a root container is empty and hidden:
+   * - It won't show up in `get_deep_value()` results
+   * - It won't be included in document snapshots
+   *
+   * Only works on root containers (containers without parents).
+   */
+  public deleteRootContainer(cid: ContainerId): void {
+    uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_delete_root_container(
+          uniffiTypeLoroDocObjectFactory.clonePointer(this),
+          FfiConverterTypeContainerID.lower(cid),
           callStatus
         );
       },
@@ -9722,7 +9823,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public detach(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_detach(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_detach(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           callStatus
         );
@@ -9744,7 +9845,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_diff(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_diff(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeFrontiers.lower(a),
             FfiConverterTypeFrontiers.lower(b),
@@ -9770,7 +9871,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterArrayString.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_export_json_in_id_span(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_json_in_id_span(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeIdSpan.lower(idSpan),
             callStatus
@@ -9791,7 +9892,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterString.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_export_json_updates(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_json_updates(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeVersionVector.lower(startVv),
             FfiConverterTypeVersionVector.lower(endVv),
@@ -9816,7 +9917,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterString.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_export_json_updates_without_peer_compression(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_json_updates_without_peer_compression(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeVersionVector.lower(startVv),
             FfiConverterTypeVersionVector.lower(endVv),
@@ -9837,7 +9938,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeLoroEncodeError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_export_shallow_snapshot(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_shallow_snapshot(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeFrontiers.lower(frontiers),
             callStatus
@@ -9858,7 +9959,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeLoroEncodeError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_export_snapshot(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_snapshot(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -9877,7 +9978,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeLoroEncodeError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_export_snapshot_at(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_snapshot_at(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeFrontiers.lower(frontiers),
             callStatus
@@ -9897,7 +9998,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeLoroEncodeError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_export_state_only(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_state_only(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterOptionalTypeFrontiers.lower(frontiers),
             callStatus
@@ -9918,7 +10019,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeLoroEncodeError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_export_updates(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_updates(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeVersionVector.lower(vv),
             callStatus
@@ -9936,7 +10037,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeLoroEncodeError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_export_updates_in_range(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_updates_in_range(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterArrayTypeIdSpan.lower(spans),
             callStatus
@@ -9957,7 +10058,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeVersionVectorDiff.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_find_id_spans_between(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_find_id_spans_between(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeFrontiers.lower(from),
             FfiConverterTypeFrontiers.lower(to),
@@ -9981,7 +10082,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeLoroDoc.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_fork(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_fork(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10000,7 +10101,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeLoroDoc.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_fork_at(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_fork_at(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeFrontiers.lower(frontiers),
             callStatus
@@ -10017,7 +10118,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public freeDiffCalculator(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_free_diff_calculator(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_free_diff_calculator(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           callStatus
         );
@@ -10035,7 +10136,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public freeHistoryCache(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_free_history_cache(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_free_history_cache(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           callStatus
         );
@@ -10053,7 +10154,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterOptionalTypeVersionVector.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_frontiers_to_vv(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_frontiers_to_vv(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeFrontiers.lower(frontiers),
             callStatus
@@ -10071,7 +10172,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterOptionalTypeValueOrContainer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_by_path(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_by_path(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterArrayTypeIndex.lower(path),
             callStatus
@@ -10139,7 +10240,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterOptionalTypeValueOrContainer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_by_str_path(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_by_str_path(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterString.lower(path),
             callStatus
@@ -10169,7 +10270,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterOptionalTypeChangeMeta.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_change(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_change(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeID.lower(id),
             callStatus
@@ -10200,7 +10301,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterArrayTypeContainerID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_changed_containers_in(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_changed_containers_in(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeID.lower(id),
             FfiConverterUInt32.lower(len),
@@ -10221,7 +10322,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeLoroCounter.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_counter(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_counter(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeContainerIdLike.lower(id),
             callStatus
@@ -10239,7 +10340,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeCannotFindRelativePosition
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_cursor_pos(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_cursor_pos(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeCursor.lower(cursor),
             callStatus
@@ -10257,7 +10358,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_deep_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_deep_value(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10274,7 +10375,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_deep_value_with_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_deep_value_with_id(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10293,7 +10394,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeLoroList.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_list(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_list(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeContainerIdLike.lower(id),
             callStatus
@@ -10313,7 +10414,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeLoroMap.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_map(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_map(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeContainerIdLike.lower(id),
             callStatus
@@ -10333,7 +10434,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeLoroMovableList.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_movable_list(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_movable_list(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeContainerIdLike.lower(id),
             callStatus
@@ -10351,7 +10452,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterOptionalArrayTypeContainerPath.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_path_to_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_path_to_container(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeContainerID.lower(id),
             callStatus
@@ -10372,7 +10473,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterUInt32.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_pending_txn_len(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_pending_txn_len(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10391,7 +10492,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeLoroText.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_text(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_text(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeContainerIdLike.lower(id),
             callStatus
@@ -10411,7 +10512,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeLoroTree.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_tree(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_tree(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeContainerIdLike.lower(id),
             callStatus
@@ -10429,7 +10530,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_get_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_get_value(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10449,7 +10550,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_has_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_has_container(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeContainerID.lower(id),
             callStatus
@@ -10464,7 +10565,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_has_history_cache(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_has_history_cache(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10484,7 +10585,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_import(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_import(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterArrayBuffer.lower(bytes),
             callStatus
@@ -10507,7 +10608,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_import_batch(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_import_batch(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterArrayArrayBuffer.lower(bytes),
             callStatus
@@ -10525,7 +10626,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_import_json_updates(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_import_json_updates(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterString.lower(json),
             callStatus
@@ -10552,7 +10653,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_import_with(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_import_with(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterArrayBuffer.lower(bytes),
             FfiConverterString.lower(origin),
@@ -10572,7 +10673,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_is_detached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_is_detached(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10589,7 +10690,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_is_shallow(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_is_shallow(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10637,7 +10738,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
           FfiConverterTypeJsonPathError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_jsonpath(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_jsonpath(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterString.lower(path),
             callStatus
@@ -10655,7 +10756,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterUInt64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_len_changes(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_len_changes(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10672,7 +10773,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterUInt64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_len_ops(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_len_ops(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10688,7 +10789,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public logEstimateSize(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_log_estimate_size(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_log_estimate_size(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           callStatus
         );
@@ -10704,7 +10805,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeFrontiersOrID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_minimize_frontiers(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_minimize_frontiers(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeFrontiers.lower(frontiers),
             callStatus
@@ -10722,7 +10823,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeFrontiers.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_oplog_frontiers(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_oplog_frontiers(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10739,7 +10840,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeVersionVector.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_oplog_vv(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_oplog_vv(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10756,7 +10857,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterUInt64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_peer_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_peer_id(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10779,7 +10880,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_revert_to(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_revert_to(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterTypeFrontiers.lower(version),
           callStatus
@@ -10801,9 +10902,25 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public setChangeMergeInterval(interval: /*i64*/ bigint): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_set_change_merge_interval(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_set_change_merge_interval(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterInt64.lower(interval),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift
+    );
+  }
+
+  /**
+   * Set whether to hide empty root containers.
+   */
+  public setHideEmptyRootContainers(hide: boolean): void {
+    uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_set_hide_empty_root_containers(
+          uniffiTypeLoroDocObjectFactory.clonePointer(this),
+          FfiConverterBool.lower(hide),
           callStatus
         );
       },
@@ -10819,7 +10936,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public setNextCommitMessage(msg: string): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_set_next_commit_message(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_set_next_commit_message(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterString.lower(msg),
           callStatus
@@ -10837,7 +10954,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public setNextCommitOptions(options: CommitOptions): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_set_next_commit_options(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_set_next_commit_options(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterTypeCommitOptions.lower(options),
           callStatus
@@ -10855,7 +10972,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public setNextCommitOrigin(origin: string): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_set_next_commit_origin(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_set_next_commit_origin(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterString.lower(origin),
           callStatus
@@ -10874,7 +10991,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public setNextCommitTimestamp(timestamp: /*i64*/ bigint): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_set_next_commit_timestamp(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_set_next_commit_timestamp(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterInt64.lower(timestamp),
           callStatus
@@ -10896,7 +11013,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_set_peer_id(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_set_peer_id(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterUInt64.lower(peer),
           callStatus
@@ -10920,7 +11037,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
   public setRecordTimestamp(record: boolean): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_set_record_timestamp(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_set_record_timestamp(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterBool.lower(record),
           callStatus
@@ -10939,7 +11056,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeVersionVector.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_shallow_since_vv(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_shallow_since_vv(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10958,7 +11075,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeFrontiers.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_state_frontiers(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_state_frontiers(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -10975,7 +11092,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeVersionVector.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_state_vv(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_state_vv(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11005,7 +11122,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeSubscription.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_subscribe(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_subscribe(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeContainerID.lower(containerId),
             FfiConverterTypeSubscriber.lower(subscriber),
@@ -11030,7 +11147,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeSubscription.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_subscribe_first_commit_from_peer(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_subscribe_first_commit_from_peer(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeFirstCommitFromPeerCallback.lower(callback),
             callStatus
@@ -11050,7 +11167,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeSubscription.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_subscribe_local_update(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_subscribe_local_update(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeLocalUpdateCallback.lower(callback),
             callStatus
@@ -11073,7 +11190,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeSubscription.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_subscribe_pre_commit(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_subscribe_pre_commit(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypePreCommitCallback.lower(callback),
             callStatus
@@ -11094,7 +11211,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeSubscription.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_subscribe_root(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_subscribe_root(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeSubscriber.lower(subscriber),
             callStatus
@@ -11125,7 +11242,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
         FfiConverterTypeChangeTravelError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_travel_change_ancestors(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_travel_change_ancestors(
           uniffiTypeLoroDocObjectFactory.clonePointer(this),
           FfiConverterArrayTypeID.lower(ids),
           FfiConverterTypeChangeAncestorsTraveler.lower(f),
@@ -11143,7 +11260,7 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
     return FfiConverterTypeFrontiers.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorodoc_vv_to_frontiers(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_vv_to_frontiers(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
             FfiConverterTypeVersionVector.lower(vv),
             callStatus
@@ -11207,7 +11324,7 @@ const uniffiTypeLoroDocObjectFactory: UniffiObjectFactory<LoroDocInterface> = {
     const pointer = this.pointer(obj);
     return uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_clone_lorodoc(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_clone_lorodoc(
           pointer,
           callStatus
         ),
@@ -11218,7 +11335,10 @@ const uniffiTypeLoroDocObjectFactory: UniffiObjectFactory<LoroDocInterface> = {
   freePointer(pointer: UnsafeMutableRawPointer): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_free_lorodoc(pointer, callStatus),
+        nativeModule().ubrn_uniffi_loro_ffi_fn_free_lorodoc(
+          pointer,
+          callStatus
+        ),
       /*liftString:*/ FfiConverterString.lift
     );
   },
@@ -11346,7 +11466,7 @@ export class LoroList
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_lorolist_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_lorolist_new(
           callStatus
         );
       },
@@ -11366,7 +11486,7 @@ export class LoroList
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_clear(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_clear(
           uniffiTypeLoroListObjectFactory.clonePointer(this),
           callStatus
         );
@@ -11384,7 +11504,7 @@ export class LoroList
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_delete(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_delete(
           uniffiTypeLoroListObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(pos),
           FfiConverterUInt32.lower(len),
@@ -11402,7 +11522,7 @@ export class LoroList
     return FfiConverterOptionalTypeLoroDoc.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_doc(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_doc(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11419,7 +11539,7 @@ export class LoroList
     return FfiConverterOptionalTypeValueOrContainer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_get(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_get(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(index),
             callStatus
@@ -11437,7 +11557,7 @@ export class LoroList
     return FfiConverterOptionalTypeLoroList.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_get_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_get_attached(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11454,7 +11574,7 @@ export class LoroList
     return FfiConverterOptionalTypeCursor.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_get_cursor(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_get_cursor(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeSide.lower(side),
@@ -11473,7 +11593,7 @@ export class LoroList
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_get_deep_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_get_deep_value(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11490,7 +11610,7 @@ export class LoroList
     return FfiConverterOptionalTypeID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_get_id_at(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_get_id_at(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             callStatus
@@ -11510,7 +11630,7 @@ export class LoroList
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_get_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_get_value(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11527,7 +11647,7 @@ export class LoroList
     return FfiConverterTypeContainerID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_id(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11546,7 +11666,7 @@ export class LoroList
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_insert(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_insert(
           uniffiTypeLoroListObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(pos),
           FfiConverterTypeLoroValueLike.lower(v),
@@ -11567,7 +11687,7 @@ export class LoroList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_insert_counter_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_insert_counter_container(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroCounter.lower(child),
@@ -11589,7 +11709,7 @@ export class LoroList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_insert_list_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_insert_list_container(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroList.lower(child),
@@ -11611,7 +11731,7 @@ export class LoroList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_insert_map_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_insert_map_container(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroMap.lower(child),
@@ -11633,7 +11753,7 @@ export class LoroList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_insert_movable_list_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_insert_movable_list_container(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroMovableList.lower(child),
@@ -11655,7 +11775,7 @@ export class LoroList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_insert_text_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_insert_text_container(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroText.lower(child),
@@ -11677,7 +11797,7 @@ export class LoroList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_insert_tree_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_insert_tree_container(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroTree.lower(child),
@@ -11699,7 +11819,7 @@ export class LoroList
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_is_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_is_attached(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11716,7 +11836,7 @@ export class LoroList
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_is_deleted(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_is_deleted(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11730,7 +11850,7 @@ export class LoroList
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_is_empty(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_is_empty(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11744,7 +11864,7 @@ export class LoroList
     return FfiConverterUInt32.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_len(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_len(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11764,7 +11884,7 @@ export class LoroList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_pop(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_pop(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11780,7 +11900,7 @@ export class LoroList
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_push(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_push(
           uniffiTypeLoroListObjectFactory.clonePointer(this),
           FfiConverterTypeLoroValueLike.lower(v),
           callStatus
@@ -11800,7 +11920,7 @@ export class LoroList
     return FfiConverterArrayTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorolist_to_vec(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_to_vec(
             uniffiTypeLoroListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -11864,7 +11984,7 @@ const uniffiTypeLoroListObjectFactory: UniffiObjectFactory<LoroListInterface> =
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_lorolist(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_lorolist(
             pointer,
             callStatus
           ),
@@ -11875,7 +11995,7 @@ const uniffiTypeLoroListObjectFactory: UniffiObjectFactory<LoroListInterface> =
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_lorolist(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_lorolist(
             pointer,
             callStatus
           ),
@@ -12030,7 +12150,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_loromap_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_loromap_new(
           callStatus
         );
       },
@@ -12049,7 +12169,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_clear(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_clear(
           uniffiTypeLoroMapObjectFactory.clonePointer(this),
           callStatus
         );
@@ -12067,7 +12187,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_delete(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_delete(
           uniffiTypeLoroMapObjectFactory.clonePointer(this),
           FfiConverterString.lower(key),
           callStatus
@@ -12084,7 +12204,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterOptionalTypeLoroDoc.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_doc(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_doc(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12101,7 +12221,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterOptionalTypeValueOrContainer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_get(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_get(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             callStatus
@@ -12119,7 +12239,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterOptionalTypeLoroMap.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_get_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_get_attached(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12138,7 +12258,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_get_deep_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_get_deep_value(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12155,7 +12275,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterOptionalUInt64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_get_last_editor(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_get_last_editor(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             callStatus
@@ -12176,7 +12296,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_counter_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_get_or_create_counter_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroCounter.lower(child),
@@ -12198,7 +12318,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_list_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_get_or_create_list_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroList.lower(child),
@@ -12220,7 +12340,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_map_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_get_or_create_map_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroMap.lower(child),
@@ -12242,7 +12362,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_movable_list_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_get_or_create_movable_list_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroMovableList.lower(child),
@@ -12264,7 +12384,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_text_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_get_or_create_text_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroText.lower(child),
@@ -12286,7 +12406,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_get_or_create_tree_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_get_or_create_tree_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroTree.lower(child),
@@ -12307,7 +12427,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_get_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_get_value(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12324,7 +12444,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterTypeContainerID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_id(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12346,7 +12466,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_insert(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_insert(
           uniffiTypeLoroMapObjectFactory.clonePointer(this),
           FfiConverterString.lower(key),
           FfiConverterTypeLoroValueLike.lower(v),
@@ -12367,7 +12487,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_insert_counter_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_insert_counter_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroCounter.lower(child),
@@ -12389,7 +12509,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_insert_list_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_insert_list_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroList.lower(child),
@@ -12411,7 +12531,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_insert_map_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_insert_map_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroMap.lower(child),
@@ -12433,7 +12553,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_insert_movable_list_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_insert_movable_list_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroMovableList.lower(child),
@@ -12455,7 +12575,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_insert_text_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_insert_text_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroText.lower(child),
@@ -12477,7 +12597,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_insert_tree_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_insert_tree_container(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             FfiConverterTypeLoroTree.lower(child),
@@ -12496,7 +12616,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_is_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_is_attached(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12513,7 +12633,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_is_deleted(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_is_deleted(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12530,7 +12650,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_is_empty(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_is_empty(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12547,7 +12667,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterArrayString.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_keys(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_keys(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12564,7 +12684,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterUInt32.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_len(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_len(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12581,7 +12701,7 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
     return FfiConverterArrayTypeValueOrContainer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromap_values(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_values(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12644,7 +12764,7 @@ const uniffiTypeLoroMapObjectFactory: UniffiObjectFactory<LoroMapInterface> = {
     const pointer = this.pointer(obj);
     return uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_clone_loromap(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_clone_loromap(
           pointer,
           callStatus
         ),
@@ -12655,7 +12775,10 @@ const uniffiTypeLoroMapObjectFactory: UniffiObjectFactory<LoroMapInterface> = {
   freePointer(pointer: UnsafeMutableRawPointer): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_free_loromap(pointer, callStatus),
+        nativeModule().ubrn_uniffi_loro_ffi_fn_free_loromap(
+          pointer,
+          callStatus
+        ),
       /*liftString:*/ FfiConverterString.lift
     );
   },
@@ -12836,7 +12959,7 @@ export class LoroMovableList
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_loromovablelist_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_loromovablelist_new(
           callStatus
         );
       },
@@ -12856,7 +12979,7 @@ export class LoroMovableList
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_clear(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_clear(
           uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
           callStatus
         );
@@ -12874,7 +12997,7 @@ export class LoroMovableList
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_delete(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_delete(
           uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(pos),
           FfiConverterUInt32.lower(len),
@@ -12892,7 +13015,7 @@ export class LoroMovableList
     return FfiConverterOptionalTypeLoroDoc.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_doc(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_doc(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12909,7 +13032,7 @@ export class LoroMovableList
     return FfiConverterOptionalTypeValueOrContainer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_get(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_get(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(index),
             callStatus
@@ -12927,7 +13050,7 @@ export class LoroMovableList
     return FfiConverterOptionalTypeLoroMovableList.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_get_attached(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -12941,7 +13064,7 @@ export class LoroMovableList
     return FfiConverterOptionalUInt64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_creator_at(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_get_creator_at(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             callStatus
@@ -12974,7 +13097,7 @@ export class LoroMovableList
     return FfiConverterOptionalTypeCursor.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_cursor(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_get_cursor(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeSide.lower(side),
@@ -12993,7 +13116,7 @@ export class LoroMovableList
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_deep_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_get_deep_value(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13010,7 +13133,7 @@ export class LoroMovableList
     return FfiConverterOptionalUInt64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_last_editor_at(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_get_last_editor_at(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             callStatus
@@ -13028,7 +13151,7 @@ export class LoroMovableList
     return FfiConverterOptionalUInt64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_last_mover_at(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_get_last_mover_at(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             callStatus
@@ -13048,7 +13171,7 @@ export class LoroMovableList
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_get_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_get_value(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13065,7 +13188,7 @@ export class LoroMovableList
     return FfiConverterTypeContainerID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_id(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13084,7 +13207,7 @@ export class LoroMovableList
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_insert(
           uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(pos),
           FfiConverterTypeLoroValueLike.lower(v),
@@ -13105,7 +13228,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_counter_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_insert_counter_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroCounter.lower(child),
@@ -13127,7 +13250,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_list_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_insert_list_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroList.lower(child),
@@ -13149,7 +13272,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_map_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_insert_map_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroMap.lower(child),
@@ -13171,7 +13294,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_movable_list_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_insert_movable_list_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroMovableList.lower(child),
@@ -13193,7 +13316,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_text_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_insert_text_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroText.lower(child),
@@ -13215,7 +13338,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_insert_tree_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_insert_tree_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroTree.lower(child),
@@ -13237,7 +13360,7 @@ export class LoroMovableList
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_is_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_is_attached(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13254,7 +13377,7 @@ export class LoroMovableList
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_is_deleted(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_is_deleted(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13268,7 +13391,7 @@ export class LoroMovableList
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_is_empty(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_is_empty(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13282,7 +13405,7 @@ export class LoroMovableList
     return FfiConverterUInt32.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_len(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_len(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13301,7 +13424,7 @@ export class LoroMovableList
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_mov(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_mov(
           uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(from),
           FfiConverterUInt32.lower(to),
@@ -13322,7 +13445,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_pop(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_pop(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13338,7 +13461,7 @@ export class LoroMovableList
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_push(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_push(
           uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
           FfiConverterTypeLoroValueLike.lower(v),
           callStatus
@@ -13357,7 +13480,7 @@ export class LoroMovableList
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_set(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_set(
           uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(pos),
           FfiConverterTypeLoroValueLike.lower(value),
@@ -13378,7 +13501,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_counter_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_set_counter_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroCounter.lower(child),
@@ -13400,7 +13523,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_list_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_set_list_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroList.lower(child),
@@ -13422,7 +13545,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_map_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_set_map_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroMap.lower(child),
@@ -13444,7 +13567,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_movable_list_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_set_movable_list_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroMovableList.lower(child),
@@ -13466,7 +13589,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_text_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_set_text_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroText.lower(child),
@@ -13488,7 +13611,7 @@ export class LoroMovableList
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_set_tree_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_set_tree_container(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeLoroTree.lower(child),
@@ -13511,7 +13634,7 @@ export class LoroMovableList
     return FfiConverterArrayTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_loromovablelist_to_vec(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_to_vec(
             uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13575,7 +13698,7 @@ const uniffiTypeLoroMovableListObjectFactory: UniffiObjectFactory<LoroMovableLis
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_loromovablelist(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_loromovablelist(
             pointer,
             callStatus
           ),
@@ -13586,7 +13709,7 @@ const uniffiTypeLoroMovableListObjectFactory: UniffiObjectFactory<LoroMovableLis
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_loromovablelist(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_loromovablelist(
             pointer,
             callStatus
           ),
@@ -13797,7 +13920,7 @@ export class LoroText
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_lorotext_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_lorotext_new(
           callStatus
         );
       },
@@ -13817,7 +13940,7 @@ export class LoroText
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_apply_delta(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_apply_delta(
           uniffiTypeLoroTextObjectFactory.clonePointer(this),
           FfiConverterArrayTypeTextDelta.lower(delta),
           callStatus
@@ -13836,7 +13959,7 @@ export class LoroText
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_delete(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_delete(
           uniffiTypeLoroTextObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(pos),
           FfiConverterUInt32.lower(len),
@@ -13856,7 +13979,7 @@ export class LoroText
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_delete_utf8(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_delete_utf8(
           uniffiTypeLoroTextObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(pos),
           FfiConverterUInt32.lower(len),
@@ -13874,7 +13997,7 @@ export class LoroText
     return FfiConverterOptionalTypeLoroDoc.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_doc(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_doc(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13891,7 +14014,7 @@ export class LoroText
     return FfiConverterOptionalTypeLoroText.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_get_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_get_attached(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13923,7 +14046,7 @@ export class LoroText
     return FfiConverterOptionalTypeCursor.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_get_cursor(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_get_cursor(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterTypeSide.lower(side),
@@ -13944,7 +14067,7 @@ export class LoroText
     return FfiConverterOptionalUInt64.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_get_editor_at_unicode_pos(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_get_editor_at_unicode_pos(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             callStatus
@@ -13962,7 +14085,7 @@ export class LoroText
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_get_richtext_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_get_richtext_value(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13979,7 +14102,7 @@ export class LoroText
     return FfiConverterTypeContainerID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_id(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -13998,7 +14121,7 @@ export class LoroText
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_insert(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_insert(
           uniffiTypeLoroTextObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(pos),
           FfiConverterString.lower(s),
@@ -14018,7 +14141,7 @@ export class LoroText
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_insert_utf8(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_insert_utf8(
           uniffiTypeLoroTextObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(pos),
           FfiConverterString.lower(s),
@@ -14039,7 +14162,7 @@ export class LoroText
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_is_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_is_attached(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14056,7 +14179,7 @@ export class LoroText
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_is_deleted(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_is_deleted(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14073,7 +14196,7 @@ export class LoroText
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_is_empty(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_is_empty(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14090,7 +14213,7 @@ export class LoroText
     return FfiConverterUInt32.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_len_unicode(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_len_unicode(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14107,7 +14230,7 @@ export class LoroText
     return FfiConverterUInt32.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_len_utf16(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_len_utf16(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14124,7 +14247,7 @@ export class LoroText
     return FfiConverterUInt32.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_len_utf8(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_len_utf8(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14161,7 +14284,7 @@ export class LoroText
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_mark(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_mark(
           uniffiTypeLoroTextObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(from),
           FfiConverterUInt32.lower(to),
@@ -14183,7 +14306,7 @@ export class LoroText
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_push_str(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_push_str(
           uniffiTypeLoroTextObjectFactory.clonePointer(this),
           FfiConverterString.lower(s),
           callStatus
@@ -14206,7 +14329,7 @@ export class LoroText
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_slice(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_slice(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(startIndex),
             FfiConverterUInt32.lower(endIndex),
@@ -14232,7 +14355,7 @@ export class LoroText
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_splice(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_splice(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             FfiConverterUInt32.lower(pos),
             FfiConverterUInt32.lower(len),
@@ -14252,7 +14375,7 @@ export class LoroText
     return FfiConverterArrayTypeTextDelta.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_to_delta(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_to_delta(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14269,7 +14392,7 @@ export class LoroText
     return FfiConverterString.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_to_string(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_to_string(
             uniffiTypeLoroTextObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14307,7 +14430,7 @@ export class LoroText
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_unmark(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_unmark(
           uniffiTypeLoroTextObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(from),
           FfiConverterUInt32.lower(to),
@@ -14334,7 +14457,7 @@ export class LoroText
         FfiConverterTypeUpdateTimeoutError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_update(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_update(
           uniffiTypeLoroTextObjectFactory.clonePointer(this),
           FfiConverterString.lower(s),
           FfiConverterTypeUpdateOptions.lower(options),
@@ -14356,7 +14479,7 @@ export class LoroText
         FfiConverterTypeUpdateTimeoutError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotext_update_by_line(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_update_by_line(
           uniffiTypeLoroTextObjectFactory.clonePointer(this),
           FfiConverterString.lower(s),
           FfiConverterTypeUpdateOptions.lower(options),
@@ -14421,7 +14544,7 @@ const uniffiTypeLoroTextObjectFactory: UniffiObjectFactory<LoroTextInterface> =
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_lorotext(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_lorotext(
             pointer,
             callStatus
           ),
@@ -14432,7 +14555,7 @@ const uniffiTypeLoroTextObjectFactory: UniffiObjectFactory<LoroTextInterface> =
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_lorotext(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_lorotext(
             pointer,
             callStatus
           ),
@@ -14619,7 +14742,7 @@ export class LoroTree
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_lorotree_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_lorotree_new(
           callStatus
         );
       },
@@ -14639,7 +14762,7 @@ export class LoroTree
     return FfiConverterOptionalArrayTypeTreeID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_children(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_children(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             FfiConverterTypeTreeParentId.lower(parent),
             callStatus
@@ -14657,7 +14780,7 @@ export class LoroTree
     return FfiConverterOptionalUInt32.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_children_num(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_children_num(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             FfiConverterTypeTreeParentId.lower(parent),
             callStatus
@@ -14675,7 +14798,7 @@ export class LoroTree
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_contains(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_contains(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             FfiConverterTypeTreeID.lower(target),
             callStatus
@@ -14699,7 +14822,7 @@ export class LoroTree
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_create(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_create(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             FfiConverterTypeTreeParentId.lower(parent),
             callStatus
@@ -14726,7 +14849,7 @@ export class LoroTree
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_create_at(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_create_at(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             FfiConverterTypeTreeParentId.lower(parent),
             FfiConverterUInt32.lower(index),
@@ -14750,7 +14873,7 @@ export class LoroTree
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_delete(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_delete(
           uniffiTypeLoroTreeObjectFactory.clonePointer(this),
           FfiConverterTypeTreeID.lower(target),
           callStatus
@@ -14770,7 +14893,7 @@ export class LoroTree
   public disableFractionalIndex(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_disable_fractional_index(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_disable_fractional_index(
           uniffiTypeLoroTreeObjectFactory.clonePointer(this),
           callStatus
         );
@@ -14786,7 +14909,7 @@ export class LoroTree
     return FfiConverterOptionalTypeLoroDoc.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_doc(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_doc(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14808,7 +14931,7 @@ export class LoroTree
   public enableFractionalIndex(jitter: /*u8*/ number): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_enable_fractional_index(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_enable_fractional_index(
           uniffiTypeLoroTreeObjectFactory.clonePointer(this),
           FfiConverterUInt8.lower(jitter),
           callStatus
@@ -14825,7 +14948,7 @@ export class LoroTree
     return FfiConverterOptionalString.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_fractional_index(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_fractional_index(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             FfiConverterTypeTreeID.lower(target),
             callStatus
@@ -14843,7 +14966,7 @@ export class LoroTree
     return FfiConverterOptionalTypeLoroTree.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_get_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_get_attached(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14860,7 +14983,7 @@ export class LoroTree
     return FfiConverterOptionalTypeID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_get_last_move_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_get_last_move_id(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             FfiConverterTypeTreeID.lower(target),
             callStatus
@@ -14881,7 +15004,7 @@ export class LoroTree
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_get_meta(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_get_meta(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             FfiConverterTypeTreeID.lower(target),
             callStatus
@@ -14902,7 +15025,7 @@ export class LoroTree
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_get_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_get_value(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14919,7 +15042,7 @@ export class LoroTree
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_get_value_with_meta(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_get_value_with_meta(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14936,7 +15059,7 @@ export class LoroTree
     return FfiConverterTypeContainerID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_id(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14956,7 +15079,7 @@ export class LoroTree
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_is_attached(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_is_attached(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14973,7 +15096,7 @@ export class LoroTree
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_is_deleted(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_is_deleted(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             callStatus
           );
@@ -14990,7 +15113,7 @@ export class LoroTree
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_is_fractional_index_enabled(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_is_fractional_index_enabled(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             callStatus
           );
@@ -15013,7 +15136,7 @@ export class LoroTree
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_is_node_deleted(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_is_node_deleted(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             FfiConverterTypeTreeID.lower(target),
             callStatus
@@ -15035,7 +15158,7 @@ export class LoroTree
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_mov(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_mov(
           uniffiTypeLoroTreeObjectFactory.clonePointer(this),
           FfiConverterTypeTreeID.lower(target),
           FfiConverterTypeTreeParentId.lower(parent),
@@ -15055,7 +15178,7 @@ export class LoroTree
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_mov_after(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_mov_after(
           uniffiTypeLoroTreeObjectFactory.clonePointer(this),
           FfiConverterTypeTreeID.lower(target),
           FfiConverterTypeTreeID.lower(after),
@@ -15075,7 +15198,7 @@ export class LoroTree
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_mov_before(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_mov_before(
           uniffiTypeLoroTreeObjectFactory.clonePointer(this),
           FfiConverterTypeTreeID.lower(target),
           FfiConverterTypeTreeID.lower(before),
@@ -15100,7 +15223,7 @@ export class LoroTree
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_mov_to(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_mov_to(
           uniffiTypeLoroTreeObjectFactory.clonePointer(this),
           FfiConverterTypeTreeID.lower(target),
           FfiConverterTypeTreeParentId.lower(parent),
@@ -15119,7 +15242,7 @@ export class LoroTree
     return FfiConverterArrayTypeTreeID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_nodes(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_nodes(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             callStatus
           );
@@ -15142,7 +15265,7 @@ export class LoroTree
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_parent(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_parent(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             FfiConverterTypeTreeID.lower(target),
             callStatus
@@ -15160,7 +15283,7 @@ export class LoroTree
     return FfiConverterArrayTypeTreeID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorotree_roots(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_roots(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
             callStatus
           );
@@ -15224,7 +15347,7 @@ const uniffiTypeLoroTreeObjectFactory: UniffiObjectFactory<LoroTreeInterface> =
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_lorotree(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_lorotree(
             pointer,
             callStatus
           ),
@@ -15235,7 +15358,7 @@ const uniffiTypeLoroTreeObjectFactory: UniffiObjectFactory<LoroTreeInterface> =
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_lorotree(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_lorotree(
             pointer,
             callStatus
           ),
@@ -15283,7 +15406,7 @@ export class LoroUnknown
     return FfiConverterTypeContainerID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorounknown_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorounknown_id(
             uniffiTypeLoroUnknownObjectFactory.clonePointer(this),
             callStatus
           );
@@ -15347,7 +15470,7 @@ const uniffiTypeLoroUnknownObjectFactory: UniffiObjectFactory<LoroUnknownInterfa
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_lorounknown(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_lorounknown(
             pointer,
             callStatus
           ),
@@ -15358,7 +15481,7 @@ const uniffiTypeLoroUnknownObjectFactory: UniffiObjectFactory<LoroUnknownInterfa
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_lorounknown(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_lorounknown(
             pointer,
             callStatus
           ),
@@ -15401,7 +15524,7 @@ export class LoroValueLikeImpl
     return FfiConverterTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_lorovaluelike_as_loro_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorovaluelike_as_loro_value(
             uniffiTypeLoroValueLikeImplObjectFactory.clonePointer(this),
             callStatus
           );
@@ -15465,7 +15588,7 @@ const uniffiTypeLoroValueLikeImplObjectFactory: UniffiObjectFactory<LoroValueLik
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_lorovaluelike(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_lorovaluelike(
             pointer,
             callStatus
           ),
@@ -15476,7 +15599,7 @@ const uniffiTypeLoroValueLikeImplObjectFactory: UniffiObjectFactory<LoroValueLik
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_lorovaluelike(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_lorovaluelike(
             pointer,
             callStatus
           ),
@@ -15535,7 +15658,7 @@ const uniffiCallbackInterfaceLoroValueLike: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_lorovaluelike(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_lorovaluelike(
       uniffiCallbackInterfaceLoroValueLike.vtable
     );
   },
@@ -15568,7 +15691,7 @@ export class OnPopImpl extends UniffiAbstractObject implements OnPop {
   ): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_onpop_on_pop(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_onpop_on_pop(
           uniffiTypeOnPopImplObjectFactory.clonePointer(this),
           FfiConverterTypeUndoOrRedo.lower(undoOrRedo),
           FfiConverterTypeCounterSpan.lower(span),
@@ -15633,7 +15756,7 @@ const uniffiTypeOnPopImplObjectFactory: UniffiObjectFactory<OnPop> = {
     const pointer = this.pointer(obj);
     return uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_clone_onpop(pointer, callStatus),
+        nativeModule().ubrn_uniffi_loro_ffi_fn_clone_onpop(pointer, callStatus),
       /*liftString:*/ FfiConverterString.lift
     );
   },
@@ -15641,7 +15764,7 @@ const uniffiTypeOnPopImplObjectFactory: UniffiObjectFactory<OnPop> = {
   freePointer(pointer: UnsafeMutableRawPointer): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_free_onpop(pointer, callStatus),
+        nativeModule().ubrn_uniffi_loro_ffi_fn_free_onpop(pointer, callStatus),
       /*liftString:*/ FfiConverterString.lift
     );
   },
@@ -15700,7 +15823,7 @@ const uniffiCallbackInterfaceOnPop: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_onpop(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_onpop(
       uniffiCallbackInterfaceOnPop.vtable
     );
   },
@@ -15734,7 +15857,7 @@ export class OnPushImpl extends UniffiAbstractObject implements OnPush {
     return FfiConverterTypeUndoItemMeta.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_onpush_on_push(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_onpush_on_push(
             uniffiTypeOnPushImplObjectFactory.clonePointer(this),
             FfiConverterTypeUndoOrRedo.lower(undoOrRedo),
             FfiConverterTypeCounterSpan.lower(span),
@@ -15800,7 +15923,10 @@ const uniffiTypeOnPushImplObjectFactory: UniffiObjectFactory<OnPush> = {
     const pointer = this.pointer(obj);
     return uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_clone_onpush(pointer, callStatus),
+        nativeModule().ubrn_uniffi_loro_ffi_fn_clone_onpush(
+          pointer,
+          callStatus
+        ),
       /*liftString:*/ FfiConverterString.lift
     );
   },
@@ -15808,7 +15934,7 @@ const uniffiTypeOnPushImplObjectFactory: UniffiObjectFactory<OnPush> = {
   freePointer(pointer: UnsafeMutableRawPointer): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_free_onpush(pointer, callStatus),
+        nativeModule().ubrn_uniffi_loro_ffi_fn_free_onpush(pointer, callStatus),
       /*liftString:*/ FfiConverterString.lift
     );
   },
@@ -15872,7 +15998,7 @@ const uniffiCallbackInterfaceOnPush: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_onpush(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_onpush(
       uniffiCallbackInterfaceOnPush.vtable
     );
   },
@@ -15900,7 +16026,7 @@ export class PreCommitCallbackImpl
   public onPreCommit(payload: PreCommitCallbackPayload): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_precommitcallback_on_pre_commit(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_precommitcallback_on_pre_commit(
           uniffiTypePreCommitCallbackImplObjectFactory.clonePointer(this),
           FfiConverterTypePreCommitCallbackPayload.lower(payload),
           callStatus
@@ -15965,7 +16091,7 @@ const uniffiTypePreCommitCallbackImplObjectFactory: UniffiObjectFactory<PreCommi
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_precommitcallback(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_precommitcallback(
             pointer,
             callStatus
           ),
@@ -15976,7 +16102,7 @@ const uniffiTypePreCommitCallbackImplObjectFactory: UniffiObjectFactory<PreCommi
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_precommitcallback(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_precommitcallback(
             pointer,
             callStatus
           ),
@@ -16032,7 +16158,7 @@ const uniffiCallbackInterfacePreCommitCallback: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_precommitcallback(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_precommitcallback(
       uniffiCallbackInterfacePreCommitCallback.vtable
     );
   },
@@ -16054,7 +16180,7 @@ export class StyleConfigMap
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_styleconfigmap_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_styleconfigmap_new(
           callStatus
         );
       },
@@ -16069,7 +16195,7 @@ export class StyleConfigMap
     return FfiConverterTypeStyleConfigMap.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_styleconfigmap_default_rich_text_config(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_styleconfigmap_default_rich_text_config(
             callStatus
           );
         },
@@ -16082,7 +16208,7 @@ export class StyleConfigMap
     return FfiConverterOptionalTypeStyleConfig.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_styleconfigmap_get(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_styleconfigmap_get(
             uniffiTypeStyleConfigMapObjectFactory.clonePointer(this),
             FfiConverterString.lower(key),
             callStatus
@@ -16096,7 +16222,7 @@ export class StyleConfigMap
   public insert(key: string, value: StyleConfig): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_styleconfigmap_insert(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_styleconfigmap_insert(
           uniffiTypeStyleConfigMapObjectFactory.clonePointer(this),
           FfiConverterString.lower(key),
           FfiConverterTypeStyleConfig.lower(value),
@@ -16161,7 +16287,7 @@ const uniffiTypeStyleConfigMapObjectFactory: UniffiObjectFactory<StyleConfigMapI
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_styleconfigmap(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_styleconfigmap(
             pointer,
             callStatus
           ),
@@ -16172,7 +16298,7 @@ const uniffiTypeStyleConfigMapObjectFactory: UniffiObjectFactory<StyleConfigMapI
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_styleconfigmap(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_styleconfigmap(
             pointer,
             callStatus
           ),
@@ -16211,7 +16337,7 @@ export class SubscriberImpl extends UniffiAbstractObject implements Subscriber {
   public onDiff(diff: DiffEvent): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_subscriber_on_diff(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_subscriber_on_diff(
           uniffiTypeSubscriberImplObjectFactory.clonePointer(this),
           FfiConverterTypeDiffEvent.lower(diff),
           callStatus
@@ -16274,7 +16400,7 @@ const uniffiTypeSubscriberImplObjectFactory: UniffiObjectFactory<Subscriber> = {
     const pointer = this.pointer(obj);
     return uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_clone_subscriber(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_clone_subscriber(
           pointer,
           callStatus
         ),
@@ -16285,7 +16411,7 @@ const uniffiTypeSubscriberImplObjectFactory: UniffiObjectFactory<Subscriber> = {
   freePointer(pointer: UnsafeMutableRawPointer): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) =>
-        nativeModule().ubrn_uniffi_loro_rs_fn_free_subscriber(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_free_subscriber(
           pointer,
           callStatus
         ),
@@ -16339,7 +16465,7 @@ const uniffiCallbackInterfaceSubscriber: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_subscriber(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_subscriber(
       uniffiCallbackInterfaceSubscriber.vtable
     );
   },
@@ -16389,7 +16515,7 @@ export class Subscription
   public detach(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_subscription_detach(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_subscription_detach(
           uniffiTypeSubscriptionObjectFactory.clonePointer(this),
           callStatus
         );
@@ -16404,7 +16530,7 @@ export class Subscription
   public unsubscribe(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_subscription_unsubscribe(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_subscription_unsubscribe(
           uniffiTypeSubscriptionObjectFactory.clonePointer(this),
           callStatus
         );
@@ -16467,7 +16593,7 @@ const uniffiTypeSubscriptionObjectFactory: UniffiObjectFactory<SubscriptionInter
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_subscription(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_subscription(
             pointer,
             callStatus
           ),
@@ -16478,7 +16604,7 @@ const uniffiTypeSubscriptionObjectFactory: UniffiObjectFactory<SubscriptionInter
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_subscription(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_subscription(
             pointer,
             callStatus
           ),
@@ -16558,7 +16684,7 @@ export class UndoManager
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_undomanager_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_undomanager_new(
           FfiConverterTypeLoroDoc.lower(doc),
           callStatus
         );
@@ -16577,7 +16703,7 @@ export class UndoManager
   public addExcludeOriginPrefix(prefix: string): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_undomanager_add_exclude_origin_prefix(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_add_exclude_origin_prefix(
           uniffiTypeUndoManagerObjectFactory.clonePointer(this),
           FfiConverterString.lower(prefix),
           callStatus
@@ -16594,7 +16720,7 @@ export class UndoManager
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_undomanager_can_redo(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_can_redo(
             uniffiTypeUndoManagerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -16611,7 +16737,7 @@ export class UndoManager
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_undomanager_can_undo(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_can_undo(
             uniffiTypeUndoManagerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -16630,7 +16756,7 @@ export class UndoManager
         FfiConverterTypeLoroError
       ),
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_undomanager_record_new_checkpoint(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_record_new_checkpoint(
           uniffiTypeUndoManagerObjectFactory.clonePointer(this),
           callStatus
         );
@@ -16649,7 +16775,7 @@ export class UndoManager
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_undomanager_redo(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_redo(
             uniffiTypeUndoManagerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -16665,7 +16791,7 @@ export class UndoManager
   public setMaxUndoSteps(size: /*u32*/ number): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_undomanager_set_max_undo_steps(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_set_max_undo_steps(
           uniffiTypeUndoManagerObjectFactory.clonePointer(this),
           FfiConverterUInt32.lower(size),
           callStatus
@@ -16681,7 +16807,7 @@ export class UndoManager
   public setMergeInterval(interval: /*i64*/ bigint): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_undomanager_set_merge_interval(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_set_merge_interval(
           uniffiTypeUndoManagerObjectFactory.clonePointer(this),
           FfiConverterInt64.lower(interval),
           callStatus
@@ -16698,7 +16824,7 @@ export class UndoManager
   public setOnPop(onPop: OnPop | undefined): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_undomanager_set_on_pop(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_set_on_pop(
           uniffiTypeUndoManagerObjectFactory.clonePointer(this),
           FfiConverterOptionalTypeOnPop.lower(onPop),
           callStatus
@@ -16715,7 +16841,7 @@ export class UndoManager
   public setOnPush(onPush: OnPush | undefined): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_undomanager_set_on_push(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_set_on_push(
           uniffiTypeUndoManagerObjectFactory.clonePointer(this),
           FfiConverterOptionalTypeOnPush.lower(onPush),
           callStatus
@@ -16735,7 +16861,7 @@ export class UndoManager
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_undomanager_undo(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_undo(
             uniffiTypeUndoManagerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -16799,7 +16925,7 @@ const uniffiTypeUndoManagerObjectFactory: UniffiObjectFactory<UndoManagerInterfa
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_undomanager(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_undomanager(
             pointer,
             callStatus
           ),
@@ -16810,7 +16936,7 @@ const uniffiTypeUndoManagerObjectFactory: UniffiObjectFactory<UndoManagerInterfa
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_undomanager(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_undomanager(
             pointer,
             callStatus
           ),
@@ -16852,7 +16978,7 @@ export class UnsubscriberImpl
   public onUnsubscribe(): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_unsubscriber_on_unsubscribe(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_unsubscriber_on_unsubscribe(
           uniffiTypeUnsubscriberImplObjectFactory.clonePointer(this),
           callStatus
         );
@@ -16915,7 +17041,7 @@ const uniffiTypeUnsubscriberImplObjectFactory: UniffiObjectFactory<Unsubscriber>
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_unsubscriber(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_unsubscriber(
             pointer,
             callStatus
           ),
@@ -16926,7 +17052,7 @@ const uniffiTypeUnsubscriberImplObjectFactory: UniffiObjectFactory<Unsubscriber>
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_unsubscriber(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_unsubscriber(
             pointer,
             callStatus
           ),
@@ -16980,7 +17106,7 @@ const uniffiCallbackInterfaceUnsubscriber: {
     },
   },
   register: () => {
-    nativeModule().ubrn_uniffi_loro_rs_fn_init_callback_vtable_unsubscriber(
+    nativeModule().ubrn_uniffi_loro_ffi_fn_init_callback_vtable_unsubscriber(
       uniffiCallbackInterfaceUnsubscriber.vtable
     );
   },
@@ -17020,7 +17146,7 @@ export class ValueOrContainer
     return FfiConverterOptionalTypeContainerID.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_as_container(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17034,7 +17160,7 @@ export class ValueOrContainer
     return FfiConverterOptionalTypeLoroCounter.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_counter(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_as_loro_counter(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17048,7 +17174,7 @@ export class ValueOrContainer
     return FfiConverterOptionalTypeLoroList.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_list(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_as_loro_list(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17062,7 +17188,7 @@ export class ValueOrContainer
     return FfiConverterOptionalTypeLoroMap.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_map(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_as_loro_map(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17076,7 +17202,7 @@ export class ValueOrContainer
     return FfiConverterOptionalTypeLoroMovableList.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_movable_list(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_as_loro_movable_list(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17090,7 +17216,7 @@ export class ValueOrContainer
     return FfiConverterOptionalTypeLoroText.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_text(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_as_loro_text(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17104,7 +17230,7 @@ export class ValueOrContainer
     return FfiConverterOptionalTypeLoroTree.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_tree(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_as_loro_tree(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17118,7 +17244,7 @@ export class ValueOrContainer
     return FfiConverterOptionalTypeLoroUnknown.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_loro_unknown(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_as_loro_unknown(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17132,7 +17258,7 @@ export class ValueOrContainer
     return FfiConverterOptionalTypeLoroValue.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_as_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_as_value(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17146,7 +17272,7 @@ export class ValueOrContainer
     return FfiConverterOptionalTypeContainerType.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_container_type(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_container_type(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17160,7 +17286,7 @@ export class ValueOrContainer
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_is_container(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_is_container(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17174,7 +17300,7 @@ export class ValueOrContainer
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_valueorcontainer_is_value(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_is_value(
             uniffiTypeValueOrContainerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17238,7 +17364,7 @@ const uniffiTypeValueOrContainerObjectFactory: UniffiObjectFactory<ValueOrContai
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_valueorcontainer(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_valueorcontainer(
             pointer,
             callStatus
           ),
@@ -17249,7 +17375,7 @@ const uniffiTypeValueOrContainerObjectFactory: UniffiObjectFactory<ValueOrContai
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_valueorcontainer(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_valueorcontainer(
             pointer,
             callStatus
           ),
@@ -17296,7 +17422,7 @@ export class VersionVector
     super();
     const pointer = uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_versionvector_new(
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_versionvector_new(
           callStatus
         );
       },
@@ -17314,7 +17440,7 @@ export class VersionVector
           FfiConverterTypeLoroError
         ),
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_constructor_versionvector_decode(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_versionvector_decode(
             FfiConverterArrayBuffer.lower(bytes),
             callStatus
           );
@@ -17328,7 +17454,7 @@ export class VersionVector
     return FfiConverterTypeVersionVectorDiff.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_diff(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_diff(
             uniffiTypeVersionVectorObjectFactory.clonePointer(this),
             FfiConverterTypeVersionVector.lower(rhs),
             callStatus
@@ -17343,7 +17469,7 @@ export class VersionVector
     return FfiConverterArrayBuffer.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_encode(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_encode(
             uniffiTypeVersionVectorObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17357,7 +17483,7 @@ export class VersionVector
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_eq(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_eq(
             uniffiTypeVersionVectorObjectFactory.clonePointer(this),
             FfiConverterTypeVersionVector.lower(other),
             callStatus
@@ -17371,7 +17497,7 @@ export class VersionVector
   public extendToIncludeVv(other: VersionVectorInterface): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_extend_to_include_vv(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_extend_to_include_vv(
           uniffiTypeVersionVectorObjectFactory.clonePointer(this),
           FfiConverterTypeVersionVector.lower(other),
           callStatus
@@ -17385,7 +17511,7 @@ export class VersionVector
     return FfiConverterOptionalInt32.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_get_last(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_get_last(
             uniffiTypeVersionVectorObjectFactory.clonePointer(this),
             FfiConverterUInt64.lower(peer),
             callStatus
@@ -17400,7 +17526,7 @@ export class VersionVector
     return FfiConverterArrayTypeIdSpan.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_get_missing_span(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_get_missing_span(
             uniffiTypeVersionVectorObjectFactory.clonePointer(this),
             FfiConverterTypeVersionVector.lower(target),
             callStatus
@@ -17415,7 +17541,7 @@ export class VersionVector
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_includes_id(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_includes_id(
             uniffiTypeVersionVectorObjectFactory.clonePointer(this),
             FfiConverterTypeID.lower(id),
             callStatus
@@ -17430,7 +17556,7 @@ export class VersionVector
     return FfiConverterBool.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_includes_vv(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_includes_vv(
             uniffiTypeVersionVectorObjectFactory.clonePointer(this),
             FfiConverterTypeVersionVector.lower(other),
             callStatus
@@ -17445,7 +17571,7 @@ export class VersionVector
     return FfiConverterOptionalTypeCounterSpan.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_intersect_span(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_intersect_span(
             uniffiTypeVersionVectorObjectFactory.clonePointer(this),
             FfiConverterTypeIdSpan.lower(target),
             callStatus
@@ -17459,7 +17585,7 @@ export class VersionVector
   public merge(other: VersionVectorInterface): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_merge(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_merge(
           uniffiTypeVersionVectorObjectFactory.clonePointer(this),
           FfiConverterTypeVersionVector.lower(other),
           callStatus
@@ -17473,7 +17599,7 @@ export class VersionVector
     return FfiConverterOptionalTypeOrdering.lift(
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_partial_cmp(
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_partial_cmp(
             uniffiTypeVersionVectorObjectFactory.clonePointer(this),
             FfiConverterTypeVersionVector.lower(other),
             callStatus
@@ -17487,7 +17613,7 @@ export class VersionVector
   public setEnd(id: Id): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_set_end(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_set_end(
           uniffiTypeVersionVectorObjectFactory.clonePointer(this),
           FfiConverterTypeID.lower(id),
           callStatus
@@ -17500,7 +17626,7 @@ export class VersionVector
   public setLast(id: Id): void {
     uniffiCaller.rustCall(
       /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_rs_fn_method_versionvector_set_last(
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_set_last(
           uniffiTypeVersionVectorObjectFactory.clonePointer(this),
           FfiConverterTypeID.lower(id),
           callStatus
@@ -17564,7 +17690,7 @@ const uniffiTypeVersionVectorObjectFactory: UniffiObjectFactory<VersionVectorInt
       const pointer = this.pointer(obj);
       return uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_clone_versionvector(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_versionvector(
             pointer,
             callStatus
           ),
@@ -17575,7 +17701,7 @@ const uniffiTypeVersionVectorObjectFactory: UniffiObjectFactory<VersionVectorInt
     freePointer(pointer: UnsafeMutableRawPointer): void {
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) =>
-          nativeModule().ubrn_uniffi_loro_rs_fn_free_versionvector(
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_versionvector(
             pointer,
             callStatus
           ),
@@ -17862,7 +17988,7 @@ function uniffiEnsureInitialized() {
   const bindingsContractVersion = 26;
   // Get the scaffolding contract version by calling the into the dylib
   const scaffoldingContractVersion =
-    nativeModule().ubrn_ffi_loro_rs_uniffi_contract_version();
+    nativeModule().ubrn_ffi_loro_ffi_uniffi_contract_version();
   if (bindingsContractVersion !== scaffoldingContractVersion) {
     throw new UniffiInternalError.ContractVersionMismatch(
       scaffoldingContractVersion,
@@ -17870,2655 +17996,2695 @@ function uniffiEnsureInitialized() {
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_func_decode_import_blob_meta() !==
-    35768
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_func_decode_import_blob_meta() !==
+    59767
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_func_decode_import_blob_meta'
+      'uniffi_loro_ffi_checksum_func_decode_import_blob_meta'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_func_get_version() !== 28964
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_func_get_version() !== 39468
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_func_get_version'
+      'uniffi_loro_ffi_checksum_func_get_version'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_awareness_apply() !==
-    1429
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_awareness_apply() !==
+    32695
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_awareness_apply'
+      'uniffi_loro_ffi_checksum_method_awareness_apply'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_awareness_encode() !==
-    50942
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_awareness_encode() !==
+    4426
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_awareness_encode'
+      'uniffi_loro_ffi_checksum_method_awareness_encode'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_awareness_encode_all() !==
-    46096
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_awareness_encode_all() !==
+    29690
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_awareness_encode_all'
+      'uniffi_loro_ffi_checksum_method_awareness_encode_all'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_awareness_get_all_states() !==
-    15866
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_awareness_get_all_states() !==
+    24946
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_awareness_get_all_states'
+      'uniffi_loro_ffi_checksum_method_awareness_get_all_states'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_awareness_get_local_state() !==
-    3766
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_awareness_get_local_state() !==
+    47648
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_awareness_get_local_state'
+      'uniffi_loro_ffi_checksum_method_awareness_get_local_state'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_awareness_peer() !==
-    43225
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_awareness_peer() !==
+    7626
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_awareness_peer'
+      'uniffi_loro_ffi_checksum_method_awareness_peer'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_awareness_remove_outdated() !==
-    35110
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_awareness_remove_outdated() !==
+    59591
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_awareness_remove_outdated'
+      'uniffi_loro_ffi_checksum_method_awareness_remove_outdated'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_awareness_set_local_state() !==
-    42267
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_awareness_set_local_state() !==
+    12712
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_awareness_set_local_state'
+      'uniffi_loro_ffi_checksum_method_awareness_set_local_state'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_changeancestorstraveler_travel() !==
-    40597
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_changeancestorstraveler_travel() !==
+    43603
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_changeancestorstraveler_travel'
+      'uniffi_loro_ffi_checksum_method_changeancestorstraveler_travel'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_changemodifier_set_message() !==
-    61741
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_changemodifier_set_message() !==
+    11943
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_changemodifier_set_message'
+      'uniffi_loro_ffi_checksum_method_changemodifier_set_message'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_changemodifier_set_timestamp() !==
-    48168
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_changemodifier_set_timestamp() !==
+    5014
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_changemodifier_set_timestamp'
+      'uniffi_loro_ffi_checksum_method_changemodifier_set_timestamp'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_configure_fork() !== 1285
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_configure_fork() !==
+    3880
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_configure_fork'
+      'uniffi_loro_ffi_checksum_method_configure_fork'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_configure_merge_interval() !==
-    63847
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_configure_merge_interval() !==
+    19914
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_configure_merge_interval'
+      'uniffi_loro_ffi_checksum_method_configure_merge_interval'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_configure_record_timestamp() !==
-    55675
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_configure_record_timestamp() !==
+    47148
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_configure_record_timestamp'
+      'uniffi_loro_ffi_checksum_method_configure_record_timestamp'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_configure_set_merge_interval() !==
-    58160
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_configure_set_merge_interval() !==
+    59151
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_configure_set_merge_interval'
+      'uniffi_loro_ffi_checksum_method_configure_set_merge_interval'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_configure_set_record_timestamp() !==
-    25243
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_configure_set_record_timestamp() !==
+    41593
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_configure_set_record_timestamp'
+      'uniffi_loro_ffi_checksum_method_configure_set_record_timestamp'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_configure_text_style_config() !==
-    49077
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_configure_text_style_config() !==
+    13969
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_configure_text_style_config'
+      'uniffi_loro_ffi_checksum_method_configure_text_style_config'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_containeridlike_as_container_id() !==
-    53774
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_containeridlike_as_container_id() !==
+    5805
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_containeridlike_as_container_id'
+      'uniffi_loro_ffi_checksum_method_containeridlike_as_container_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_diffbatch_get_diff() !==
-    36389
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_cursor_encode() !==
+    36128
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_diffbatch_get_diff'
+      'uniffi_loro_ffi_checksum_method_cursor_encode'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_diffbatch_push() !==
-    35033
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_diffbatch_get_diff() !==
+    5540
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_diffbatch_push'
+      'uniffi_loro_ffi_checksum_method_diffbatch_get_diff'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_apply() !==
-    23687
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_diffbatch_push() !==
+    17472
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralstore_apply'
+      'uniffi_loro_ffi_checksum_method_diffbatch_push'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_delete() !==
-    4061
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_apply() !==
+    28698
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralstore_delete'
+      'uniffi_loro_ffi_checksum_method_ephemeralstore_apply'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_encode() !==
-    24093
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_delete() !==
+    9629
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralstore_encode'
+      'uniffi_loro_ffi_checksum_method_ephemeralstore_delete'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_encode_all() !==
-    23093
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_encode() !==
+    27800
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralstore_encode_all'
+      'uniffi_loro_ffi_checksum_method_ephemeralstore_encode'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_get() !==
-    12438
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_encode_all() !==
+    45592
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralstore_get'
+      'uniffi_loro_ffi_checksum_method_ephemeralstore_encode_all'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_get_all_states() !==
-    34173
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_get() !==
+    23330
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralstore_get_all_states'
+      'uniffi_loro_ffi_checksum_method_ephemeralstore_get'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_keys() !==
-    1316
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_get_all_states() !==
+    26188
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralstore_keys'
+      'uniffi_loro_ffi_checksum_method_ephemeralstore_get_all_states'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_remove_outdated() !==
-    50009
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_keys() !==
+    19682
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralstore_remove_outdated'
+      'uniffi_loro_ffi_checksum_method_ephemeralstore_keys'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_set() !==
-    12134
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_remove_outdated() !==
+    55398
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralstore_set'
+      'uniffi_loro_ffi_checksum_method_ephemeralstore_remove_outdated'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_subscribe() !==
-    58055
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_set() !==
+    7799
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralstore_subscribe'
+      'uniffi_loro_ffi_checksum_method_ephemeralstore_set'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralstore_subscribe_local_update() !==
-    36070
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_subscribe() !==
+    1473
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralstore_subscribe_local_update'
+      'uniffi_loro_ffi_checksum_method_ephemeralstore_subscribe'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_ephemeralsubscriber_on_ephemeral_event() !==
-    28197
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_subscribe_local_update() !==
+    1506
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_ephemeralsubscriber_on_ephemeral_event'
+      'uniffi_loro_ffi_checksum_method_ephemeralstore_subscribe_local_update'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_firstcommitfrompeercallback_on_first_commit_from_peer() !==
-    40712
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralsubscriber_on_ephemeral_event() !==
+    21232
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_firstcommitfrompeercallback_on_first_commit_from_peer'
+      'uniffi_loro_ffi_checksum_method_ephemeralsubscriber_on_ephemeral_event'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_fractionalindex_to_string() !==
-    41912
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_firstcommitfrompeercallback_on_first_commit_from_peer() !==
+    54327
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_fractionalindex_to_string'
+      'uniffi_loro_ffi_checksum_method_firstcommitfrompeercallback_on_first_commit_from_peer'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_frontiers_encode() !==
-    53073
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_fractionalindex_to_string() !==
+    5688
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_frontiers_encode'
+      'uniffi_loro_ffi_checksum_method_fractionalindex_to_string'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_frontiers_eq() !== 25726
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_frontiers_encode() !==
+    14564
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_frontiers_eq'
+      'uniffi_loro_ffi_checksum_method_frontiers_encode'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_localephemerallistener_on_ephemeral_update() !==
-    11212
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_frontiers_eq() !== 19191
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_localephemerallistener_on_ephemeral_update'
+      'uniffi_loro_ffi_checksum_method_frontiers_eq'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_localupdatecallback_on_local_update() !==
-    13262
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_localephemerallistener_on_ephemeral_update() !==
+    58755
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_localupdatecallback_on_local_update'
+      'uniffi_loro_ffi_checksum_method_localephemerallistener_on_ephemeral_update'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorocounter_decrement() !==
-    10538
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_localupdatecallback_on_local_update() !==
+    56990
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorocounter_decrement'
+      'uniffi_loro_ffi_checksum_method_localupdatecallback_on_local_update'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorocounter_doc() !==
-    6130
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorocounter_decrement() !==
+    56450
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorocounter_doc'
+      'uniffi_loro_ffi_checksum_method_lorocounter_decrement'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorocounter_get_attached() !==
-    34561
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorocounter_doc() !==
+    18968
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorocounter_get_attached'
+      'uniffi_loro_ffi_checksum_method_lorocounter_doc'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorocounter_get_value() !==
-    20959
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorocounter_get_attached() !==
+    28917
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorocounter_get_value'
+      'uniffi_loro_ffi_checksum_method_lorocounter_get_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorocounter_id() !== 2913
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorocounter_get_value() !==
+    43671
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorocounter_id'
+      'uniffi_loro_ffi_checksum_method_lorocounter_get_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorocounter_increment() !==
-    38759
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorocounter_id() !==
+    35406
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorocounter_increment'
+      'uniffi_loro_ffi_checksum_method_lorocounter_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorocounter_is_attached() !==
-    52562
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorocounter_increment() !==
+    60293
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorocounter_is_attached'
+      'uniffi_loro_ffi_checksum_method_lorocounter_increment'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorocounter_is_deleted() !==
-    39796
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorocounter_is_attached() !==
+    28676
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorocounter_is_deleted'
+      'uniffi_loro_ffi_checksum_method_lorocounter_is_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_apply_diff() !==
-    62086
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorocounter_is_deleted() !==
+    38594
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_apply_diff'
+      'uniffi_loro_ffi_checksum_method_lorocounter_is_deleted'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_attach() !==
-    27016
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_apply_diff() !==
+    15296
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_attach'
+      'uniffi_loro_ffi_checksum_method_lorodoc_apply_diff'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_check_state_correctness_slow() !==
-    29456
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_attach() !==
+    48074
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_check_state_correctness_slow'
+      'uniffi_loro_ffi_checksum_method_lorodoc_attach'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_checkout() !==
-    57020
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_check_state_correctness_slow() !==
+    53663
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_checkout'
+      'uniffi_loro_ffi_checksum_method_lorodoc_check_state_correctness_slow'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_checkout_to_latest() !==
-    44648
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_checkout() !==
+    61916
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_checkout_to_latest'
+      'uniffi_loro_ffi_checksum_method_lorodoc_checkout'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_clear_next_commit_options() !==
-    56392
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_checkout_to_latest() !==
+    62670
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_clear_next_commit_options'
+      'uniffi_loro_ffi_checksum_method_lorodoc_checkout_to_latest'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_cmp_with_frontiers() !==
-    24694
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_clear_next_commit_options() !==
+    21764
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_cmp_with_frontiers'
+      'uniffi_loro_ffi_checksum_method_lorodoc_clear_next_commit_options'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_commit() !== 3625
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_cmp_with_frontiers() !==
+    41551
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_commit'
+      'uniffi_loro_ffi_checksum_method_lorodoc_cmp_with_frontiers'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_commit_with() !==
-    53688
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_commit() !==
+    25168
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_commit_with'
+      'uniffi_loro_ffi_checksum_method_lorodoc_commit'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_compact_change_store() !==
-    58135
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_commit_with() !==
+    65138
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_compact_change_store'
+      'uniffi_loro_ffi_checksum_method_lorodoc_commit_with'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_config() !==
-    25044
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_compact_change_store() !==
+    59461
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_config'
+      'uniffi_loro_ffi_checksum_method_lorodoc_compact_change_store'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_config_default_text_style() !==
-    17102
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_config() !==
+    33471
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_config_default_text_style'
+      'uniffi_loro_ffi_checksum_method_lorodoc_config'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_config_text_style() !==
-    60775
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_config_default_text_style() !==
+    10240
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_config_text_style'
+      'uniffi_loro_ffi_checksum_method_lorodoc_config_default_text_style'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_detach() !==
-    30834
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_config_text_style() !==
+    17307
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_detach'
+      'uniffi_loro_ffi_checksum_method_lorodoc_config_text_style'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_diff() !== 41595
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_delete_root_container() !==
+    4559
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_diff'
+      'uniffi_loro_ffi_checksum_method_lorodoc_delete_root_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_json_in_id_span() !==
-    13015
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_detach() !==
+    24925
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_export_json_in_id_span'
+      'uniffi_loro_ffi_checksum_method_lorodoc_detach'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_json_updates() !==
-    3476
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_diff() !== 53647
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_export_json_updates'
+      'uniffi_loro_ffi_checksum_method_lorodoc_diff'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_json_updates_without_peer_compression() !==
-    51548
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_json_in_id_span() !==
+    4524
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_export_json_updates_without_peer_compression'
+      'uniffi_loro_ffi_checksum_method_lorodoc_export_json_in_id_span'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_shallow_snapshot() !==
-    39441
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_json_updates() !==
+    27055
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_export_shallow_snapshot'
+      'uniffi_loro_ffi_checksum_method_lorodoc_export_json_updates'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_snapshot() !==
-    2537
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_json_updates_without_peer_compression() !==
+    42286
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_export_snapshot'
+      'uniffi_loro_ffi_checksum_method_lorodoc_export_json_updates_without_peer_compression'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_snapshot_at() !==
-    40122
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_shallow_snapshot() !==
+    20071
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_export_snapshot_at'
+      'uniffi_loro_ffi_checksum_method_lorodoc_export_shallow_snapshot'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_state_only() !==
-    8640
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_snapshot() !==
+    28510
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_export_state_only'
+      'uniffi_loro_ffi_checksum_method_lorodoc_export_snapshot'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_updates() !==
-    1680
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_snapshot_at() !==
+    37996
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_export_updates'
+      'uniffi_loro_ffi_checksum_method_lorodoc_export_snapshot_at'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_export_updates_in_range() !==
-    56586
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_state_only() !==
+    29117
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_export_updates_in_range'
+      'uniffi_loro_ffi_checksum_method_lorodoc_export_state_only'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_find_id_spans_between() !==
-    37580
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_updates() !==
+    2490
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_find_id_spans_between'
+      'uniffi_loro_ffi_checksum_method_lorodoc_export_updates'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_fork() !== 46596
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_updates_in_range() !==
+    62352
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_fork'
+      'uniffi_loro_ffi_checksum_method_lorodoc_export_updates_in_range'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_fork_at() !==
-    51252
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_find_id_spans_between() !==
+    1704
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_fork_at'
+      'uniffi_loro_ffi_checksum_method_lorodoc_find_id_spans_between'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_free_diff_calculator() !==
-    41654
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_fork() !== 42814
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_free_diff_calculator'
+      'uniffi_loro_ffi_checksum_method_lorodoc_fork'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_free_history_cache() !==
-    39454
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_fork_at() !==
+    26280
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_free_history_cache'
+      'uniffi_loro_ffi_checksum_method_lorodoc_fork_at'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_frontiers_to_vv() !==
-    28281
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_free_diff_calculator() !==
+    59630
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_frontiers_to_vv'
+      'uniffi_loro_ffi_checksum_method_lorodoc_free_diff_calculator'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_by_path() !==
-    60920
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_free_history_cache() !==
+    3470
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_by_path'
+      'uniffi_loro_ffi_checksum_method_lorodoc_free_history_cache'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_by_str_path() !==
-    48913
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_frontiers_to_vv() !==
+    11507
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_by_str_path'
+      'uniffi_loro_ffi_checksum_method_lorodoc_frontiers_to_vv'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_change() !==
-    31168
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_by_path() !==
+    41531
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_change'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_by_path'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_changed_containers_in() !==
-    31503
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_by_str_path() !==
+    12043
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_changed_containers_in'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_by_str_path'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_counter() !==
-    49133
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_change() !==
+    11256
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_counter'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_change'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_cursor_pos() !==
-    33856
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_changed_containers_in() !==
+    34378
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_cursor_pos'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_changed_containers_in'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_deep_value() !==
-    56488
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_counter() !==
+    60124
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_deep_value'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_counter'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_deep_value_with_id() !==
-    14157
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_cursor_pos() !==
+    47
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_deep_value_with_id'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_cursor_pos'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_list() !==
-    31053
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_deep_value() !==
+    38910
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_list'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_deep_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_map() !==
-    63278
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_deep_value_with_id() !==
+    64810
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_map'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_deep_value_with_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_movable_list() !==
-    20067
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_list() !==
+    55819
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_movable_list'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_list'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_path_to_container() !==
-    50915
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_map() !==
+    4871
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_path_to_container'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_map'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_pending_txn_len() !==
-    43198
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_movable_list() !==
+    17784
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_pending_txn_len'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_movable_list'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_text() !==
-    57761
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_path_to_container() !==
+    13102
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_text'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_path_to_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_tree() !==
-    6434
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_pending_txn_len() !==
+    37770
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_tree'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_pending_txn_len'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_get_value() !==
-    49797
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_text() !==
+    15375
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_get_value'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_text'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_has_container() !==
-    26665
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_tree() !==
+    30197
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_has_container'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_tree'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_has_history_cache() !==
-    39722
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_get_value() !==
+    14086
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_has_history_cache'
+      'uniffi_loro_ffi_checksum_method_lorodoc_get_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_import() !==
-    56709
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_has_container() !==
+    21303
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_import'
+      'uniffi_loro_ffi_checksum_method_lorodoc_has_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_import_batch() !==
-    50
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_has_history_cache() !==
+    18486
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_import_batch'
+      'uniffi_loro_ffi_checksum_method_lorodoc_has_history_cache'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_import_json_updates() !==
-    44558
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_import() !==
+    35043
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_import_json_updates'
+      'uniffi_loro_ffi_checksum_method_lorodoc_import'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_import_with() !==
-    37720
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_import_batch() !==
+    39938
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_import_with'
+      'uniffi_loro_ffi_checksum_method_lorodoc_import_batch'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_is_detached() !==
-    39769
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_import_json_updates() !==
+    58091
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_is_detached'
+      'uniffi_loro_ffi_checksum_method_lorodoc_import_json_updates'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_is_shallow() !==
-    10030
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_import_with() !==
+    21187
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_is_shallow'
+      'uniffi_loro_ffi_checksum_method_lorodoc_import_with'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_jsonpath() !==
-    47331
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_is_detached() !==
+    19296
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_jsonpath'
+      'uniffi_loro_ffi_checksum_method_lorodoc_is_detached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_len_changes() !==
-    49311
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_is_shallow() !==
+    52920
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_len_changes'
+      'uniffi_loro_ffi_checksum_method_lorodoc_is_shallow'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_len_ops() !==
-    43618
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_jsonpath() !==
+    58280
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_len_ops'
+      'uniffi_loro_ffi_checksum_method_lorodoc_jsonpath'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_log_estimate_size() !==
-    23457
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_len_changes() !==
+    43389
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_log_estimate_size'
+      'uniffi_loro_ffi_checksum_method_lorodoc_len_changes'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_minimize_frontiers() !==
-    49357
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_len_ops() !==
+    1966
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_minimize_frontiers'
+      'uniffi_loro_ffi_checksum_method_lorodoc_len_ops'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_oplog_frontiers() !==
-    56366
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_log_estimate_size() !==
+    14588
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_oplog_frontiers'
+      'uniffi_loro_ffi_checksum_method_lorodoc_log_estimate_size'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_oplog_vv() !==
-    16920
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_minimize_frontiers() !==
+    47301
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_oplog_vv'
+      'uniffi_loro_ffi_checksum_method_lorodoc_minimize_frontiers'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_peer_id() !==
-    18934
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_oplog_frontiers() !==
+    35760
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_peer_id'
+      'uniffi_loro_ffi_checksum_method_lorodoc_oplog_frontiers'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_revert_to() !==
-    8554
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_oplog_vv() !==
+    35992
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_revert_to'
+      'uniffi_loro_ffi_checksum_method_lorodoc_oplog_vv'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_change_merge_interval() !==
-    35076
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_peer_id() !==
+    5346
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_set_change_merge_interval'
+      'uniffi_loro_ffi_checksum_method_lorodoc_peer_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_message() !==
-    33604
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_revert_to() !==
+    13908
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_message'
+      'uniffi_loro_ffi_checksum_method_lorodoc_revert_to'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_options() !==
-    32561
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_set_change_merge_interval() !==
+    35421
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_options'
+      'uniffi_loro_ffi_checksum_method_lorodoc_set_change_merge_interval'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_origin() !==
-    11029
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_set_hide_empty_root_containers() !==
+    61757
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_origin'
+      'uniffi_loro_ffi_checksum_method_lorodoc_set_hide_empty_root_containers'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_timestamp() !==
-    16707
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_set_next_commit_message() !==
+    47832
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_set_next_commit_timestamp'
+      'uniffi_loro_ffi_checksum_method_lorodoc_set_next_commit_message'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_peer_id() !==
-    65441
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_set_next_commit_options() !==
+    53420
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_set_peer_id'
+      'uniffi_loro_ffi_checksum_method_lorodoc_set_next_commit_options'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_set_record_timestamp() !==
-    27671
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_set_next_commit_origin() !==
+    17826
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_set_record_timestamp'
+      'uniffi_loro_ffi_checksum_method_lorodoc_set_next_commit_origin'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_shallow_since_vv() !==
-    29743
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_set_next_commit_timestamp() !==
+    12708
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_shallow_since_vv'
+      'uniffi_loro_ffi_checksum_method_lorodoc_set_next_commit_timestamp'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_state_frontiers() !==
-    18050
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_set_peer_id() !==
+    59162
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_state_frontiers'
+      'uniffi_loro_ffi_checksum_method_lorodoc_set_peer_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_state_vv() !==
-    5269
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_set_record_timestamp() !==
+    30166
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_state_vv'
+      'uniffi_loro_ffi_checksum_method_lorodoc_set_record_timestamp'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_subscribe() !==
-    38570
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_shallow_since_vv() !==
+    62947
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_subscribe'
+      'uniffi_loro_ffi_checksum_method_lorodoc_shallow_since_vv'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_subscribe_first_commit_from_peer() !==
-    29534
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_state_frontiers() !==
+    3671
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_subscribe_first_commit_from_peer'
+      'uniffi_loro_ffi_checksum_method_lorodoc_state_frontiers'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_subscribe_local_update() !==
-    29121
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_state_vv() !==
+    14064
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_subscribe_local_update'
+      'uniffi_loro_ffi_checksum_method_lorodoc_state_vv'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_subscribe_pre_commit() !==
-    64598
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_subscribe() !==
+    33289
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_subscribe_pre_commit'
+      'uniffi_loro_ffi_checksum_method_lorodoc_subscribe'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_subscribe_root() !==
-    40976
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_subscribe_first_commit_from_peer() !==
+    65444
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_subscribe_root'
+      'uniffi_loro_ffi_checksum_method_lorodoc_subscribe_first_commit_from_peer'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_travel_change_ancestors() !==
-    13683
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_subscribe_local_update() !==
+    46483
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_travel_change_ancestors'
+      'uniffi_loro_ffi_checksum_method_lorodoc_subscribe_local_update'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorodoc_vv_to_frontiers() !==
-    2261
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_subscribe_pre_commit() !==
+    8982
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorodoc_vv_to_frontiers'
+      'uniffi_loro_ffi_checksum_method_lorodoc_subscribe_pre_commit'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_clear() !==
-    50881
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_subscribe_root() !==
+    64208
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_clear'
+      'uniffi_loro_ffi_checksum_method_lorodoc_subscribe_root'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_delete() !==
-    58602
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_travel_change_ancestors() !==
+    39975
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_delete'
+      'uniffi_loro_ffi_checksum_method_lorodoc_travel_change_ancestors'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_doc() !== 55758
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_vv_to_frontiers() !==
+    45843
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_doc'
+      'uniffi_loro_ffi_checksum_method_lorodoc_vv_to_frontiers'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_get() !== 56504
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_clear() !==
+    59547
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_get'
+      'uniffi_loro_ffi_checksum_method_lorolist_clear'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_get_attached() !==
-    35343
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_delete() !==
+    34888
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_get_attached'
+      'uniffi_loro_ffi_checksum_method_lorolist_delete'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_get_cursor() !==
-    42237
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_doc() !== 53175
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_get_cursor'
+      'uniffi_loro_ffi_checksum_method_lorolist_doc'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_get_deep_value() !==
-    47624
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_get() !== 5256
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_get_deep_value'
+      'uniffi_loro_ffi_checksum_method_lorolist_get'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_get_id_at() !==
-    48975
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_get_attached() !==
+    45494
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_get_id_at'
+      'uniffi_loro_ffi_checksum_method_lorolist_get_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_get_value() !==
-    16448
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_get_cursor() !==
+    37701
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_get_value'
+      'uniffi_loro_ffi_checksum_method_lorolist_get_cursor'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_id() !== 50954
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_get_deep_value() !==
+    41115
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_id'
+      'uniffi_loro_ffi_checksum_method_lorolist_get_deep_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_insert() !==
-    23468
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_get_id_at() !==
+    29299
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_insert'
+      'uniffi_loro_ffi_checksum_method_lorolist_get_id_at'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_counter_container() !==
-    5766
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_get_value() !==
+    35537
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_insert_counter_container'
+      'uniffi_loro_ffi_checksum_method_lorolist_get_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_list_container() !==
-    11543
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_id() !== 43156
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_insert_list_container'
+      'uniffi_loro_ffi_checksum_method_lorolist_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_map_container() !==
-    61543
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_insert() !==
+    8265
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_insert_map_container'
+      'uniffi_loro_ffi_checksum_method_lorolist_insert'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_movable_list_container() !==
-    52015
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_insert_counter_container() !==
+    32924
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_insert_movable_list_container'
+      'uniffi_loro_ffi_checksum_method_lorolist_insert_counter_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_text_container() !==
-    29359
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_insert_list_container() !==
+    3124
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_insert_text_container'
+      'uniffi_loro_ffi_checksum_method_lorolist_insert_list_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_insert_tree_container() !==
-    33717
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_insert_map_container() !==
+    8686
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_insert_tree_container'
+      'uniffi_loro_ffi_checksum_method_lorolist_insert_map_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_is_attached() !==
-    44127
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_insert_movable_list_container() !==
+    61399
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_is_attached'
+      'uniffi_loro_ffi_checksum_method_lorolist_insert_movable_list_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_is_deleted() !==
-    60108
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_insert_text_container() !==
+    58385
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_is_deleted'
+      'uniffi_loro_ffi_checksum_method_lorolist_insert_text_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_is_empty() !==
-    1726
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_insert_tree_container() !==
+    39269
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_is_empty'
+      'uniffi_loro_ffi_checksum_method_lorolist_insert_tree_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_len() !== 50928
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_is_attached() !==
+    51464
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_len'
+      'uniffi_loro_ffi_checksum_method_lorolist_is_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_pop() !== 64877
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_is_deleted() !==
+    17142
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_pop'
+      'uniffi_loro_ffi_checksum_method_lorolist_is_deleted'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_push() !== 50478
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_is_empty() !==
+    3297
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_push'
+      'uniffi_loro_ffi_checksum_method_lorolist_is_empty'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorolist_to_vec() !==
-    26880
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_len() !== 31562
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorolist_to_vec'
+      'uniffi_loro_ffi_checksum_method_lorolist_len'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_clear() !== 15457
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_pop() !== 46637
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_clear'
+      'uniffi_loro_ffi_checksum_method_lorolist_pop'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_delete() !== 9460
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_push() !==
+    48242
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_delete'
+      'uniffi_loro_ffi_checksum_method_lorolist_push'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_doc() !== 33268
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_to_vec() !==
+    48551
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_doc'
+      'uniffi_loro_ffi_checksum_method_lorolist_to_vec'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_get() !== 60420
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_clear() !==
+    36823
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_get'
+      'uniffi_loro_ffi_checksum_method_loromap_clear'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_get_attached() !==
-    44171
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_delete() !==
+    1727
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_get_attached'
+      'uniffi_loro_ffi_checksum_method_loromap_delete'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_get_deep_value() !==
-    57458
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_doc() !== 23666
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_get_deep_value'
+      'uniffi_loro_ffi_checksum_method_loromap_doc'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_get_last_editor() !==
-    49957
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_get() !== 3814
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_get_last_editor'
+      'uniffi_loro_ffi_checksum_method_loromap_get'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_counter_container() !==
-    62072
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_get_attached() !==
+    56597
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_get_or_create_counter_container'
+      'uniffi_loro_ffi_checksum_method_loromap_get_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_list_container() !==
-    50592
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_get_deep_value() !==
+    63734
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_get_or_create_list_container'
+      'uniffi_loro_ffi_checksum_method_loromap_get_deep_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_map_container() !==
-    16915
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_get_last_editor() !==
+    57747
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_get_or_create_map_container'
+      'uniffi_loro_ffi_checksum_method_loromap_get_last_editor'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_movable_list_container() !==
-    47000
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_get_or_create_counter_container() !==
+    54451
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_get_or_create_movable_list_container'
+      'uniffi_loro_ffi_checksum_method_loromap_get_or_create_counter_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_text_container() !==
-    42079
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_get_or_create_list_container() !==
+    65040
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_get_or_create_text_container'
+      'uniffi_loro_ffi_checksum_method_loromap_get_or_create_list_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_get_or_create_tree_container() !==
-    34859
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_get_or_create_map_container() !==
+    8641
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_get_or_create_tree_container'
+      'uniffi_loro_ffi_checksum_method_loromap_get_or_create_map_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_get_value() !==
-    41757
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_get_or_create_movable_list_container() !==
+    43140
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_get_value'
+      'uniffi_loro_ffi_checksum_method_loromap_get_or_create_movable_list_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_id() !== 43946
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_get_or_create_text_container() !==
+    26168
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_id'
+      'uniffi_loro_ffi_checksum_method_loromap_get_or_create_text_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_insert() !== 3852
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_get_or_create_tree_container() !==
+    3661
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_insert'
+      'uniffi_loro_ffi_checksum_method_loromap_get_or_create_tree_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_insert_counter_container() !==
-    52861
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_get_value() !==
+    22622
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_insert_counter_container'
+      'uniffi_loro_ffi_checksum_method_loromap_get_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_insert_list_container() !==
-    14189
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_id() !== 57881
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_insert_list_container'
+      'uniffi_loro_ffi_checksum_method_loromap_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_insert_map_container() !==
-    3908
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_insert() !==
+    34158
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_insert_map_container'
+      'uniffi_loro_ffi_checksum_method_loromap_insert'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_insert_movable_list_container() !==
-    32838
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_insert_counter_container() !==
+    6141
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_insert_movable_list_container'
+      'uniffi_loro_ffi_checksum_method_loromap_insert_counter_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_insert_text_container() !==
-    40588
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_insert_list_container() !==
+    42123
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_insert_text_container'
+      'uniffi_loro_ffi_checksum_method_loromap_insert_list_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_insert_tree_container() !==
-    52204
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_insert_map_container() !==
+    17066
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_insert_tree_container'
+      'uniffi_loro_ffi_checksum_method_loromap_insert_map_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_is_attached() !==
-    52498
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_insert_movable_list_container() !==
+    57381
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_is_attached'
+      'uniffi_loro_ffi_checksum_method_loromap_insert_movable_list_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_is_deleted() !==
-    58676
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_insert_text_container() !==
+    28951
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_is_deleted'
+      'uniffi_loro_ffi_checksum_method_loromap_insert_text_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_is_empty() !==
-    5497
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_insert_tree_container() !==
+    57059
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_is_empty'
+      'uniffi_loro_ffi_checksum_method_loromap_insert_tree_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_keys() !== 6519
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_is_attached() !==
+    41489
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_keys'
+      'uniffi_loro_ffi_checksum_method_loromap_is_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_len() !== 11143
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_is_deleted() !==
+    32195
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_len'
+      'uniffi_loro_ffi_checksum_method_loromap_is_deleted'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromap_values() !==
-    14650
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_is_empty() !==
+    41904
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromap_values'
+      'uniffi_loro_ffi_checksum_method_loromap_is_empty'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_clear() !==
-    23702
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_keys() !== 52242
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_clear'
+      'uniffi_loro_ffi_checksum_method_loromap_keys'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_delete() !==
-    9558
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_len() !== 39413
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_delete'
+      'uniffi_loro_ffi_checksum_method_loromap_len'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_doc() !==
-    65462
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_values() !==
+    59291
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_doc'
+      'uniffi_loro_ffi_checksum_method_loromap_values'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get() !==
-    23595
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_clear() !==
+    12048
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_get'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_clear'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_attached() !==
-    12225
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_delete() !==
+    9110
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_get_attached'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_delete'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_creator_at() !==
-    23298
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_doc() !==
+    61310
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_get_creator_at'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_doc'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_cursor() !==
-    19448
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_get() !==
+    8877
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_get_cursor'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_get'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_deep_value() !==
-    18033
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_get_attached() !==
+    42721
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_get_deep_value'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_get_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_last_editor_at() !==
-    43558
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_get_creator_at() !==
+    27128
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_get_last_editor_at'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_get_creator_at'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_last_mover_at() !==
-    18906
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_get_cursor() !==
+    62502
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_get_last_mover_at'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_get_cursor'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_get_value() !==
-    14582
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_get_deep_value() !==
+    8622
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_get_value'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_get_deep_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_id() !==
-    61769
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_get_last_editor_at() !==
+    37091
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_id'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_get_last_editor_at'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert() !==
-    41147
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_get_last_mover_at() !==
+    63909
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_insert'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_get_last_mover_at'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_counter_container() !==
-    51483
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_get_value() !==
+    33102
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_insert_counter_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_get_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_list_container() !==
-    11166
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_id() !==
+    25848
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_insert_list_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_map_container() !==
-    54613
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_insert() !==
+    47936
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_insert_map_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_insert'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_movable_list_container() !==
-    36586
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_insert_counter_container() !==
+    38234
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_insert_movable_list_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_insert_counter_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_text_container() !==
-    63718
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_insert_list_container() !==
+    50065
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_insert_text_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_insert_list_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_insert_tree_container() !==
-    44652
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_insert_map_container() !==
+    61365
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_insert_tree_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_insert_map_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_is_attached() !==
-    51894
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_insert_movable_list_container() !==
+    23331
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_is_attached'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_insert_movable_list_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_is_deleted() !==
-    2734
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_insert_text_container() !==
+    57512
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_is_deleted'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_insert_text_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_is_empty() !==
-    33127
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_insert_tree_container() !==
+    12645
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_is_empty'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_insert_tree_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_len() !==
-    24249
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_is_attached() !==
+    58545
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_len'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_is_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_mov() !==
-    52451
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_is_deleted() !==
+    34830
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_mov'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_is_deleted'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_pop() !==
-    18795
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_is_empty() !==
+    37813
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_pop'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_is_empty'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_push() !==
-    39681
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_len() !==
+    30817
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_push'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_len'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set() !==
-    47910
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_mov() !==
+    19397
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_set'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_mov'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_counter_container() !==
-    30797
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_pop() !==
+    7553
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_set_counter_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_pop'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_list_container() !==
-    37406
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_push() !==
+    61369
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_set_list_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_push'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_map_container() !==
-    37801
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_set() !==
+    26682
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_set_map_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_set'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_movable_list_container() !==
-    11307
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_set_counter_container() !==
+    47882
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_set_movable_list_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_set_counter_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_text_container() !==
-    795
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_set_list_container() !==
+    48467
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_set_text_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_set_list_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_set_tree_container() !==
-    49669
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_set_map_container() !==
+    18279
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_set_tree_container'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_set_map_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_loromovablelist_to_vec() !==
-    10287
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_set_movable_list_container() !==
+    58356
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_loromovablelist_to_vec'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_set_movable_list_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_apply_delta() !==
-    29837
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_set_text_container() !==
+    17337
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_apply_delta'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_set_text_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_delete() !==
-    58721
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_set_tree_container() !==
+    10601
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_delete'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_set_tree_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_delete_utf8() !==
-    44254
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_to_vec() !==
+    22764
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_delete_utf8'
+      'uniffi_loro_ffi_checksum_method_loromovablelist_to_vec'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_doc() !== 31381
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_apply_delta() !==
+    31013
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_doc'
+      'uniffi_loro_ffi_checksum_method_lorotext_apply_delta'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_get_attached() !==
-    39904
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_delete() !==
+    50707
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_get_attached'
+      'uniffi_loro_ffi_checksum_method_lorotext_delete'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_get_cursor() !==
-    3356
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_delete_utf8() !==
+    47178
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_get_cursor'
+      'uniffi_loro_ffi_checksum_method_lorotext_delete_utf8'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_get_editor_at_unicode_pos() !==
-    51724
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_doc() !== 37119
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_get_editor_at_unicode_pos'
+      'uniffi_loro_ffi_checksum_method_lorotext_doc'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_get_richtext_value() !==
-    25577
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_get_attached() !==
+    36679
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_get_richtext_value'
+      'uniffi_loro_ffi_checksum_method_lorotext_get_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_id() !== 41984
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_get_cursor() !==
+    14735
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_id'
+      'uniffi_loro_ffi_checksum_method_lorotext_get_cursor'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_insert() !==
-    16080
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_get_editor_at_unicode_pos() !==
+    20823
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_insert'
+      'uniffi_loro_ffi_checksum_method_lorotext_get_editor_at_unicode_pos'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_insert_utf8() !==
-    44641
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_get_richtext_value() !==
+    41287
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_insert_utf8'
+      'uniffi_loro_ffi_checksum_method_lorotext_get_richtext_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_is_attached() !==
-    5291
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_id() !== 15221
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_is_attached'
+      'uniffi_loro_ffi_checksum_method_lorotext_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_is_deleted() !==
-    4342
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_insert() !==
+    28264
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_is_deleted'
+      'uniffi_loro_ffi_checksum_method_lorotext_insert'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_is_empty() !==
-    48042
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_insert_utf8() !==
+    16771
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_is_empty'
+      'uniffi_loro_ffi_checksum_method_lorotext_insert_utf8'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_len_unicode() !==
-    7674
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_is_attached() !==
+    58046
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_len_unicode'
+      'uniffi_loro_ffi_checksum_method_lorotext_is_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_len_utf16() !==
-    3074
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_is_deleted() !==
+    31785
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_len_utf16'
+      'uniffi_loro_ffi_checksum_method_lorotext_is_deleted'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_len_utf8() !==
-    52382
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_is_empty() !==
+    46465
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_len_utf8'
+      'uniffi_loro_ffi_checksum_method_lorotext_is_empty'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_mark() !== 33406
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_len_unicode() !==
+    20282
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_mark'
+      'uniffi_loro_ffi_checksum_method_lorotext_len_unicode'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_push_str() !==
-    63903
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_len_utf16() !==
+    31093
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_push_str'
+      'uniffi_loro_ffi_checksum_method_lorotext_len_utf16'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_slice() !==
-    24770
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_len_utf8() !==
+    7703
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_slice'
+      'uniffi_loro_ffi_checksum_method_lorotext_len_utf8'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_splice() !==
-    52523
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_mark() !==
+    24092
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_splice'
+      'uniffi_loro_ffi_checksum_method_lorotext_mark'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_to_delta() !==
-    11638
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_push_str() !==
+    46599
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_to_delta'
+      'uniffi_loro_ffi_checksum_method_lorotext_push_str'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_to_string() !==
-    51981
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_slice() !==
+    10385
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_to_string'
+      'uniffi_loro_ffi_checksum_method_lorotext_slice'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_unmark() !==
-    65130
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_splice() !==
+    53391
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_unmark'
+      'uniffi_loro_ffi_checksum_method_lorotext_splice'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_update() !==
-    5820
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_to_delta() !==
+    49666
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_update'
+      'uniffi_loro_ffi_checksum_method_lorotext_to_delta'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotext_update_by_line() !==
-    12352
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_to_string() !==
+    28280
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotext_update_by_line'
+      'uniffi_loro_ffi_checksum_method_lorotext_to_string'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_children() !==
-    26440
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_unmark() !==
+    47537
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_children'
+      'uniffi_loro_ffi_checksum_method_lorotext_unmark'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_children_num() !==
-    25947
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_update() !==
+    25715
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_children_num'
+      'uniffi_loro_ffi_checksum_method_lorotext_update'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_contains() !==
-    63089
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_update_by_line() !==
+    58900
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_contains'
+      'uniffi_loro_ffi_checksum_method_lorotext_update_by_line'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_create() !==
-    35284
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_children() !==
+    34358
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_create'
+      'uniffi_loro_ffi_checksum_method_lorotree_children'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_create_at() !==
-    58718
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_children_num() !==
+    8923
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_create_at'
+      'uniffi_loro_ffi_checksum_method_lorotree_children_num'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_delete() !==
-    34424
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_contains() !==
+    37670
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_delete'
+      'uniffi_loro_ffi_checksum_method_lorotree_contains'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_disable_fractional_index() !==
-    19454
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_create() !==
+    38374
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_disable_fractional_index'
+      'uniffi_loro_ffi_checksum_method_lorotree_create'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_doc() !== 13772
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_create_at() !==
+    47251
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_doc'
+      'uniffi_loro_ffi_checksum_method_lorotree_create_at'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_enable_fractional_index() !==
-    27346
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_delete() !==
+    46062
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_enable_fractional_index'
+      'uniffi_loro_ffi_checksum_method_lorotree_delete'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_fractional_index() !==
-    11211
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_disable_fractional_index() !==
+    6413
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_fractional_index'
+      'uniffi_loro_ffi_checksum_method_lorotree_disable_fractional_index'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_get_attached() !==
-    21253
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_doc() !== 46210
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_get_attached'
+      'uniffi_loro_ffi_checksum_method_lorotree_doc'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_get_last_move_id() !==
-    8553
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_enable_fractional_index() !==
+    60734
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_get_last_move_id'
+      'uniffi_loro_ffi_checksum_method_lorotree_enable_fractional_index'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_get_meta() !==
-    35819
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_fractional_index() !==
+    14495
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_get_meta'
+      'uniffi_loro_ffi_checksum_method_lorotree_fractional_index'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_get_value() !==
-    59703
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_get_attached() !==
+    59293
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_get_value'
+      'uniffi_loro_ffi_checksum_method_lorotree_get_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_get_value_with_meta() !==
-    9741
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_get_last_move_id() !==
+    40233
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_get_value_with_meta'
+      'uniffi_loro_ffi_checksum_method_lorotree_get_last_move_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_id() !== 11441
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_get_meta() !==
+    33850
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_id'
+      'uniffi_loro_ffi_checksum_method_lorotree_get_meta'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_is_attached() !==
-    14715
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_get_value() !==
+    1865
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_is_attached'
+      'uniffi_loro_ffi_checksum_method_lorotree_get_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_is_deleted() !==
-    25303
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_get_value_with_meta() !==
+    15594
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_is_deleted'
+      'uniffi_loro_ffi_checksum_method_lorotree_get_value_with_meta'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_is_fractional_index_enabled() !==
-    24
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_id() !== 16524
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_is_fractional_index_enabled'
+      'uniffi_loro_ffi_checksum_method_lorotree_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_is_node_deleted() !==
-    14721
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_is_attached() !==
+    57971
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_is_node_deleted'
+      'uniffi_loro_ffi_checksum_method_lorotree_is_attached'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_mov() !== 16682
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_is_deleted() !==
+    34560
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_mov'
+      'uniffi_loro_ffi_checksum_method_lorotree_is_deleted'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_mov_after() !==
-    37131
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_is_fractional_index_enabled() !==
+    28969
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_mov_after'
+      'uniffi_loro_ffi_checksum_method_lorotree_is_fractional_index_enabled'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_mov_before() !==
-    11428
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_is_node_deleted() !==
+    16024
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_mov_before'
+      'uniffi_loro_ffi_checksum_method_lorotree_is_node_deleted'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_mov_to() !==
-    26340
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_mov() !== 20249
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_mov_to'
+      'uniffi_loro_ffi_checksum_method_lorotree_mov'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_nodes() !==
-    13614
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_mov_after() !==
+    21386
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_nodes'
+      'uniffi_loro_ffi_checksum_method_lorotree_mov_after'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_parent() !==
-    61835
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_mov_before() !==
+    13866
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_parent'
+      'uniffi_loro_ffi_checksum_method_lorotree_mov_before'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorotree_roots() !==
-    13042
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_mov_to() !==
+    32503
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorotree_roots'
+      'uniffi_loro_ffi_checksum_method_lorotree_mov_to'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorounknown_id() !==
-    12313
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_nodes() !==
+    19191
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorounknown_id'
+      'uniffi_loro_ffi_checksum_method_lorotree_nodes'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_lorovaluelike_as_loro_value() !==
-    24265
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_parent() !==
+    19692
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_lorovaluelike_as_loro_value'
+      'uniffi_loro_ffi_checksum_method_lorotree_parent'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_onpop_on_pop() !== 55491
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_roots() !==
+    6925
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_onpop_on_pop'
+      'uniffi_loro_ffi_checksum_method_lorotree_roots'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_onpush_on_push() !==
-    41625
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorounknown_id() !==
+    45333
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_onpush_on_push'
+      'uniffi_loro_ffi_checksum_method_lorounknown_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_precommitcallback_on_pre_commit() !==
-    46519
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorovaluelike_as_loro_value() !==
+    45291
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_precommitcallback_on_pre_commit'
+      'uniffi_loro_ffi_checksum_method_lorovaluelike_as_loro_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_styleconfigmap_get() !==
-    60714
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_onpop_on_pop() !== 48967
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_styleconfigmap_get'
+      'uniffi_loro_ffi_checksum_method_onpop_on_pop'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_styleconfigmap_insert() !==
-    52003
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_onpush_on_push() !==
+    12923
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_styleconfigmap_insert'
+      'uniffi_loro_ffi_checksum_method_onpush_on_push'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_subscriber_on_diff() !==
-    30735
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_precommitcallback_on_pre_commit() !==
+    57839
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_subscriber_on_diff'
+      'uniffi_loro_ffi_checksum_method_precommitcallback_on_pre_commit'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_subscription_detach() !==
-    9577
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_styleconfigmap_get() !==
+    5813
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_subscription_detach'
+      'uniffi_loro_ffi_checksum_method_styleconfigmap_get'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_subscription_unsubscribe() !==
-    20976
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_styleconfigmap_insert() !==
+    64615
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_subscription_unsubscribe'
+      'uniffi_loro_ffi_checksum_method_styleconfigmap_insert'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_undomanager_add_exclude_origin_prefix() !==
-    22797
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_subscriber_on_diff() !==
+    37249
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_undomanager_add_exclude_origin_prefix'
+      'uniffi_loro_ffi_checksum_method_subscriber_on_diff'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_undomanager_can_redo() !==
-    21029
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_subscription_detach() !==
+    63099
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_undomanager_can_redo'
+      'uniffi_loro_ffi_checksum_method_subscription_detach'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_undomanager_can_undo() !==
-    42563
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_subscription_unsubscribe() !==
+    46858
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_undomanager_can_undo'
+      'uniffi_loro_ffi_checksum_method_subscription_unsubscribe'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_undomanager_record_new_checkpoint() !==
-    61011
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_add_exclude_origin_prefix() !==
+    63740
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_undomanager_record_new_checkpoint'
+      'uniffi_loro_ffi_checksum_method_undomanager_add_exclude_origin_prefix'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_undomanager_redo() !==
-    40021
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_can_redo() !==
+    35475
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_undomanager_redo'
+      'uniffi_loro_ffi_checksum_method_undomanager_can_redo'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_undomanager_set_max_undo_steps() !==
-    45828
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_can_undo() !==
+    42348
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_undomanager_set_max_undo_steps'
+      'uniffi_loro_ffi_checksum_method_undomanager_can_undo'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_undomanager_set_merge_interval() !==
-    58543
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_record_new_checkpoint() !==
+    12209
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_undomanager_set_merge_interval'
+      'uniffi_loro_ffi_checksum_method_undomanager_record_new_checkpoint'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_undomanager_set_on_pop() !==
-    31469
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_redo() !==
+    52607
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_undomanager_set_on_pop'
+      'uniffi_loro_ffi_checksum_method_undomanager_redo'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_undomanager_set_on_push() !==
-    52164
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_max_undo_steps() !==
+    20261
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_undomanager_set_on_push'
+      'uniffi_loro_ffi_checksum_method_undomanager_set_max_undo_steps'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_undomanager_undo() !==
-    11620
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_merge_interval() !==
+    34577
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_undomanager_undo'
+      'uniffi_loro_ffi_checksum_method_undomanager_set_merge_interval'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_unsubscriber_on_unsubscribe() !==
-    46736
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_on_pop() !==
+    54502
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_unsubscriber_on_unsubscribe'
+      'uniffi_loro_ffi_checksum_method_undomanager_set_on_pop'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_container() !==
-    62884
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_on_push() !==
+    23722
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_as_container'
+      'uniffi_loro_ffi_checksum_method_undomanager_set_on_push'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_counter() !==
-    6966
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_undo() !==
+    51407
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_counter'
+      'uniffi_loro_ffi_checksum_method_undomanager_undo'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_list() !==
-    30893
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_unsubscriber_on_unsubscribe() !==
+    64065
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_list'
+      'uniffi_loro_ffi_checksum_method_unsubscriber_on_unsubscribe'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_map() !==
-    29486
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_as_container() !==
+    16799
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_map'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_as_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_movable_list() !==
-    48818
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_counter() !==
+    36547
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_movable_list'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_counter'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_text() !==
-    42471
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_list() !==
+    46429
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_text'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_list'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_tree() !==
-    3527
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_map() !==
+    40964
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_tree'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_map'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_unknown() !==
-    20474
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_movable_list() !==
+    56652
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_as_loro_unknown'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_movable_list'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_as_value() !==
-    11014
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_text() !==
+    7756
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_as_value'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_text'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_container_type() !==
-    51053
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_tree() !==
+    13237
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_container_type'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_tree'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_is_container() !==
-    38347
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_unknown() !==
+    3157
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_is_container'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_unknown'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_valueorcontainer_is_value() !==
-    25286
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_as_value() !==
+    16217
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_valueorcontainer_is_value'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_as_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_diff() !==
-    29792
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_container_type() !==
+    14339
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_diff'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_container_type'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_encode() !==
-    48765
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_is_container() !==
+    13147
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_encode'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_is_container'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_eq() !==
-    59448
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_is_value() !==
+    20846
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_eq'
+      'uniffi_loro_ffi_checksum_method_valueorcontainer_is_value'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_extend_to_include_vv() !==
-    13551
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_diff() !==
+    2647
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_extend_to_include_vv'
+      'uniffi_loro_ffi_checksum_method_versionvector_diff'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_get_last() !==
-    19277
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_encode() !==
+    6292
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_get_last'
+      'uniffi_loro_ffi_checksum_method_versionvector_encode'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_get_missing_span() !==
-    7401
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_eq() !==
+    43362
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_get_missing_span'
+      'uniffi_loro_ffi_checksum_method_versionvector_eq'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_includes_id() !==
-    10783
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_extend_to_include_vv() !==
+    31287
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_includes_id'
+      'uniffi_loro_ffi_checksum_method_versionvector_extend_to_include_vv'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_includes_vv() !==
-    4286
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_get_last() !==
+    2350
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_includes_vv'
+      'uniffi_loro_ffi_checksum_method_versionvector_get_last'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_intersect_span() !==
-    13502
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_get_missing_span() !==
+    31140
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_intersect_span'
+      'uniffi_loro_ffi_checksum_method_versionvector_get_missing_span'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_merge() !==
-    20017
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_includes_id() !==
+    60251
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_merge'
+      'uniffi_loro_ffi_checksum_method_versionvector_includes_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_partial_cmp() !==
-    58304
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_includes_vv() !==
+    39671
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_partial_cmp'
+      'uniffi_loro_ffi_checksum_method_versionvector_includes_vv'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_set_end() !==
-    45292
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_intersect_span() !==
+    53818
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_set_end'
+      'uniffi_loro_ffi_checksum_method_versionvector_intersect_span'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_method_versionvector_set_last() !==
-    31371
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_merge() !==
+    25828
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_method_versionvector_set_last'
+      'uniffi_loro_ffi_checksum_method_versionvector_merge'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_awareness_new() !==
-    49708
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_partial_cmp() !==
+    25946
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_awareness_new'
+      'uniffi_loro_ffi_checksum_method_versionvector_partial_cmp'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_cursor_new() !==
-    65393
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_set_end() !==
+    54771
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_cursor_new'
+      'uniffi_loro_ffi_checksum_method_versionvector_set_end'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_diffbatch_new() !==
-    57813
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_set_last() !==
+    28435
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_diffbatch_new'
+      'uniffi_loro_ffi_checksum_method_versionvector_set_last'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_ephemeralstore_new() !==
-    9269
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_awareness_new() !==
+    18821
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_ephemeralstore_new'
+      'uniffi_loro_ffi_checksum_constructor_awareness_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_fractionalindex_from_bytes() !==
-    54899
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_cursor_decode() !==
+    31913
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_fractionalindex_from_bytes'
+      'uniffi_loro_ffi_checksum_constructor_cursor_decode'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_fractionalindex_from_hex_string() !==
-    24988
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_cursor_new() !==
+    32460
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_fractionalindex_from_hex_string'
+      'uniffi_loro_ffi_checksum_constructor_cursor_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_frontiers_decode() !==
-    33
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_diffbatch_new() !==
+    22613
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_frontiers_decode'
+      'uniffi_loro_ffi_checksum_constructor_diffbatch_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_frontiers_from_id() !==
-    43910
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_ephemeralstore_new() !==
+    38977
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_frontiers_from_id'
+      'uniffi_loro_ffi_checksum_constructor_ephemeralstore_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_frontiers_from_ids() !==
-    28728
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_fractionalindex_from_bytes() !==
+    9241
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_frontiers_from_ids'
+      'uniffi_loro_ffi_checksum_constructor_fractionalindex_from_bytes'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_frontiers_new() !==
-    5351
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_fractionalindex_from_hex_string() !==
+    44261
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_frontiers_new'
+      'uniffi_loro_ffi_checksum_constructor_fractionalindex_from_hex_string'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_lorocounter_new() !==
-    19946
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_frontiers_decode() !==
+    45600
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_lorocounter_new'
+      'uniffi_loro_ffi_checksum_constructor_frontiers_decode'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_lorodoc_new() !==
-    30937
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_frontiers_from_id() !==
+    7560
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_lorodoc_new'
+      'uniffi_loro_ffi_checksum_constructor_frontiers_from_id'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_lorolist_new() !==
-    21263
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_frontiers_from_ids() !==
+    62627
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_lorolist_new'
+      'uniffi_loro_ffi_checksum_constructor_frontiers_from_ids'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_loromap_new() !==
-    27657
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_frontiers_new() !==
+    15591
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_loromap_new'
+      'uniffi_loro_ffi_checksum_constructor_frontiers_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_loromovablelist_new() !==
-    2871
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_lorocounter_new() !==
+    21553
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_loromovablelist_new'
+      'uniffi_loro_ffi_checksum_constructor_lorocounter_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_lorotext_new() !==
-    7240
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_lorodoc_new() !==
+    34555
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_lorotext_new'
+      'uniffi_loro_ffi_checksum_constructor_lorodoc_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_lorotree_new() !==
-    20912
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_lorolist_new() !==
+    41972
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_lorotree_new'
+      'uniffi_loro_ffi_checksum_constructor_lorolist_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_styleconfigmap_default_rich_text_config() !==
-    3502
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_loromap_new() !==
+    27269
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_styleconfigmap_default_rich_text_config'
+      'uniffi_loro_ffi_checksum_constructor_loromap_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_styleconfigmap_new() !==
-    52108
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_loromovablelist_new() !==
+    1821
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_styleconfigmap_new'
+      'uniffi_loro_ffi_checksum_constructor_loromovablelist_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_undomanager_new() !==
-    4018
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_lorotext_new() !==
+    9497
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_undomanager_new'
+      'uniffi_loro_ffi_checksum_constructor_lorotext_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_versionvector_decode() !==
-    32383
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_lorotree_new() !==
+    27388
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_versionvector_decode'
+      'uniffi_loro_ffi_checksum_constructor_lorotree_new'
     );
   }
   if (
-    nativeModule().ubrn_uniffi_loro_rs_checksum_constructor_versionvector_new() !==
-    5160
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_styleconfigmap_default_rich_text_config() !==
+    65451
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_rs_checksum_constructor_versionvector_new'
+      'uniffi_loro_ffi_checksum_constructor_styleconfigmap_default_rich_text_config'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_styleconfigmap_new() !==
+    63349
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_constructor_styleconfigmap_new'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_undomanager_new() !==
+    31025
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_constructor_undomanager_new'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_versionvector_decode() !==
+    54438
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_constructor_versionvector_decode'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_versionvector_new() !==
+    28341
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_constructor_versionvector_new'
     );
   }
 

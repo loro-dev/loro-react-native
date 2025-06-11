@@ -2,7 +2,10 @@ import {
     Id, LoroCounter, LoroList, LoroMap, LoroText, LoroTree,
     LoroMovableList, ContainerId, ContainerType, Frontiers, IdSpan,
     LoroDoc, VersionVector, UndoManager, LoroValue, UndoOrRedo,
-    CounterSpan, UndoItemMeta, DiffEvent
+    CounterSpan, UndoItemMeta, DiffEvent, SubscriptionInterface,
+    FirstCommitFromPeerCallback, FirstCommitFromPeerPayload,
+    PreCommitCallback, PreCommitCallbackPayload,
+    LocalEphemeralListener, EphemeralSubscriber, EphemeralStoreEvent
 } from './generated/loro';
 
 import type { ChangeAncestorsTraveler, ChangeMeta } from './generated/loro';
@@ -32,13 +35,20 @@ declare module "./generated/loro" {
         subscribeRoot(cb: (diff: DiffEvent) => void): SubscriptionInterface;
         subscribe(containerId: ContainerId, cb: (diff: DiffEvent) => void): SubscriptionInterface;
         subscribeLocalUpdate(cb: (update: ArrayBuffer) => void): SubscriptionInterface;
+        subscribeFirstCommitFromPeer(cb: (payload: FirstCommitFromPeerPayload) => void): SubscriptionInterface;
+        subscribePreCommit(cb: (payload: PreCommitCallbackPayload) => void): SubscriptionInterface;
         toJSON(): any;
+        getValue(): Value;
+        getDeepValue(): Value;
+        getDeepValueWithId(): Value;
     }
 
     interface LoroMap {
         insert(key: string, value: Value): void;
         insertContainer<T extends Container>(key: string, container: T): T;
         getOrCreateContainer<T extends Container>(key: string, container: T): T;
+        getValue(): Value;
+        getDeepValue(): Value;
     }
 
     interface LoroList {
@@ -46,6 +56,10 @@ declare module "./generated/loro" {
         push(value: Value): void;
         pushContainer<T extends Container>(container: T): T;
         insertContainer<T extends Container>(pos: number, container: T): T;
+        getValue(): Value;
+        getDeepValue(): Value;
+        pop(): Value | undefined;
+        toVec(): Value[];
     }
 
     interface LoroMovableList {
@@ -54,10 +68,20 @@ declare module "./generated/loro" {
         set(pos: number, value: Value): void;
         insertContainer<T extends Container>(pos: number, container: T): T;
         setContainer<T extends Container>(pos: number, container: T): T;
+        getValue(): Value;
+        getDeepValue(): Value;
+        pop(): Value | undefined;
+        toVec(): Value[];
     }
 
     interface LoroText {
         mark(from: number, to: number, key: string, value: Value): void;
+        getRichtextValue(): Value;
+    }
+
+    interface LoroTree {
+        getValue(): Value;
+        getValueWithMeta(): Value;
     }
 
     interface UndoManager {
@@ -73,9 +97,25 @@ declare module "./generated/loro" {
         ) => UndoItemMeta | undefined): void;
     }
 
+    interface Awareness {
+        setLocalState(value: Value): void;
+        getLocalState(): Value | undefined;
+    }
+
+    interface EphemeralStore {
+        set(key: string, value: Value): void;
+        get(key: string): Value | undefined;
+        getAllStates(): { [key: string]: Value };
+        subscribeLocalUpdate(cb: (update: ArrayBuffer) => void): SubscriptionInterface;
+        subscribe(cb: (event: EphemeralStoreEvent) => void): SubscriptionInterface;
+    }
+
 }
 
 export type Container = LoroText | LoroCounter | LoroList | LoroMap | LoroTree | LoroMovableList;
+
+// Re-export Awareness and EphemeralStore
+export { Awareness, EphemeralStore };
 
 ContainerId.Root.prototype.asContainerId = function (_ty: ContainerType): ContainerId {
     return this;
@@ -215,8 +255,18 @@ LoroDoc.prototype.subscribeLocalUpdate = function (cb: (update: ArrayBuffer) => 
     return originalSubscribeLocalUpdate.call(this, { onLocalUpdate: cb })
 }
 
+const originalSubscribeFirstCommitFromPeer = LoroDoc.prototype.subscribeFirstCommitFromPeer;
+LoroDoc.prototype.subscribeFirstCommitFromPeer = function (cb: (payload: FirstCommitFromPeerPayload) => void): SubscriptionInterface {
+    return originalSubscribeFirstCommitFromPeer.call(this, { onFirstCommitFromPeer: cb })
+}
+
+const originalSubscribePreCommit = LoroDoc.prototype.subscribePreCommit;
+LoroDoc.prototype.subscribePreCommit = function (cb: (payload: PreCommitCallbackPayload) => void): SubscriptionInterface {
+    return originalSubscribePreCommit.call(this, { onPreCommit: cb })
+}
+
 LoroDoc.prototype.toJSON = function (): any {
-    return loroValueToJsValue(this.getDeepValue());
+    return this.getDeepValue();
 }
 
 // ############# Container
@@ -261,17 +311,17 @@ LoroMap.prototype.insertContainer = function <T extends Container>(key: string, 
 
 LoroMap.prototype.getOrCreateContainer = function <T extends Container>(key: string, container: T): T {
     if (container instanceof LoroText) {
-        return this.getOrCreateText(key) as LoroText;
+        return this.getOrCreateTextContainer(key, container) as T;
     } else if (container instanceof LoroCounter) {
-        return this.getOrCreateCounter(key) as LoroCounter;
+        return this.getOrCreateCounterContainer(key, container) as T;
     } else if (container instanceof LoroList) {
-        return this.getOrCreateList(key) as LoroList;
+        return this.getOrCreateListContainer(key, container) as T;
     } else if (container instanceof LoroMap) {
-        return this.getOrCreateMap(key) as LoroMap;
+        return this.getOrCreateMapContainer(key, container) as T;
     } else if (container instanceof LoroTree) {
-        return this.getOrCreateTree(key) as LoroTree;
+        return this.getOrCreateTreeContainer(key, container) as T;
     } else if (container instanceof LoroMovableList) {
-        return this.getOrCreateMovableList(key) as LoroMovableList;
+        return this.getOrCreateMovableListContainer(key, container) as T;
     } else {
         throw new Error('Unsupported container type');
     }
@@ -450,9 +500,151 @@ export const loroValueToJsValue = (value: LoroValue): Value => {
     if (value instanceof LoroValue.Map) {
         const map = {};
         value.inner.value.forEach((value, key) => {
-            map[key]= loroValueToJsValue(value);
+            map[key] = loroValueToJsValue(value);
         });
         return map;
     }
     return value.inner.value;
+}
+
+// ############# LoroDoc Extensions
+
+const originalDocGetValue = LoroDoc.prototype.getValue;
+LoroDoc.prototype.getValue = function (): Value {
+    return loroValueToJsValue(originalDocGetValue.call(this));
+}
+
+const originalDocGetDeepValue = LoroDoc.prototype.getDeepValue;
+LoroDoc.prototype.getDeepValue = function (): Value {
+    return loroValueToJsValue(originalDocGetDeepValue.call(this));
+}
+
+const originalDocGetDeepValueWithId = LoroDoc.prototype.getDeepValueWithId;
+LoroDoc.prototype.getDeepValueWithId = function (): Value {
+    return loroValueToJsValue(originalDocGetDeepValueWithId.call(this));
+}
+
+// ############# LoroMap Extensions
+
+const originalMapGetValue = LoroMap.prototype.getValue;
+LoroMap.prototype.getValue = function (): Value {
+    return loroValueToJsValue(originalMapGetValue.call(this));
+}
+
+const originalMapGetDeepValue = LoroMap.prototype.getDeepValue;
+LoroMap.prototype.getDeepValue = function (): Value {
+    return loroValueToJsValue(originalMapGetDeepValue.call(this));
+}
+
+// ############# LoroList Extensions
+
+const originalListGetValue = LoroList.prototype.getValue;
+LoroList.prototype.getValue = function (): Value {
+    return loroValueToJsValue(originalListGetValue.call(this));
+}
+
+const originalListGetDeepValue = LoroList.prototype.getDeepValue;
+LoroList.prototype.getDeepValue = function (): Value {
+    return loroValueToJsValue(originalListGetDeepValue.call(this));
+}
+
+const originalListPop = LoroList.prototype.pop;
+LoroList.prototype.pop = function (): Value | undefined {
+    const result = originalListPop.call(this);
+    return result ? loroValueToJsValue(result) : undefined;
+}
+
+const originalListToVec = LoroList.prototype.toVec;
+LoroList.prototype.toVec = function (): Value[] {
+    return originalListToVec.call(this).map(loroValueToJsValue);
+}
+
+// ############# LoroMovableList Extensions
+
+const originalMovableListGetValue = LoroMovableList.prototype.getValue;
+LoroMovableList.prototype.getValue = function (): Value {
+    return loroValueToJsValue(originalMovableListGetValue.call(this));
+}
+
+const originalMovableListGetDeepValue = LoroMovableList.prototype.getDeepValue;
+LoroMovableList.prototype.getDeepValue = function (): Value {
+    return loroValueToJsValue(originalMovableListGetDeepValue.call(this));
+}
+
+const originalMovableListPop = LoroMovableList.prototype.pop;
+LoroMovableList.prototype.pop = function (): Value | undefined {
+    const result = originalMovableListPop.call(this);
+    if (!result) return undefined;
+    const value = result.asValue();
+    return value ? loroValueToJsValue(value) : undefined;
+}
+
+const originalMovableListToVec = LoroMovableList.prototype.toVec;
+LoroMovableList.prototype.toVec = function (): Value[] {
+    return originalMovableListToVec.call(this).map(loroValueToJsValue);
+}
+
+// ############# LoroText Extensions
+
+const originalTextGetRichtextValue = LoroText.prototype.getRichtextValue;
+LoroText.prototype.getRichtextValue = function (): Value {
+    return loroValueToJsValue(originalTextGetRichtextValue.call(this));
+}
+
+// ############# LoroTree Extensions
+
+const originalTreeGetValue = LoroTree.prototype.getValue;
+LoroTree.prototype.getValue = function (): Value {
+    return loroValueToJsValue(originalTreeGetValue.call(this));
+}
+
+const originalTreeGetValueWithMeta = LoroTree.prototype.getValueWithMeta;
+LoroTree.prototype.getValueWithMeta = function (): Value {
+    return loroValueToJsValue(originalTreeGetValueWithMeta.call(this));
+}
+
+// ############# Awareness Extensions
+
+const originalAwarenessSetLocalState = Awareness.prototype.setLocalState;
+Awareness.prototype.setLocalState = function (value: Value): void {
+    return originalAwarenessSetLocalState.call(this, jsValueToLoroValue(value));
+}
+
+const originalAwarenessGetLocalState = Awareness.prototype.getLocalState;
+Awareness.prototype.getLocalState = function (): Value | undefined {
+    const result = originalAwarenessGetLocalState.call(this);
+    return result ? loroValueToJsValue(result) : undefined;
+}
+
+// ############# EphemeralStore Extensions
+
+const originalEphemeralStoreSet = EphemeralStore.prototype.set;
+EphemeralStore.prototype.set = function (key: string, value: Value): void {
+    return originalEphemeralStoreSet.call(this, key, jsValueToLoroValue(value));
+}
+
+const originalEphemeralStoreGet = EphemeralStore.prototype.get;
+EphemeralStore.prototype.get = function (key: string): Value | undefined {
+    const result = originalEphemeralStoreGet.call(this, key);
+    return result ? loroValueToJsValue(result) : undefined;
+}
+
+const originalEphemeralStoreGetAllStates = EphemeralStore.prototype.getAllStates;
+EphemeralStore.prototype.getAllStates = function (): { [key: string]: Value } {
+    const states = originalEphemeralStoreGetAllStates.call(this);
+    const result: { [key: string]: Value } = {};
+    for (const [key, value] of Object.entries(states)) {
+        result[key] = loroValueToJsValue(value);
+    }
+    return result;
+}
+
+const originalEphemeralStoreSubscribeLocalUpdate = EphemeralStore.prototype.subscribeLocalUpdate;
+EphemeralStore.prototype.subscribeLocalUpdate = function (cb: (update: ArrayBuffer) => void): SubscriptionInterface {
+    return originalEphemeralStoreSubscribeLocalUpdate.call(this, { onEphemeralUpdate: cb })
+}
+
+const originalEphemeralStoreSubscribe = EphemeralStore.prototype.subscribe;
+EphemeralStore.prototype.subscribe = function (cb: (event: EphemeralStoreEvent) => void): SubscriptionInterface {
+    return originalEphemeralStoreSubscribe.call(this, { onEphemeralEvent: cb })
 }

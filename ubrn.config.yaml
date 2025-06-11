@@ -1,5 +1,5 @@
 rust:
-  directory: ./loro-rs
+  directory: ./loro-ffi
 
 ios:
   frameworkName: build/RustFramework
