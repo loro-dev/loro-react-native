@@ -169,10 +169,7 @@ jobs:
 
       - name: Install iOS target for Rust
         if: env.turbo_cache_hit != 1
-        run: rustup target add \
-                aarch64-apple-ios \
-                aarch64-apple-ios-sim
-
+        run: rustup target add aarch64-apple-ios aarch64-apple-ios-sim
 
       - name: Build for iOS
         run: |
