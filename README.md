@@ -4,8 +4,6 @@ React native binding for Loro
 
 ## Installation
 
-Not available yet
-
 ```sh
 npm install loro-react-native
 ```
@@ -20,6 +18,8 @@ import { LoroDoc } from 'loro-react-native';
 
 const doc = new LoroDoc();
 ```
+
+You can find an editor demo [here](https://github.com/Leeeon233/loro-react-native-demo)
 
 ## Dev
 
