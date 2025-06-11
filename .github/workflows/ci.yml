@@ -84,7 +84,9 @@ jobs:
         if: env.turbo_cache_hit != 1
         run: |
           cargo install cargo-ndk
-          rustup target add aarch64-linux-android
+          rustup target add \
+                  aarch64-linux-android \
+                  armv7-linux-androideabi
 
       - name: Cache Gradle
         if: env.turbo_cache_hit != 1
@@ -167,7 +169,10 @@ jobs:
 
       - name: Install iOS target for Rust
         if: env.turbo_cache_hit != 1
-        run: rustup target add aarch64-apple-ios
+        run: rustup target add \
+                aarch64-apple-ios \
+                aarch64-apple-ios-sim
+
 
       - name: Build for iOS
         run: |
