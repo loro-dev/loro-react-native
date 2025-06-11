@@ -5,7 +5,8 @@ import {
     CounterSpan, UndoItemMeta, DiffEvent, SubscriptionInterface,
     FirstCommitFromPeerCallback, FirstCommitFromPeerPayload,
     PreCommitCallback, PreCommitCallbackPayload,
-    LocalEphemeralListener, EphemeralSubscriber, EphemeralStoreEvent
+    LocalEphemeralListener, EphemeralSubscriber, EphemeralStoreEvent,
+    Awareness, EphemeralStore
 } from './generated/loro';
 
 import type { ChangeAncestorsTraveler, ChangeMeta } from './generated/loro';
@@ -113,9 +114,6 @@ declare module "./generated/loro" {
 }
 
 export type Container = LoroText | LoroCounter | LoroList | LoroMap | LoroTree | LoroMovableList;
-
-// Re-export Awareness and EphemeralStore
-export { Awareness, EphemeralStore };
 
 ContainerId.Root.prototype.asContainerId = function (_ty: ContainerType): ContainerId {
     return this;
