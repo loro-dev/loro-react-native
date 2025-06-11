@@ -1,6 +1,18 @@
 # loro-react-native
 
-React native binding for Loro
+<p align="center">
+  <a aria-label="X" href="https://x.com/loro_dev" target="_blank">
+    <img alt="" src="https://img.shields.io/badge/Twitter-black?style=for-the-badge&logo=Twitter">
+  </a>
+  <a aria-label="Discord-Link" href="https://discord.gg/tUsBSVfqzf" target="_blank">
+    <img alt="" src="https://img.shields.io/badge/Discord-black?style=for-the-badge&logo=discord">
+  </a>
+  <a aria-label="Gurubase" href="https://gurubase.io/g/loro" target="_blank">
+    <img alt="" src="https://img.shields.io/badge/Ask%20Loro%20Guru-000000?style=for-the-badge">
+  </a>
+</p>
+
+React native binding for [Loro](https://loro.dev)
 
 ## Installation
 
@@ -51,4 +63,5 @@ MIT
 
 ---
 
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+Made with [uniffi-bindgen-react-native](https://github.com/jhugman/uniffi-bindgen-react-native)
+
