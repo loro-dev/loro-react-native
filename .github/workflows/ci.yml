@@ -84,6 +84,7 @@ jobs:
         if: env.turbo_cache_hit != 1
         run: |
           cargo install cargo-ndk
+          rustup target add aarch64-linux-android
 
       - name: Cache Gradle
         if: env.turbo_cache_hit != 1
@@ -163,6 +164,10 @@ jobs:
           path: |
             **/ios/Pods
           key: ${{ steps.cocoapods-cache.outputs.cache-key }}
+
+      - name: Install iOS target for Rust
+        if: env.turbo_cache_hit != 1
+        run: rustup target add aarch64-apple-ios
 
       - name: Build for iOS
         run: |
