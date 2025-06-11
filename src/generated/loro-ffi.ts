@@ -713,6 +713,12 @@ interface NativeModuleInterface {
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
+  ubrn_uniffi_loro_ffi_fn_method_lorodoc_redact_json_updates(
+    ptr: bigint,
+    json: Uint8Array,
+    versionRange: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_method_lorodoc_revert_to(
     ptr: bigint,
     version: bigint,
@@ -1712,6 +1718,10 @@ interface NativeModuleInterface {
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
+  ubrn_uniffi_loro_ffi_fn_method_undomanager_redo_count(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
   ubrn_uniffi_loro_ffi_fn_method_undomanager_set_max_undo_steps(
     ptr: bigint,
     size: number,
@@ -1733,6 +1743,10 @@ interface NativeModuleInterface {
     uniffi_out_err: UniffiRustCallStatus
   ): void;
   ubrn_uniffi_loro_ffi_fn_method_undomanager_undo(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_loro_ffi_fn_method_undomanager_undo_count(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
@@ -1801,6 +1815,75 @@ interface NativeModuleInterface {
     uniffi_out_err: UniffiRustCallStatus
   ): number;
   ubrn_uniffi_loro_ffi_fn_method_valueorcontainer_is_value(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_loro_ffi_fn_clone_versionrange(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_loro_ffi_fn_free_versionrange(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_loro_ffi_fn_constructor_versionrange_from_vv(
+    vv: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_loro_ffi_fn_constructor_versionrange_new(
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_loro_ffi_fn_method_versionrange_clear(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_loro_ffi_fn_method_versionrange_contains_id(
+    ptr: bigint,
+    id: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_loro_ffi_fn_method_versionrange_contains_id_span(
+    ptr: bigint,
+    span: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_loro_ffi_fn_method_versionrange_contains_ops_between(
+    ptr: bigint,
+    vvA: bigint,
+    vvB: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_loro_ffi_fn_method_versionrange_extends_to_include_id_span(
+    ptr: bigint,
+    span: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_loro_ffi_fn_method_versionrange_get(
+    ptr: bigint,
+    peer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_versionrange_get_all_ranges(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_versionrange_get_peers(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_versionrange_has_overlap_with(
+    ptr: bigint,
+    span: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_loro_ffi_fn_method_versionrange_insert(
+    ptr: bigint,
+    peer: bigint,
+    start: number,
+    end: number,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_loro_ffi_fn_method_versionrange_is_empty(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
@@ -2003,6 +2086,7 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_oplog_frontiers(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_oplog_vv(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_peer_id(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_lorodoc_redact_json_updates(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_revert_to(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_set_change_merge_interval(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_set_hide_empty_root_containers(): number;
@@ -2176,11 +2260,13 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_can_undo(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_record_new_checkpoint(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_redo(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_undomanager_redo_count(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_max_undo_steps(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_merge_interval(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_on_pop(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_on_push(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_undo(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_undomanager_undo_count(): number;
   ubrn_uniffi_loro_ffi_checksum_method_unsubscriber_on_unsubscribe(): number;
   ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_as_container(): number;
   ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_counter(): number;
@@ -2194,6 +2280,17 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_container_type(): number;
   ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_is_container(): number;
   ubrn_uniffi_loro_ffi_checksum_method_valueorcontainer_is_value(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionrange_clear(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionrange_contains_id(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionrange_contains_id_span(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionrange_contains_ops_between(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionrange_extends_to_include_id_span(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionrange_get(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionrange_get_all_ranges(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionrange_get_peers(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionrange_has_overlap_with(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionrange_insert(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionrange_is_empty(): number;
   ubrn_uniffi_loro_ffi_checksum_method_versionvector_diff(): number;
   ubrn_uniffi_loro_ffi_checksum_method_versionvector_encode(): number;
   ubrn_uniffi_loro_ffi_checksum_method_versionvector_eq(): number;
@@ -2228,6 +2325,8 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_constructor_styleconfigmap_default_rich_text_config(): number;
   ubrn_uniffi_loro_ffi_checksum_constructor_styleconfigmap_new(): number;
   ubrn_uniffi_loro_ffi_checksum_constructor_undomanager_new(): number;
+  ubrn_uniffi_loro_ffi_checksum_constructor_versionrange_from_vv(): number;
+  ubrn_uniffi_loro_ffi_checksum_constructor_versionrange_new(): number;
   ubrn_uniffi_loro_ffi_checksum_constructor_versionvector_decode(): number;
   ubrn_uniffi_loro_ffi_checksum_constructor_versionvector_new(): number;
   ubrn_ffi_loro_ffi_uniffi_contract_version(): number;
@@ -2392,6 +2491,10 @@ interface NativeModuleInterface {
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiRustArcPtr;
   ubrn_uniffi_internal_fn_method_valueorcontainer_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiRustArcPtr;
+  ubrn_uniffi_internal_fn_method_versionrange_ffi__bless_pointer(
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiRustArcPtr;

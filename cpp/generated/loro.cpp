@@ -599,6 +599,9 @@ uniffi_loro_ffi_fn_method_lorodoc_oplog_vv(void *ptr,
 uint64_t
 uniffi_loro_ffi_fn_method_lorodoc_peer_id(void *ptr,
                                           RustCallStatus *uniffi_out_err);
+RustBuffer uniffi_loro_ffi_fn_method_lorodoc_redact_json_updates(
+    void *ptr, RustBuffer json, void *version_range,
+    RustCallStatus *uniffi_out_err);
 void uniffi_loro_ffi_fn_method_lorodoc_revert_to(
     void *ptr, void *version, RustCallStatus *uniffi_out_err);
 void uniffi_loro_ffi_fn_method_lorodoc_set_change_merge_interval(
@@ -1107,6 +1110,8 @@ void uniffi_loro_ffi_fn_method_undomanager_record_new_checkpoint(
 int8_t
 uniffi_loro_ffi_fn_method_undomanager_redo(void *ptr,
                                            RustCallStatus *uniffi_out_err);
+uint32_t uniffi_loro_ffi_fn_method_undomanager_redo_count(
+    void *ptr, RustCallStatus *uniffi_out_err);
 void uniffi_loro_ffi_fn_method_undomanager_set_max_undo_steps(
     void *ptr, uint32_t size, RustCallStatus *uniffi_out_err);
 void uniffi_loro_ffi_fn_method_undomanager_set_merge_interval(
@@ -1118,6 +1123,8 @@ void uniffi_loro_ffi_fn_method_undomanager_set_on_push(
 int8_t
 uniffi_loro_ffi_fn_method_undomanager_undo(void *ptr,
                                            RustCallStatus *uniffi_out_err);
+uint32_t uniffi_loro_ffi_fn_method_undomanager_undo_count(
+    void *ptr, RustCallStatus *uniffi_out_err);
 void *uniffi_loro_ffi_fn_clone_unsubscriber(void *ptr,
                                             RustCallStatus *uniffi_out_err);
 void uniffi_loro_ffi_fn_free_unsubscriber(void *ptr,
@@ -1154,6 +1161,39 @@ int8_t uniffi_loro_ffi_fn_method_valueorcontainer_is_container(
     void *ptr, RustCallStatus *uniffi_out_err);
 int8_t uniffi_loro_ffi_fn_method_valueorcontainer_is_value(
     void *ptr, RustCallStatus *uniffi_out_err);
+void *uniffi_loro_ffi_fn_clone_versionrange(void *ptr,
+                                            RustCallStatus *uniffi_out_err);
+void uniffi_loro_ffi_fn_free_versionrange(void *ptr,
+                                          RustCallStatus *uniffi_out_err);
+void *uniffi_loro_ffi_fn_constructor_versionrange_from_vv(
+    void *vv, RustCallStatus *uniffi_out_err);
+void *
+uniffi_loro_ffi_fn_constructor_versionrange_new(RustCallStatus *uniffi_out_err);
+void uniffi_loro_ffi_fn_method_versionrange_clear(
+    void *ptr, RustCallStatus *uniffi_out_err);
+int8_t uniffi_loro_ffi_fn_method_versionrange_contains_id(
+    void *ptr, RustBuffer id, RustCallStatus *uniffi_out_err);
+int8_t uniffi_loro_ffi_fn_method_versionrange_contains_id_span(
+    void *ptr, RustBuffer span, RustCallStatus *uniffi_out_err);
+int8_t uniffi_loro_ffi_fn_method_versionrange_contains_ops_between(
+    void *ptr, void *vv_a, void *vv_b, RustCallStatus *uniffi_out_err);
+void uniffi_loro_ffi_fn_method_versionrange_extends_to_include_id_span(
+    void *ptr, RustBuffer span, RustCallStatus *uniffi_out_err);
+RustBuffer
+uniffi_loro_ffi_fn_method_versionrange_get(void *ptr, uint64_t peer,
+                                           RustCallStatus *uniffi_out_err);
+RustBuffer uniffi_loro_ffi_fn_method_versionrange_get_all_ranges(
+    void *ptr, RustCallStatus *uniffi_out_err);
+RustBuffer uniffi_loro_ffi_fn_method_versionrange_get_peers(
+    void *ptr, RustCallStatus *uniffi_out_err);
+int8_t uniffi_loro_ffi_fn_method_versionrange_has_overlap_with(
+    void *ptr, RustBuffer span, RustCallStatus *uniffi_out_err);
+void uniffi_loro_ffi_fn_method_versionrange_insert(
+    void *ptr, uint64_t peer, int32_t start, int32_t end,
+    RustCallStatus *uniffi_out_err);
+int8_t
+uniffi_loro_ffi_fn_method_versionrange_is_empty(void *ptr,
+                                                RustCallStatus *uniffi_out_err);
 void *uniffi_loro_ffi_fn_clone_versionvector(void *ptr,
                                              RustCallStatus *uniffi_out_err);
 void uniffi_loro_ffi_fn_free_versionvector(void *ptr,
@@ -1436,6 +1476,7 @@ uint16_t uniffi_loro_ffi_checksum_method_lorodoc_minimize_frontiers();
 uint16_t uniffi_loro_ffi_checksum_method_lorodoc_oplog_frontiers();
 uint16_t uniffi_loro_ffi_checksum_method_lorodoc_oplog_vv();
 uint16_t uniffi_loro_ffi_checksum_method_lorodoc_peer_id();
+uint16_t uniffi_loro_ffi_checksum_method_lorodoc_redact_json_updates();
 uint16_t uniffi_loro_ffi_checksum_method_lorodoc_revert_to();
 uint16_t uniffi_loro_ffi_checksum_method_lorodoc_set_change_merge_interval();
 uint16_t
@@ -1623,11 +1664,13 @@ uint16_t uniffi_loro_ffi_checksum_method_undomanager_can_redo();
 uint16_t uniffi_loro_ffi_checksum_method_undomanager_can_undo();
 uint16_t uniffi_loro_ffi_checksum_method_undomanager_record_new_checkpoint();
 uint16_t uniffi_loro_ffi_checksum_method_undomanager_redo();
+uint16_t uniffi_loro_ffi_checksum_method_undomanager_redo_count();
 uint16_t uniffi_loro_ffi_checksum_method_undomanager_set_max_undo_steps();
 uint16_t uniffi_loro_ffi_checksum_method_undomanager_set_merge_interval();
 uint16_t uniffi_loro_ffi_checksum_method_undomanager_set_on_pop();
 uint16_t uniffi_loro_ffi_checksum_method_undomanager_set_on_push();
 uint16_t uniffi_loro_ffi_checksum_method_undomanager_undo();
+uint16_t uniffi_loro_ffi_checksum_method_undomanager_undo_count();
 uint16_t uniffi_loro_ffi_checksum_method_unsubscriber_on_unsubscribe();
 uint16_t uniffi_loro_ffi_checksum_method_valueorcontainer_as_container();
 uint16_t uniffi_loro_ffi_checksum_method_valueorcontainer_as_loro_counter();
@@ -1642,6 +1685,18 @@ uint16_t uniffi_loro_ffi_checksum_method_valueorcontainer_as_value();
 uint16_t uniffi_loro_ffi_checksum_method_valueorcontainer_container_type();
 uint16_t uniffi_loro_ffi_checksum_method_valueorcontainer_is_container();
 uint16_t uniffi_loro_ffi_checksum_method_valueorcontainer_is_value();
+uint16_t uniffi_loro_ffi_checksum_method_versionrange_clear();
+uint16_t uniffi_loro_ffi_checksum_method_versionrange_contains_id();
+uint16_t uniffi_loro_ffi_checksum_method_versionrange_contains_id_span();
+uint16_t uniffi_loro_ffi_checksum_method_versionrange_contains_ops_between();
+uint16_t
+uniffi_loro_ffi_checksum_method_versionrange_extends_to_include_id_span();
+uint16_t uniffi_loro_ffi_checksum_method_versionrange_get();
+uint16_t uniffi_loro_ffi_checksum_method_versionrange_get_all_ranges();
+uint16_t uniffi_loro_ffi_checksum_method_versionrange_get_peers();
+uint16_t uniffi_loro_ffi_checksum_method_versionrange_has_overlap_with();
+uint16_t uniffi_loro_ffi_checksum_method_versionrange_insert();
+uint16_t uniffi_loro_ffi_checksum_method_versionrange_is_empty();
 uint16_t uniffi_loro_ffi_checksum_method_versionvector_diff();
 uint16_t uniffi_loro_ffi_checksum_method_versionvector_encode();
 uint16_t uniffi_loro_ffi_checksum_method_versionvector_eq();
@@ -1677,6 +1732,8 @@ uint16_t
 uniffi_loro_ffi_checksum_constructor_styleconfigmap_default_rich_text_config();
 uint16_t uniffi_loro_ffi_checksum_constructor_styleconfigmap_new();
 uint16_t uniffi_loro_ffi_checksum_constructor_undomanager_new();
+uint16_t uniffi_loro_ffi_checksum_constructor_versionrange_from_vv();
+uint16_t uniffi_loro_ffi_checksum_constructor_versionrange_new();
 uint16_t uniffi_loro_ffi_checksum_constructor_versionvector_decode();
 uint16_t uniffi_loro_ffi_checksum_constructor_versionvector_new();
 uint32_t ffi_loro_ffi_uniffi_contract_version();
@@ -10019,6 +10076,18 @@ NativeLoro::NativeLoro(
             return this->cpp_uniffi_loro_ffi_fn_method_lorodoc_peer_id(
                 rt, thisVal, args, count);
           });
+  props["ubrn_uniffi_loro_ffi_fn_method_lorodoc_redact_json_updates"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_lorodoc_redact_json_updates"),
+          3,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_fn_method_lorodoc_redact_json_updates(
+                    rt, thisVal, args, count);
+          });
   props["ubrn_uniffi_loro_ffi_fn_method_lorodoc_revert_to"] =
       jsi::Function::createFromHostFunction(
           rt,
@@ -12398,6 +12467,17 @@ NativeLoro::NativeLoro(
             return this->cpp_uniffi_loro_ffi_fn_method_undomanager_redo(
                 rt, thisVal, args, count);
           });
+  props["ubrn_uniffi_loro_ffi_fn_method_undomanager_redo_count"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_undomanager_redo_count"),
+          1,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_undomanager_redo_count(
+                rt, thisVal, args, count);
+          });
   props["ubrn_uniffi_loro_ffi_fn_method_undomanager_set_max_undo_steps"] =
       jsi::Function::createFromHostFunction(
           rt,
@@ -12455,6 +12535,17 @@ NativeLoro::NativeLoro(
           [this](jsi::Runtime &rt, const jsi::Value &thisVal,
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_loro_ffi_fn_method_undomanager_undo(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_undomanager_undo_count"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_undomanager_undo_count"),
+          1,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_undomanager_undo_count(
                 rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_fn_clone_unsubscriber"] =
@@ -12663,6 +12754,179 @@ NativeLoro::NativeLoro(
             return this
                 ->cpp_uniffi_loro_ffi_fn_method_valueorcontainer_is_value(
                     rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_clone_versionrange"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_clone_versionrange"),
+          1,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_clone_versionrange(rt, thisVal,
+                                                                   args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_free_versionrange"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_free_versionrange"),
+          1,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_free_versionrange(rt, thisVal,
+                                                                  args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_constructor_versionrange_from_vv"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_constructor_versionrange_from_vv"),
+          1,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_fn_constructor_versionrange_from_vv(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_constructor_versionrange_new"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_constructor_versionrange_new"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_constructor_versionrange_new(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_versionrange_clear"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_versionrange_clear"),
+          1,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_versionrange_clear(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_versionrange_contains_id"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_versionrange_contains_id"),
+          2,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_versionrange_contains_id(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_versionrange_contains_id_span"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt,
+              "ubrn_uniffi_loro_ffi_fn_method_versionrange_contains_id_span"),
+          2,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_fn_method_versionrange_contains_id_span(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_versionrange_contains_ops_between"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(rt, "ubrn_uniffi_loro_ffi_fn_method_"
+                                        "versionrange_contains_ops_between"),
+          3,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_fn_method_versionrange_contains_ops_between(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_versionrange_extends_to_include_id_"
+        "span"] = jsi::Function::createFromHostFunction(
+      rt,
+      jsi::PropNameID::forAscii(rt, "ubrn_uniffi_loro_ffi_fn_method_"
+                                    "versionrange_extends_to_include_id_span"),
+      2,
+      [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+             const jsi::Value *args, size_t count) -> jsi::Value {
+        return this
+            ->cpp_uniffi_loro_ffi_fn_method_versionrange_extends_to_include_id_span(
+                rt, thisVal, args, count);
+      });
+  props["ubrn_uniffi_loro_ffi_fn_method_versionrange_get"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_versionrange_get"),
+          2,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_versionrange_get(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_versionrange_get_all_ranges"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_versionrange_get_all_ranges"),
+          1,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_fn_method_versionrange_get_all_ranges(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_versionrange_get_peers"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_versionrange_get_peers"),
+          1,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_versionrange_get_peers(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_versionrange_has_overlap_with"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt,
+              "ubrn_uniffi_loro_ffi_fn_method_versionrange_has_overlap_with"),
+          2,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_fn_method_versionrange_has_overlap_with(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_versionrange_insert"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_versionrange_insert"),
+          4,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_versionrange_insert(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_versionrange_is_empty"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_versionrange_is_empty"),
+          1,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_versionrange_is_empty(
+                rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_fn_clone_versionvector"] =
       jsi::Function::createFromHostFunction(
@@ -14216,6 +14480,18 @@ NativeLoro::NativeLoro(
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_loro_ffi_checksum_method_lorodoc_peer_id(
                 rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_lorodoc_redact_json_updates"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(rt, "ubrn_uniffi_loro_ffi_checksum_method_"
+                                        "lorodoc_redact_json_updates"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_lorodoc_redact_json_updates(
+                    rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_checksum_method_lorodoc_revert_to"] =
       jsi::Function::createFromHostFunction(
@@ -16248,6 +16524,19 @@ NativeLoro::NativeLoro(
             return this->cpp_uniffi_loro_ffi_checksum_method_undomanager_redo(
                 rt, thisVal, args, count);
           });
+  props["ubrn_uniffi_loro_ffi_checksum_method_undomanager_redo_count"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt,
+              "ubrn_uniffi_loro_ffi_checksum_method_undomanager_redo_count"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_undomanager_redo_count(
+                    rt, thisVal, args, count);
+          });
   props["ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_max_undo_steps"] =
       jsi::Function::createFromHostFunction(
           rt,
@@ -16308,6 +16597,19 @@ NativeLoro::NativeLoro(
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_loro_ffi_checksum_method_undomanager_undo(
                 rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_undomanager_undo_count"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt,
+              "ubrn_uniffi_loro_ffi_checksum_method_undomanager_undo_count"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_undomanager_undo_count(
+                    rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_checksum_method_unsubscriber_on_unsubscribe"] =
       jsi::Function::createFromHostFunction(
@@ -16465,6 +16767,138 @@ NativeLoro::NativeLoro(
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this
                 ->cpp_uniffi_loro_ffi_checksum_method_valueorcontainer_is_value(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_versionrange_clear"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_checksum_method_versionrange_clear"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_checksum_method_versionrange_clear(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_versionrange_contains_id"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt,
+              "ubrn_uniffi_loro_ffi_checksum_method_versionrange_contains_id"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_versionrange_contains_id(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_versionrange_contains_id_span"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(rt, "ubrn_uniffi_loro_ffi_checksum_method_"
+                                        "versionrange_contains_id_span"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_versionrange_contains_id_span(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_versionrange_contains_ops_"
+        "between"] = jsi::Function::createFromHostFunction(
+      rt,
+      jsi::PropNameID::forAscii(rt, "ubrn_uniffi_loro_ffi_checksum_method_"
+                                    "versionrange_contains_ops_between"),
+      0,
+      [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+             const jsi::Value *args, size_t count) -> jsi::Value {
+        return this
+            ->cpp_uniffi_loro_ffi_checksum_method_versionrange_contains_ops_between(
+                rt, thisVal, args, count);
+      });
+  props["ubrn_uniffi_loro_ffi_checksum_method_versionrange_extends_to_include_"
+        "id_span"] = jsi::Function::createFromHostFunction(
+      rt,
+      jsi::PropNameID::forAscii(rt, "ubrn_uniffi_loro_ffi_checksum_method_"
+                                    "versionrange_extends_to_include_id_span"),
+      0,
+      [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+             const jsi::Value *args, size_t count) -> jsi::Value {
+        return this
+            ->cpp_uniffi_loro_ffi_checksum_method_versionrange_extends_to_include_id_span(
+                rt, thisVal, args, count);
+      });
+  props["ubrn_uniffi_loro_ffi_checksum_method_versionrange_get"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_checksum_method_versionrange_get"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_checksum_method_versionrange_get(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_versionrange_get_all_ranges"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(rt, "ubrn_uniffi_loro_ffi_checksum_method_"
+                                        "versionrange_get_all_ranges"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_versionrange_get_all_ranges(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_versionrange_get_peers"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt,
+              "ubrn_uniffi_loro_ffi_checksum_method_versionrange_get_peers"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_versionrange_get_peers(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_versionrange_has_overlap_with"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(rt, "ubrn_uniffi_loro_ffi_checksum_method_"
+                                        "versionrange_has_overlap_with"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_versionrange_has_overlap_with(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_versionrange_insert"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_checksum_method_versionrange_insert"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_versionrange_insert(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_versionrange_is_empty"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_checksum_method_versionrange_is_empty"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_versionrange_is_empty(
                     rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_checksum_method_versionvector_diff"] =
@@ -16871,6 +17305,31 @@ NativeLoro::NativeLoro(
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this
                 ->cpp_uniffi_loro_ffi_checksum_constructor_undomanager_new(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_constructor_versionrange_from_vv"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt,
+              "ubrn_uniffi_loro_ffi_checksum_constructor_versionrange_from_vv"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_constructor_versionrange_from_vv(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_constructor_versionrange_new"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_checksum_constructor_versionrange_new"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_constructor_versionrange_new(
                     rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_checksum_constructor_versionvector_decode"] =
@@ -17447,6 +17906,19 @@ NativeLoro::NativeLoro(
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this
                 ->cpp_uniffi_internal_fn_method_valueorcontainer_ffi__bless_pointer(
+                    rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_internal_fn_method_versionrange_ffi__bless_pointer"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt,
+              "ubrn_uniffi_internal_fn_method_versionrange_ffi__bless_pointer"),
+          1,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_internal_fn_method_versionrange_ffi__bless_pointer(
                     rt, thisVal, args, count);
           });
   props["ubrn_uniffi_internal_fn_method_versionvector_ffi__bless_pointer"] =
@@ -18101,6 +18573,22 @@ NativeLoro::cpp_uniffi_internal_fn_method_valueorcontainer_ffi__bless_pointer(
     auto pointer = reinterpret_cast<void *>(static_cast<uintptr_t>(p));
     RustCallStatus status = {0};
     uniffi_loro_ffi_fn_free_valueorcontainer(pointer, &status);
+  };
+  auto ptrObj =
+      std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
+  auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
+  return jsi::Value(rt, obj);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_internal_fn_method_versionrange_ffi__bless_pointer(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto pointer =
+      uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[0]);
+  auto static destructor = [](uint64_t p) {
+    auto pointer = reinterpret_cast<void *>(static_cast<uintptr_t>(p));
+    RustCallStatus status = {0};
+    uniffi_loro_ffi_fn_free_versionrange(pointer, &status);
   };
   auto ptrObj =
       std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
@@ -20126,6 +20614,21 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorodoc_peer_id(
                                                      args[count - 1]);
 
   return uniffi_jsi::Bridging<uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorodoc_redact_json_updates(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_lorodoc_redact_json_updates(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi::loro::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]),
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[2]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi::loro::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
 }
 jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorodoc_revert_to(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
@@ -22923,6 +23426,18 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_undomanager_redo(
 
   return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_undomanager_redo_count(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_undomanager_redo_count(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi_jsi::Bridging<uint32_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value
 NativeLoro::cpp_uniffi_loro_ffi_fn_method_undomanager_set_max_undo_steps(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
@@ -22991,6 +23506,18 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_undomanager_undo(
                                                      args[count - 1]);
 
   return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_undomanager_undo_count(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_undomanager_undo_count(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi_jsi::Bridging<uint32_t>::toJs(rt, callInvoker, value);
 }
 jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_clone_unsubscriber(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
@@ -23201,6 +23728,205 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_valueorcontainer_is_value(
   RustCallStatus status =
       uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
   auto value = uniffi_loro_ffi_fn_method_valueorcontainer_is_value(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_clone_versionrange(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_clone_versionrange(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi_jsi::Bridging<void *>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_free_versionrange(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  uniffi_loro_ffi_fn_free_versionrange(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return jsi::Value::undefined();
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_constructor_versionrange_from_vv(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_constructor_versionrange_from_vv(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi_jsi::Bridging<void *>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_constructor_versionrange_new(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_constructor_versionrange_new(&status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi_jsi::Bridging<void *>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_versionrange_clear(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  uniffi_loro_ffi_fn_method_versionrange_clear(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return jsi::Value::undefined();
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_versionrange_contains_id(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_versionrange_contains_id(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi::loro::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]),
+      &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_fn_method_versionrange_contains_id_span(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_versionrange_contains_id_span(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi::loro::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]),
+      &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_fn_method_versionrange_contains_ops_between(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_versionrange_contains_ops_between(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[1]),
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[2]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::
+    cpp_uniffi_loro_ffi_fn_method_versionrange_extends_to_include_id_span(
+        jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+        size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  uniffi_loro_ffi_fn_method_versionrange_extends_to_include_id_span(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi::loro::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]),
+      &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return jsi::Value::undefined();
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_versionrange_get(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_versionrange_get(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[1]),
+      &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi::loro::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_fn_method_versionrange_get_all_ranges(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_versionrange_get_all_ranges(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi::loro::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_versionrange_get_peers(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_versionrange_get_peers(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi::loro::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_fn_method_versionrange_has_overlap_with(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_versionrange_has_overlap_with(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi::loro::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]),
+      &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_versionrange_insert(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  uniffi_loro_ffi_fn_method_versionrange_insert(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[1]),
+      uniffi_jsi::Bridging<int32_t>::fromJs(rt, callInvoker, args[2]),
+      uniffi_jsi::Bridging<int32_t>::fromJs(rt, callInvoker, args[3]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return jsi::Value::undefined();
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_versionrange_is_empty(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_versionrange_is_empty(
       uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]), &status);
   uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
                                                      args[count - 1]);
@@ -24316,6 +25042,14 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorodoc_peer_id(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
   auto value = uniffi_loro_ffi_checksum_method_lorodoc_peer_id();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorodoc_redact_json_updates(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_lorodoc_redact_json_updates();
 
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
@@ -25651,6 +26385,14 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_undomanager_redo(
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
 jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_method_undomanager_redo_count(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_undomanager_redo_count();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
 NativeLoro::cpp_uniffi_loro_ffi_checksum_method_undomanager_set_max_undo_steps(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
@@ -25686,6 +26428,14 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_undomanager_undo(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
   auto value = uniffi_loro_ffi_checksum_method_undomanager_undo();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_method_undomanager_undo_count(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_undomanager_undo_count();
 
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
@@ -25794,6 +26544,93 @@ NativeLoro::cpp_uniffi_loro_ffi_checksum_method_valueorcontainer_is_value(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
   auto value = uniffi_loro_ffi_checksum_method_valueorcontainer_is_value();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_versionrange_clear(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_versionrange_clear();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_method_versionrange_contains_id(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_versionrange_contains_id();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_method_versionrange_contains_id_span(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_versionrange_contains_id_span();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::
+    cpp_uniffi_loro_ffi_checksum_method_versionrange_contains_ops_between(
+        jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+        size_t count) {
+  auto value =
+      uniffi_loro_ffi_checksum_method_versionrange_contains_ops_between();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::
+    cpp_uniffi_loro_ffi_checksum_method_versionrange_extends_to_include_id_span(
+        jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+        size_t count) {
+  auto value =
+      uniffi_loro_ffi_checksum_method_versionrange_extends_to_include_id_span();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_versionrange_get(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_versionrange_get();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_method_versionrange_get_all_ranges(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_versionrange_get_all_ranges();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_method_versionrange_get_peers(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_versionrange_get_peers();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_method_versionrange_has_overlap_with(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_versionrange_has_overlap_with();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_versionrange_insert(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_versionrange_insert();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_method_versionrange_is_empty(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_versionrange_is_empty();
 
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
@@ -26054,6 +26891,22 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_constructor_undomanager_new(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
   auto value = uniffi_loro_ffi_checksum_constructor_undomanager_new();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_constructor_versionrange_from_vv(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_constructor_versionrange_from_vv();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_constructor_versionrange_new(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_constructor_versionrange_new();
 
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }

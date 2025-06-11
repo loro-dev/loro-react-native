@@ -1918,6 +1918,68 @@ const FfiConverterTypeUpdateOptions = (() => {
   return new FFIConverter();
 })();
 
+export type VersionRangeItem = {
+  peer: /*u64*/ bigint;
+  start: /*i32*/ number;
+  end: /*i32*/ number;
+};
+
+/**
+ * Generated factory for {@link VersionRangeItem} record objects.
+ */
+export const VersionRangeItem = (() => {
+  const defaults = () => ({});
+  const create = (() => {
+    return uniffiCreateRecord<VersionRangeItem, ReturnType<typeof defaults>>(
+      defaults
+    );
+  })();
+  return Object.freeze({
+    /**
+     * Create a frozen instance of {@link VersionRangeItem}, with defaults specified
+     * in Rust, in the {@link loro} crate.
+     */
+    create,
+
+    /**
+     * Create a frozen instance of {@link VersionRangeItem}, with defaults specified
+     * in Rust, in the {@link loro} crate.
+     */
+    new: create,
+
+    /**
+     * Defaults specified in the {@link loro} crate.
+     */
+    defaults: () => Object.freeze(defaults()) as Partial<VersionRangeItem>,
+  });
+})();
+
+const FfiConverterTypeVersionRangeItem = (() => {
+  type TypeName = VersionRangeItem;
+  class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
+    read(from: RustBuffer): TypeName {
+      return {
+        peer: FfiConverterUInt64.read(from),
+        start: FfiConverterInt32.read(from),
+        end: FfiConverterInt32.read(from),
+      };
+    }
+    write(value: TypeName, into: RustBuffer): void {
+      FfiConverterUInt64.write(value.peer, into);
+      FfiConverterInt32.write(value.start, into);
+      FfiConverterInt32.write(value.end, into);
+    }
+    allocationSize(value: TypeName): number {
+      return (
+        FfiConverterUInt64.allocationSize(value.peer) +
+        FfiConverterInt32.allocationSize(value.start) +
+        FfiConverterInt32.allocationSize(value.end)
+      );
+    }
+  }
+  return new FFIConverter();
+})();
+
 export type VersionVectorDiff = {
   /**
    * need to add these spans to move from right to left
@@ -9360,6 +9422,24 @@ export interface LoroDocInterface {
    */
   peerId(): /*u64*/ bigint;
   /**
+   * Redacts sensitive content in JSON updates within the specified version range.
+   *
+   * This function allows you to share document history while removing potentially sensitive content.
+   * It preserves the document structure and collaboration capabilities while replacing content with
+   * placeholders according to these redaction rules:
+   *
+   * - Preserves delete and move operations
+   * - Replaces text insertion content with the Unicode replacement character
+   * - Substitutes list and map insert values with null
+   * - Maintains structure of child containers
+   * - Replaces text mark values with null
+   * - Preserves map keys and text annotation keys
+   */
+  redactJsonUpdates(
+    json: string,
+    versionRange: VersionRangeInterface
+  ) /*throws*/ : string;
+  /**
    * Revert the current document state back to the target version
    *
    * Internally, it will generate a series of local operations that can revert the
@@ -10859,6 +10939,42 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
         /*caller:*/ (callStatus) => {
           return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_peer_id(
             uniffiTypeLoroDocObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Redacts sensitive content in JSON updates within the specified version range.
+   *
+   * This function allows you to share document history while removing potentially sensitive content.
+   * It preserves the document structure and collaboration capabilities while replacing content with
+   * placeholders according to these redaction rules:
+   *
+   * - Preserves delete and move operations
+   * - Replaces text insertion content with the Unicode replacement character
+   * - Substitutes list and map insert values with null
+   * - Maintains structure of child containers
+   * - Replaces text mark values with null
+   * - Preserves map keys and text annotation keys
+   */
+  public redactJsonUpdates(
+    json: string,
+    versionRange: VersionRangeInterface
+  ): string /*throws*/ {
+    return FfiConverterString.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+          FfiConverterTypeLoroError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_redact_json_updates(
+            uniffiTypeLoroDocObjectFactory.clonePointer(this),
+            FfiConverterString.lower(json),
+            FfiConverterTypeVersionRange.lower(versionRange),
             callStatus
           );
         },
@@ -16647,6 +16763,10 @@ export interface UndoManagerInterface {
    */
   redo() /*throws*/ : boolean;
   /**
+   * How many times the undo manager can redo.
+   */
+  redoCount(): /*u32*/ number;
+  /**
    * Set the maximum number of undo steps. The default value is 100.
    */
   setMaxUndoSteps(size: /*u32*/ number): void;
@@ -16668,6 +16788,10 @@ export interface UndoManagerInterface {
    * Undo the last change made by the peer.
    */
   undo() /*throws*/ : boolean;
+  /**
+   * How many times the undo manager can undo.
+   */
+  undoCount(): /*u32*/ number;
 }
 
 export class UndoManager
@@ -16786,6 +16910,23 @@ export class UndoManager
   }
 
   /**
+   * How many times the undo manager can redo.
+   */
+  public redoCount(): /*u32*/ number {
+    return FfiConverterUInt32.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_redo_count(
+            uniffiTypeUndoManagerObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
    * Set the maximum number of undo steps. The default value is 100.
    */
   public setMaxUndoSteps(size: /*u32*/ number): void {
@@ -16862,6 +17003,23 @@ export class UndoManager
         ),
         /*caller:*/ (callStatus) => {
           return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_undo(
+            uniffiTypeUndoManagerObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * How many times the undo manager can undo.
+   */
+  public undoCount(): /*u32*/ number {
+    return FfiConverterUInt32.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_undo_count(
             uniffiTypeUndoManagerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -17395,6 +17553,384 @@ const FfiConverterTypeValueOrContainer = new FfiConverterObject(
   uniffiTypeValueOrContainerObjectFactory
 );
 
+export interface VersionRangeInterface {
+  /**
+   * Clear all ranges in the VersionRange
+   */
+  clear(): void;
+  /**
+   * Check if this VersionRange contains a specific ID
+   */
+  containsId(id: Id): boolean;
+  /**
+   * Check if this VersionRange contains a specific ID span
+   */
+  containsIdSpan(span: IdSpan): boolean;
+  /**
+   * Check if this VersionRange contains operations between two VersionVectors
+   */
+  containsOpsBetween(
+    vvA: VersionVectorInterface,
+    vvB: VersionVectorInterface
+  ): boolean;
+  /**
+   * Extend this VersionRange to include the given ID span
+   */
+  extendsToIncludeIdSpan(span: IdSpan): void;
+  /**
+   * Get the counter range for a specific peer
+   * Returns the counter range if the peer exists, null otherwise
+   */
+  get(peer: /*u64*/ bigint): CounterSpan | undefined;
+  /**
+   * Get all ranges as a list of (peer, start, end) tuples
+   */
+  getAllRanges(): Array<VersionRangeItem>;
+  /**
+   * Get all peer IDs in this VersionRange
+   */
+  getPeers(): Array</*u64*/ bigint>;
+  /**
+   * Check if this VersionRange has overlap with the given ID span
+   */
+  hasOverlapWith(span: IdSpan): boolean;
+  /**
+   * Insert a counter range for a specific peer
+   */
+  insert(
+    peer: /*u64*/ bigint,
+    start: /*i32*/ number,
+    end: /*i32*/ number
+  ): void;
+  /**
+   * Check if the VersionRange is empty
+   */
+  isEmpty(): boolean;
+}
+
+export class VersionRange
+  extends UniffiAbstractObject
+  implements VersionRangeInterface
+{
+  readonly [uniffiTypeNameSymbol] = 'VersionRange';
+  readonly [destructorGuardSymbol]: UniffiRustArcPtr;
+  readonly [pointerLiteralSymbol]: UnsafeMutableRawPointer;
+  constructor() {
+    super();
+    const pointer = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_versionrange_new(
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift
+    );
+    this[pointerLiteralSymbol] = pointer;
+    this[destructorGuardSymbol] =
+      uniffiTypeVersionRangeObjectFactory.bless(pointer);
+  }
+
+  /**
+   * Create a VersionRange from a VersionVector
+   */
+  public static fromVv(vv: VersionVectorInterface): VersionRangeInterface {
+    return FfiConverterTypeVersionRange.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_constructor_versionrange_from_vv(
+            FfiConverterTypeVersionVector.lower(vv),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Clear all ranges in the VersionRange
+   */
+  public clear(): void {
+    uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionrange_clear(
+          uniffiTypeVersionRangeObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift
+    );
+  }
+
+  /**
+   * Check if this VersionRange contains a specific ID
+   */
+  public containsId(id: Id): boolean {
+    return FfiConverterBool.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionrange_contains_id(
+            uniffiTypeVersionRangeObjectFactory.clonePointer(this),
+            FfiConverterTypeID.lower(id),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Check if this VersionRange contains a specific ID span
+   */
+  public containsIdSpan(span: IdSpan): boolean {
+    return FfiConverterBool.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionrange_contains_id_span(
+            uniffiTypeVersionRangeObjectFactory.clonePointer(this),
+            FfiConverterTypeIdSpan.lower(span),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Check if this VersionRange contains operations between two VersionVectors
+   */
+  public containsOpsBetween(
+    vvA: VersionVectorInterface,
+    vvB: VersionVectorInterface
+  ): boolean {
+    return FfiConverterBool.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionrange_contains_ops_between(
+            uniffiTypeVersionRangeObjectFactory.clonePointer(this),
+            FfiConverterTypeVersionVector.lower(vvA),
+            FfiConverterTypeVersionVector.lower(vvB),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Extend this VersionRange to include the given ID span
+   */
+  public extendsToIncludeIdSpan(span: IdSpan): void {
+    uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionrange_extends_to_include_id_span(
+          uniffiTypeVersionRangeObjectFactory.clonePointer(this),
+          FfiConverterTypeIdSpan.lower(span),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift
+    );
+  }
+
+  /**
+   * Get the counter range for a specific peer
+   * Returns the counter range if the peer exists, null otherwise
+   */
+  public get(peer: /*u64*/ bigint): CounterSpan | undefined {
+    return FfiConverterOptionalTypeCounterSpan.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionrange_get(
+            uniffiTypeVersionRangeObjectFactory.clonePointer(this),
+            FfiConverterUInt64.lower(peer),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Get all ranges as a list of (peer, start, end) tuples
+   */
+  public getAllRanges(): Array<VersionRangeItem> {
+    return FfiConverterArrayTypeVersionRangeItem.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionrange_get_all_ranges(
+            uniffiTypeVersionRangeObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Get all peer IDs in this VersionRange
+   */
+  public getPeers(): Array</*u64*/ bigint> {
+    return FfiConverterArrayUInt64.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionrange_get_peers(
+            uniffiTypeVersionRangeObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Check if this VersionRange has overlap with the given ID span
+   */
+  public hasOverlapWith(span: IdSpan): boolean {
+    return FfiConverterBool.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionrange_has_overlap_with(
+            uniffiTypeVersionRangeObjectFactory.clonePointer(this),
+            FfiConverterTypeIdSpan.lower(span),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Insert a counter range for a specific peer
+   */
+  public insert(
+    peer: /*u64*/ bigint,
+    start: /*i32*/ number,
+    end: /*i32*/ number
+  ): void {
+    uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionrange_insert(
+          uniffiTypeVersionRangeObjectFactory.clonePointer(this),
+          FfiConverterUInt64.lower(peer),
+          FfiConverterInt32.lower(start),
+          FfiConverterInt32.lower(end),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift
+    );
+  }
+
+  /**
+   * Check if the VersionRange is empty
+   */
+  public isEmpty(): boolean {
+    return FfiConverterBool.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionrange_is_empty(
+            uniffiTypeVersionRangeObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * {@inheritDoc uniffi-bindgen-react-native#UniffiAbstractObject.uniffiDestroy}
+   */
+  uniffiDestroy(): void {
+    const ptr = (this as any)[destructorGuardSymbol];
+    if (ptr !== undefined) {
+      const pointer = uniffiTypeVersionRangeObjectFactory.pointer(this);
+      uniffiTypeVersionRangeObjectFactory.freePointer(pointer);
+      uniffiTypeVersionRangeObjectFactory.unbless(ptr);
+      delete (this as any)[destructorGuardSymbol];
+    }
+  }
+
+  static instanceOf(obj: any): obj is VersionRange {
+    return uniffiTypeVersionRangeObjectFactory.isConcreteType(obj);
+  }
+}
+
+const uniffiTypeVersionRangeObjectFactory: UniffiObjectFactory<VersionRangeInterface> =
+  {
+    create(pointer: UnsafeMutableRawPointer): VersionRangeInterface {
+      const instance = Object.create(VersionRange.prototype);
+      instance[pointerLiteralSymbol] = pointer;
+      instance[destructorGuardSymbol] = this.bless(pointer);
+      instance[uniffiTypeNameSymbol] = 'VersionRange';
+      return instance;
+    },
+
+    bless(p: UnsafeMutableRawPointer): UniffiRustArcPtr {
+      return uniffiCaller.rustCall(
+        /*caller:*/ (status) =>
+          nativeModule().ubrn_uniffi_internal_fn_method_versionrange_ffi__bless_pointer(
+            p,
+            status
+          ),
+        /*liftString:*/ FfiConverterString.lift
+      );
+    },
+
+    unbless(ptr: UniffiRustArcPtr) {
+      ptr.markDestroyed();
+    },
+
+    pointer(obj: VersionRangeInterface): UnsafeMutableRawPointer {
+      if ((obj as any)[destructorGuardSymbol] === undefined) {
+        throw new UniffiInternalError.UnexpectedNullPointer();
+      }
+      return (obj as any)[pointerLiteralSymbol];
+    },
+
+    clonePointer(obj: VersionRangeInterface): UnsafeMutableRawPointer {
+      const pointer = this.pointer(obj);
+      return uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) =>
+          nativeModule().ubrn_uniffi_loro_ffi_fn_clone_versionrange(
+            pointer,
+            callStatus
+          ),
+        /*liftString:*/ FfiConverterString.lift
+      );
+    },
+
+    freePointer(pointer: UnsafeMutableRawPointer): void {
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) =>
+          nativeModule().ubrn_uniffi_loro_ffi_fn_free_versionrange(
+            pointer,
+            callStatus
+          ),
+        /*liftString:*/ FfiConverterString.lift
+      );
+    },
+
+    isConcreteType(obj: any): obj is VersionRangeInterface {
+      return (
+        obj[destructorGuardSymbol] &&
+        obj[uniffiTypeNameSymbol] === 'VersionRange'
+      );
+    },
+  };
+// FfiConverter for VersionRangeInterface
+const FfiConverterTypeVersionRange = new FfiConverterObject(
+  uniffiTypeVersionRangeObjectFactory
+);
+
 export interface VersionVectorInterface {
   diff(rhs: VersionVectorInterface): VersionVectorDiff;
   encode(): ArrayBuffer;
@@ -17810,6 +18346,11 @@ const FfiConverterArrayTypeTreeDiffItem = new FfiConverterArray(
 // FfiConverter for Array<TreeId>
 const FfiConverterArrayTypeTreeID = new FfiConverterArray(
   FfiConverterTypeTreeID
+);
+
+// FfiConverter for Array<VersionRangeItem>
+const FfiConverterArrayTypeVersionRangeItem = new FfiConverterArray(
+  FfiConverterTypeVersionRangeItem
 );
 
 // FfiConverter for Array<string>
@@ -18885,6 +19426,14 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_lorodoc_peer_id'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_redact_json_updates() !==
+    33049
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_lorodoc_redact_json_updates'
     );
   }
   if (
@@ -20256,6 +20805,14 @@ function uniffiEnsureInitialized() {
     );
   }
   if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_redo_count() !==
+    12383
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_undomanager_redo_count'
+    );
+  }
+  if (
     nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_max_undo_steps() !==
     20261
   ) {
@@ -20293,6 +20850,14 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_undomanager_undo'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_undo_count() !==
+    43432
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_undomanager_undo_count'
     );
   }
   if (
@@ -20397,6 +20962,94 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_valueorcontainer_is_value'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionrange_clear() !==
+    22575
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionrange_clear'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionrange_contains_id() !==
+    4971
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionrange_contains_id'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionrange_contains_id_span() !==
+    52504
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionrange_contains_id_span'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionrange_contains_ops_between() !==
+    61529
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionrange_contains_ops_between'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionrange_extends_to_include_id_span() !==
+    16625
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionrange_extends_to_include_id_span'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionrange_get() !==
+    50783
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionrange_get'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionrange_get_all_ranges() !==
+    20760
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionrange_get_all_ranges'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionrange_get_peers() !==
+    40505
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionrange_get_peers'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionrange_has_overlap_with() !==
+    65383
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionrange_has_overlap_with'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionrange_insert() !==
+    44262
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionrange_insert'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionrange_is_empty() !==
+    60658
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionrange_is_empty'
     );
   }
   if (
@@ -20672,6 +21325,22 @@ function uniffiEnsureInitialized() {
     );
   }
   if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_versionrange_from_vv() !==
+    10426
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_constructor_versionrange_from_vv'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_versionrange_new() !==
+    7136
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_constructor_versionrange_new'
+    );
+  }
+  if (
     nativeModule().ubrn_uniffi_loro_ffi_checksum_constructor_versionvector_decode() !==
     54438
   ) {
@@ -20781,6 +21450,8 @@ export default Object.freeze({
     FfiConverterTypeUnsubscriber,
     FfiConverterTypeUpdateOptions,
     FfiConverterTypeValueOrContainer,
+    FfiConverterTypeVersionRange,
+    FfiConverterTypeVersionRangeItem,
     FfiConverterTypeVersionVector,
     FfiConverterTypeVersionVectorDiff,
   },
