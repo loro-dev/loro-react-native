@@ -33,7 +33,7 @@ export default function App() {
   map.insert("map", { "key": "value" });
   map.insert("null", null);
   map.insert("undefined", undefined);
-  console.log("???", loroValueToJsValue(map.getDeepValue()));
+  console.log(map.getDeepValue());
   doc.commit();
 
   return (
