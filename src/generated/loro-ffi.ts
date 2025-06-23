@@ -406,6 +406,11 @@ interface NativeModuleInterface {
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
+  ubrn_uniffi_loro_ffi_fn_method_lorocounter_subscribe(
+    ptr: bigint,
+    subscriber: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_clone_lorodoc(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -937,6 +942,11 @@ interface NativeModuleInterface {
     v: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
+  ubrn_uniffi_loro_ffi_fn_method_lorolist_subscribe(
+    ptr: bigint,
+    subscriber: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_method_lorolist_to_vec(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -1089,6 +1099,11 @@ interface NativeModuleInterface {
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
+  ubrn_uniffi_loro_ffi_fn_method_loromap_subscribe(
+    ptr: bigint,
+    subscriber: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_method_loromap_values(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -1275,6 +1290,11 @@ interface NativeModuleInterface {
     child: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
+  ubrn_uniffi_loro_ffi_fn_method_loromovablelist_subscribe(
+    ptr: bigint,
+    subscriber: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_method_loromovablelist_to_vec(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -1295,6 +1315,11 @@ interface NativeModuleInterface {
     delta: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
+  ubrn_uniffi_loro_ffi_fn_method_lorotext_char_at(
+    ptr: bigint,
+    pos: number,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_method_lorotext_delete(
     ptr: bigint,
     pos: number,
@@ -1394,6 +1419,11 @@ interface NativeModuleInterface {
     pos: number,
     len: number,
     s: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_lorotext_subscribe(
+    ptr: bigint,
+    subscriber: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_method_lorotext_to_delta(
@@ -1562,6 +1592,11 @@ interface NativeModuleInterface {
   ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_method_lorotree_roots(
     ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_lorotree_subscribe(
+    ptr: bigint,
+    subscriber: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_clone_lorounknown(
@@ -2023,6 +2058,7 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_lorocounter_increment(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorocounter_is_attached(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorocounter_is_deleted(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_lorocounter_subscribe(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_apply_diff(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_attach(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_check_state_correctness_slow(): number;
@@ -2129,6 +2165,7 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_lorolist_len(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorolist_pop(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorolist_push(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_lorolist_subscribe(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorolist_to_vec(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromap_clear(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromap_delete(): number;
@@ -2157,6 +2194,7 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_loromap_is_empty(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromap_keys(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromap_len(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_loromap_subscribe(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromap_values(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_clear(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_delete(): number;
@@ -2191,8 +2229,10 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_set_movable_list_container(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_set_text_container(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_set_tree_container(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_subscribe(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_to_vec(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorotext_apply_delta(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_lorotext_char_at(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorotext_delete(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorotext_delete_utf8(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorotext_doc(): number;
@@ -2213,6 +2253,7 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_lorotext_push_str(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorotext_slice(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorotext_splice(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_lorotext_subscribe(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorotext_to_delta(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorotext_to_string(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorotext_unmark(): number;
@@ -2245,6 +2286,7 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_lorotree_nodes(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorotree_parent(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorotree_roots(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_lorotree_subscribe(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorounknown_id(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorovaluelike_as_loro_value(): number;
   ubrn_uniffi_loro_ffi_checksum_method_onpop_on_pop(): number;

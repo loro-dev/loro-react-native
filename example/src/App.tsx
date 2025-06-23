@@ -8,22 +8,18 @@ import {
   type LoroValueLike,
   loroValueToJsValue,
 } from "../../src";
-String.prototype.asContainerId = function (ty: ContainerType): ContainerId {
-  return new ContainerId.Root({
-    name: this as string,
-    containerType: ty,
-  });
-};
+
 export default function App() {
   const doc = new LoroDoc();
   const sub = doc.subscribeRoot((e) => {
-    console.log(e);
+    console.log("doc sub", e);
   });
   const text = doc.getText("text");
   text.insert(0, "Hello, world!");
   const map = doc.getMap("map");
   const list = map.insertContainer("container", new LoroList());
   list.insert(0, true);
+  map.subscribe((e) => { console.log("map sub", e) })
   list.insert(1, 123);
   map.insert("number", 123);
   map.insert("bool", true);
