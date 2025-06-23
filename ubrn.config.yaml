@@ -1,8 +1,8 @@
 rust:
-  directory: ./loro-ffi
+  directory: ./loro-rs
 
 ios:
-  frameworkName: build/RustFramework
+  frameworkName: build/LoroFfiFramework
   targets:
     - aarch64-apple-ios
     - aarch64-apple-ios-sim

@@ -8712,6 +8712,20 @@ export interface LoroCounterInterface {
    * Whether the container is deleted.
    */
   isDeleted(): boolean;
+  /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  subscribe(subscriber: Subscriber): SubscriptionInterface | undefined;
 }
 
 export class LoroCounter
@@ -8874,6 +8888,34 @@ export class LoroCounter
         /*caller:*/ (callStatus) => {
           return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorocounter_is_deleted(
             uniffiTypeLoroCounterObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  public subscribe(subscriber: Subscriber): SubscriptionInterface | undefined {
+    return FfiConverterOptionalTypeSubscription.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorocounter_subscribe(
+            uniffiTypeLoroCounterObjectFactory.clonePointer(this),
+            FfiConverterTypeSubscriber.lower(subscriber),
             callStatus
           );
         },
@@ -11557,6 +11599,20 @@ export interface LoroListInterface {
   pop() /*throws*/ : LoroValue | undefined;
   push(v: LoroValueLike) /*throws*/ : void;
   /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  subscribe(subscriber: Subscriber): SubscriptionInterface | undefined;
+  /**
    * Converts the LoroList to a Vec of LoroValue.
    *
    * This method unwraps the internal Arc and clones the data if necessary,
@@ -12027,6 +12083,34 @@ export class LoroList
   }
 
   /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  public subscribe(subscriber: Subscriber): SubscriptionInterface | undefined {
+    return FfiConverterOptionalTypeSubscription.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorolist_subscribe(
+            uniffiTypeLoroListObjectFactory.clonePointer(this),
+            FfiConverterTypeSubscriber.lower(subscriber),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
    * Converts the LoroList to a Vec of LoroValue.
    *
    * This method unwraps the internal Arc and clones the data if necessary,
@@ -12246,6 +12330,20 @@ export interface LoroMapInterface {
    * Get the length of the map.
    */
   len(): /*u32*/ number;
+  /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  subscribe(subscriber: Subscriber): SubscriptionInterface | undefined;
   /**
    * Get the values of the map.
    */
@@ -12811,6 +12909,34 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapInterface {
   }
 
   /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  public subscribe(subscriber: Subscriber): SubscriptionInterface | undefined {
+    return FfiConverterOptionalTypeSubscription.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_subscribe(
+            uniffiTypeLoroMapObjectFactory.clonePointer(this),
+            FfiConverterTypeSubscriber.lower(subscriber),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
    * Get the values of the map.
    */
   public values(): Array<ValueOrContainerInterface> {
@@ -13048,6 +13174,20 @@ export interface LoroMovableListInterface {
     pos: /*u32*/ number,
     child: LoroTreeInterface
   ) /*throws*/ : LoroTreeInterface;
+  /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  subscribe(subscriber: Subscriber): SubscriptionInterface | undefined;
   /**
    * Get the elements of the list as a vector of LoroValues.
    *
@@ -13740,6 +13880,34 @@ export class LoroMovableList
   }
 
   /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  public subscribe(subscriber: Subscriber): SubscriptionInterface | undefined {
+    return FfiConverterOptionalTypeSubscription.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromovablelist_subscribe(
+            uniffiTypeLoroMovableListObjectFactory.clonePointer(this),
+            FfiConverterTypeSubscriber.lower(subscriber),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
    * Get the elements of the list as a vector of LoroValues.
    *
    * This method returns a vector containing all the elements in the list as LoroValues.
@@ -13850,6 +14018,10 @@ export interface LoroTextInterface {
    * Apply a [delta](https://quilljs.com/docs/delta/) to the text container.
    */
   applyDelta(delta: Array<TextDelta>) /*throws*/ : void;
+  /**
+   * Get the characters at given unicode position.
+   */
+  charAt(pos: /*u32*/ number) /*throws*/ : string;
   /**
    * Delete a range of text at the given unicode position with unicode length.
    */
@@ -13971,6 +14143,20 @@ export interface LoroTextInterface {
     s: string
   ) /*throws*/ : string;
   /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  subscribe(subscriber: Subscriber): SubscriptionInterface | undefined;
+  /**
    * Get the text in [Delta](https://quilljs.com/docs/delta/) format.
    */
   toDelta(): Array<TextDelta>;
@@ -14063,6 +14249,27 @@ export class LoroText
         );
       },
       /*liftString:*/ FfiConverterString.lift
+    );
+  }
+
+  /**
+   * Get the characters at given unicode position.
+   */
+  public charAt(pos: /*u32*/ number): string /*throws*/ {
+    return FfiConverterString.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+          FfiConverterTypeLoroError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_char_at(
+            uniffiTypeLoroTextObjectFactory.clonePointer(this),
+            FfiConverterUInt32.lower(pos),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
     );
   }
 
@@ -14485,6 +14692,34 @@ export class LoroText
   }
 
   /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  public subscribe(subscriber: Subscriber): SubscriptionInterface | undefined {
+    return FfiConverterOptionalTypeSubscription.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotext_subscribe(
+            uniffiTypeLoroTextObjectFactory.clonePointer(this),
+            FfiConverterTypeSubscriber.lower(subscriber),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
    * Get the text in [Delta](https://quilljs.com/docs/delta/) format.
    */
   public toDelta(): Array<TextDelta> {
@@ -14839,6 +15074,20 @@ export interface LoroTreeInterface {
    * Get the root nodes of the forest.
    */
   roots(): Array<TreeId>;
+  /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  subscribe(subscriber: Subscriber): SubscriptionInterface | undefined;
 }
 
 export class LoroTree
@@ -15401,6 +15650,34 @@ export class LoroTree
         /*caller:*/ (callStatus) => {
           return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_roots(
             uniffiTypeLoroTreeObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Subscribe the events of a container.
+   *
+   * The callback will be invoked when the container is changed.
+   * Returns a subscription that can be used to unsubscribe.
+   *
+   * The events will be emitted after a transaction is committed. A transaction is committed when:
+   *
+   * - `doc.commit()` is called.
+   * - `doc.export(mode)` is called.
+   * - `doc.import(data)` is called.
+   * - `doc.checkout(version)` is called.
+   */
+  public subscribe(subscriber: Subscriber): SubscriptionInterface | undefined {
+    return FfiConverterOptionalTypeSubscription.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorotree_subscribe(
+            uniffiTypeLoroTreeObjectFactory.clonePointer(this),
+            FfiConverterTypeSubscriber.lower(subscriber),
             callStatus
           );
         },
@@ -18455,6 +18732,11 @@ const FfiConverterOptionalTypeOnPush = new FfiConverterOptional(
   FfiConverterTypeOnPush
 );
 
+// FfiConverter for SubscriptionInterface | undefined
+const FfiConverterOptionalTypeSubscription = new FfiConverterOptional(
+  FfiConverterTypeSubscription
+);
+
 // FfiConverter for ValueOrContainerInterface | undefined
 const FfiConverterOptionalTypeValueOrContainer = new FfiConverterOptional(
   FfiConverterTypeValueOrContainer
@@ -18924,6 +19206,14 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_lorocounter_is_deleted'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorocounter_subscribe() !==
+    60261
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_lorocounter_subscribe'
     );
   }
   if (
@@ -19768,6 +20058,14 @@ function uniffiEnsureInitialized() {
     );
   }
   if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_subscribe() !==
+    37781
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_lorolist_subscribe'
+    );
+  }
+  if (
     nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorolist_to_vec() !==
     48551
   ) {
@@ -19984,6 +20282,14 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_loromap_len'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_subscribe() !==
+    52134
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_loromap_subscribe'
     );
   }
   if (
@@ -20259,6 +20565,14 @@ function uniffiEnsureInitialized() {
     );
   }
   if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_subscribe() !==
+    31212
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_loromovablelist_subscribe'
+    );
+  }
+  if (
     nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_to_vec() !==
     22764
   ) {
@@ -20272,6 +20586,14 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_lorotext_apply_delta'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_char_at() !==
+    49891
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_lorotext_char_at'
     );
   }
   if (
@@ -20430,6 +20752,14 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_lorotext_splice'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotext_subscribe() !==
+    55608
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_lorotext_subscribe'
     );
   }
   if (
@@ -20683,6 +21013,14 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_lorotree_roots'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorotree_subscribe() !==
+    4481
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_lorotree_subscribe'
     );
   }
   if (

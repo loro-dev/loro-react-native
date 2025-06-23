@@ -39,6 +39,8 @@ declare module "./generated/loro" {
         subscribeFirstCommitFromPeer(cb: (payload: FirstCommitFromPeerPayload) => void): SubscriptionInterface;
         subscribePreCommit(cb: (payload: PreCommitCallbackPayload) => void): SubscriptionInterface;
         toJSON(): any;
+        oplogVersion(): VersionVector;
+        version(): VersionVector;
         getValue(): Value;
         getDeepValue(): Value;
         getDeepValueWithId(): Value;
@@ -49,7 +51,9 @@ declare module "./generated/loro" {
         insertContainer<T extends Container>(key: string, container: T): T;
         getOrCreateContainer<T extends Container>(key: string, container: T): T;
         getValue(): Value;
+        set(key: string, value: Value): void;
         getDeepValue(): Value;
+        subscribe(cb: (diff: DiffEvent) => void): SubscriptionInterface | undefined;
     }
 
     interface LoroList {
@@ -61,6 +65,7 @@ declare module "./generated/loro" {
         getDeepValue(): Value;
         pop(): Value | undefined;
         toVec(): Value[];
+        subscribe(cb: (diff: DiffEvent) => void): SubscriptionInterface | undefined;
     }
 
     interface LoroMovableList {
@@ -73,16 +78,19 @@ declare module "./generated/loro" {
         getDeepValue(): Value;
         pop(): Value | undefined;
         toVec(): Value[];
+        subscribe(cb: (diff: DiffEvent) => void): SubscriptionInterface | undefined;
     }
 
     interface LoroText {
         mark(from: number, to: number, key: string, value: Value): void;
         getRichtextValue(): Value;
+        subscribe(cb: (diff: DiffEvent) => void): SubscriptionInterface | undefined;
     }
 
     interface LoroTree {
         getValue(): Value;
         getValueWithMeta(): Value;
+        subscribe(cb: (diff: DiffEvent) => void): SubscriptionInterface | undefined;
     }
 
     interface UndoManager {
@@ -263,6 +271,14 @@ LoroDoc.prototype.subscribePreCommit = function (cb: (payload: PreCommitCallback
     return originalSubscribePreCommit.call(this, { onPreCommit: cb })
 }
 
+LoroDoc.prototype.version = function (): VersionVector {
+    return this.stateVv();
+}
+
+LoroDoc.prototype.oplogVersion = function (): VersionVector {
+    return this.oplogVv();
+}
+
 LoroDoc.prototype.toJSON = function (): any {
     return this.getDeepValue();
 }
@@ -282,6 +298,20 @@ addAsLoroValueMethod(LoroList.prototype);
 addAsLoroValueMethod(LoroMap.prototype);
 addAsLoroValueMethod(LoroTree.prototype);
 addAsLoroValueMethod(LoroMovableList.prototype);
+
+function addSubscribeMethod<T extends { subscribe(cb: (diff: DiffEvent) => void): SubscriptionInterface | undefined }>(prototype: T): void {
+    const oriSubscribe = prototype.subscribe;
+    (prototype as any).subscribe = function (cb: (diff: DiffEvent) => void): SubscriptionInterface | undefined {
+        return oriSubscribe.call(this, { onDiff: cb });
+    }
+}
+
+addSubscribeMethod(LoroText.prototype);
+addSubscribeMethod(LoroCounter.prototype);
+addSubscribeMethod(LoroList.prototype);
+addSubscribeMethod(LoroMap.prototype);
+addSubscribeMethod(LoroTree.prototype);
+addSubscribeMethod(LoroMovableList.prototype);
 
 const originalInsert = LoroMap.prototype.insert;
 LoroMap.prototype.insert = function (key: string, value: Value): void {
@@ -324,6 +354,12 @@ LoroMap.prototype.getOrCreateContainer = function <T extends Container>(key: str
         throw new Error('Unsupported container type');
     }
 }
+
+LoroMap.prototype.set = function (key: string, value: Value): void {
+    return this.insert(key, value);
+}
+
+
 
 const originalListInsert = LoroList.prototype.insert;
 LoroList.prototype.insert = function (pos: number, value: Value): void {

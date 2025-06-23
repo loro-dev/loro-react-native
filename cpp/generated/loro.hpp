@@ -311,6 +311,9 @@ protected:
   jsi::Value cpp_uniffi_loro_ffi_fn_method_lorocounter_is_deleted(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_fn_method_lorocounter_subscribe(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
   jsi::Value cpp_uniffi_loro_ffi_fn_clone_lorodoc(jsi::Runtime &rt,
                                                   const jsi::Value &thisVal,
                                                   const jsi::Value *args,
@@ -655,6 +658,9 @@ protected:
   jsi::Value cpp_uniffi_loro_ffi_fn_method_lorolist_push(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_fn_method_lorolist_subscribe(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
   jsi::Value cpp_uniffi_loro_ffi_fn_method_lorolist_to_vec(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
@@ -752,6 +758,9 @@ protected:
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_fn_method_loromap_len(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_fn_method_loromap_subscribe(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_fn_method_loromap_values(
@@ -872,6 +881,9 @@ protected:
   jsi::Value cpp_uniffi_loro_ffi_fn_method_loromovablelist_set_tree_container(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_fn_method_loromovablelist_subscribe(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
   jsi::Value cpp_uniffi_loro_ffi_fn_method_loromovablelist_to_vec(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
@@ -887,6 +899,9 @@ protected:
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_fn_method_lorotext_apply_delta(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_fn_method_lorotext_char_at(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_fn_method_lorotext_delete(
@@ -947,6 +962,9 @@ protected:
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_fn_method_lorotext_splice(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_fn_method_lorotext_subscribe(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_fn_method_lorotext_to_delta(
@@ -1054,6 +1072,9 @@ protected:
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_fn_method_lorotree_roots(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_fn_method_lorotree_subscribe(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_fn_clone_lorounknown(jsi::Runtime &rt,
@@ -1509,6 +1530,9 @@ protected:
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorocounter_is_deleted(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorocounter_subscribe(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorodoc_apply_diff(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
@@ -1843,6 +1867,9 @@ protected:
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorolist_push(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorolist_subscribe(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorolist_to_vec(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
@@ -1933,6 +1960,9 @@ protected:
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_loromap_len(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_checksum_method_loromap_subscribe(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_loromap_values(
@@ -2051,10 +2081,16 @@ protected:
   cpp_uniffi_loro_ffi_checksum_method_loromovablelist_set_tree_container(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_checksum_method_loromovablelist_subscribe(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_loromovablelist_to_vec(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorotext_apply_delta(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorotext_char_at(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorotext_delete(
@@ -2116,6 +2152,9 @@ protected:
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorotext_splice(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorotext_subscribe(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorotext_to_delta(
@@ -2215,6 +2254,9 @@ protected:
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorotree_roots(
+      jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+      size_t count);
+  jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorotree_subscribe(
       jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
       size_t count);
   jsi::Value cpp_uniffi_loro_ffi_checksum_method_lorounknown_id(

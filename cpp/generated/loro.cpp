@@ -448,6 +448,9 @@ int8_t uniffi_loro_ffi_fn_method_lorocounter_is_attached(
     void *ptr, RustCallStatus *uniffi_out_err);
 int8_t uniffi_loro_ffi_fn_method_lorocounter_is_deleted(
     void *ptr, RustCallStatus *uniffi_out_err);
+RustBuffer
+uniffi_loro_ffi_fn_method_lorocounter_subscribe(void *ptr, void *subscriber,
+                                                RustCallStatus *uniffi_out_err);
 void *uniffi_loro_ffi_fn_clone_lorodoc(void *ptr,
                                        RustCallStatus *uniffi_out_err);
 void uniffi_loro_ffi_fn_free_lorodoc(void *ptr, RustCallStatus *uniffi_out_err);
@@ -707,6 +710,9 @@ uniffi_loro_ffi_fn_method_lorolist_pop(void *ptr,
 void uniffi_loro_ffi_fn_method_lorolist_push(void *ptr, void *v,
                                              RustCallStatus *uniffi_out_err);
 RustBuffer
+uniffi_loro_ffi_fn_method_lorolist_subscribe(void *ptr, void *subscriber,
+                                             RustCallStatus *uniffi_out_err);
+RustBuffer
 uniffi_loro_ffi_fn_method_lorolist_to_vec(void *ptr,
                                           RustCallStatus *uniffi_out_err);
 void *uniffi_loro_ffi_fn_clone_loromap(void *ptr,
@@ -777,6 +783,9 @@ uniffi_loro_ffi_fn_method_loromap_keys(void *ptr,
                                        RustCallStatus *uniffi_out_err);
 uint32_t uniffi_loro_ffi_fn_method_loromap_len(void *ptr,
                                                RustCallStatus *uniffi_out_err);
+RustBuffer
+uniffi_loro_ffi_fn_method_loromap_subscribe(void *ptr, void *subscriber,
+                                            RustCallStatus *uniffi_out_err);
 RustBuffer
 uniffi_loro_ffi_fn_method_loromap_values(void *ptr,
                                          RustCallStatus *uniffi_out_err);
@@ -857,6 +866,8 @@ void *uniffi_loro_ffi_fn_method_loromovablelist_set_text_container(
     void *ptr, uint32_t pos, void *child, RustCallStatus *uniffi_out_err);
 void *uniffi_loro_ffi_fn_method_loromovablelist_set_tree_container(
     void *ptr, uint32_t pos, void *child, RustCallStatus *uniffi_out_err);
+RustBuffer uniffi_loro_ffi_fn_method_loromovablelist_subscribe(
+    void *ptr, void *subscriber, RustCallStatus *uniffi_out_err);
 RustBuffer uniffi_loro_ffi_fn_method_loromovablelist_to_vec(
     void *ptr, RustCallStatus *uniffi_out_err);
 void *uniffi_loro_ffi_fn_clone_lorotext(void *ptr,
@@ -867,6 +878,9 @@ void *
 uniffi_loro_ffi_fn_constructor_lorotext_new(RustCallStatus *uniffi_out_err);
 void uniffi_loro_ffi_fn_method_lorotext_apply_delta(
     void *ptr, RustBuffer delta, RustCallStatus *uniffi_out_err);
+RustBuffer
+uniffi_loro_ffi_fn_method_lorotext_char_at(void *ptr, uint32_t pos,
+                                           RustCallStatus *uniffi_out_err);
 void uniffi_loro_ffi_fn_method_lorotext_delete(void *ptr, uint32_t pos,
                                                uint32_t len,
                                                RustCallStatus *uniffi_out_err);
@@ -924,6 +938,9 @@ RustBuffer
 uniffi_loro_ffi_fn_method_lorotext_splice(void *ptr, uint32_t pos, uint32_t len,
                                           RustBuffer s,
                                           RustCallStatus *uniffi_out_err);
+RustBuffer
+uniffi_loro_ffi_fn_method_lorotext_subscribe(void *ptr, void *subscriber,
+                                             RustCallStatus *uniffi_out_err);
 RustBuffer
 uniffi_loro_ffi_fn_method_lorotext_to_delta(void *ptr,
                                             RustCallStatus *uniffi_out_err);
@@ -1019,6 +1036,9 @@ uniffi_loro_ffi_fn_method_lorotree_parent(void *ptr, RustBuffer target,
 RustBuffer
 uniffi_loro_ffi_fn_method_lorotree_roots(void *ptr,
                                          RustCallStatus *uniffi_out_err);
+RustBuffer
+uniffi_loro_ffi_fn_method_lorotree_subscribe(void *ptr, void *subscriber,
+                                             RustCallStatus *uniffi_out_err);
 void *uniffi_loro_ffi_fn_clone_lorounknown(void *ptr,
                                            RustCallStatus *uniffi_out_err);
 void uniffi_loro_ffi_fn_free_lorounknown(void *ptr,
@@ -1412,6 +1432,7 @@ uint16_t uniffi_loro_ffi_checksum_method_lorocounter_id();
 uint16_t uniffi_loro_ffi_checksum_method_lorocounter_increment();
 uint16_t uniffi_loro_ffi_checksum_method_lorocounter_is_attached();
 uint16_t uniffi_loro_ffi_checksum_method_lorocounter_is_deleted();
+uint16_t uniffi_loro_ffi_checksum_method_lorocounter_subscribe();
 uint16_t uniffi_loro_ffi_checksum_method_lorodoc_apply_diff();
 uint16_t uniffi_loro_ffi_checksum_method_lorodoc_attach();
 uint16_t uniffi_loro_ffi_checksum_method_lorodoc_check_state_correctness_slow();
@@ -1522,6 +1543,7 @@ uint16_t uniffi_loro_ffi_checksum_method_lorolist_is_empty();
 uint16_t uniffi_loro_ffi_checksum_method_lorolist_len();
 uint16_t uniffi_loro_ffi_checksum_method_lorolist_pop();
 uint16_t uniffi_loro_ffi_checksum_method_lorolist_push();
+uint16_t uniffi_loro_ffi_checksum_method_lorolist_subscribe();
 uint16_t uniffi_loro_ffi_checksum_method_lorolist_to_vec();
 uint16_t uniffi_loro_ffi_checksum_method_loromap_clear();
 uint16_t uniffi_loro_ffi_checksum_method_loromap_delete();
@@ -1553,6 +1575,7 @@ uint16_t uniffi_loro_ffi_checksum_method_loromap_is_deleted();
 uint16_t uniffi_loro_ffi_checksum_method_loromap_is_empty();
 uint16_t uniffi_loro_ffi_checksum_method_loromap_keys();
 uint16_t uniffi_loro_ffi_checksum_method_loromap_len();
+uint16_t uniffi_loro_ffi_checksum_method_loromap_subscribe();
 uint16_t uniffi_loro_ffi_checksum_method_loromap_values();
 uint16_t uniffi_loro_ffi_checksum_method_loromovablelist_clear();
 uint16_t uniffi_loro_ffi_checksum_method_loromovablelist_delete();
@@ -1594,8 +1617,10 @@ uint16_t
 uniffi_loro_ffi_checksum_method_loromovablelist_set_movable_list_container();
 uint16_t uniffi_loro_ffi_checksum_method_loromovablelist_set_text_container();
 uint16_t uniffi_loro_ffi_checksum_method_loromovablelist_set_tree_container();
+uint16_t uniffi_loro_ffi_checksum_method_loromovablelist_subscribe();
 uint16_t uniffi_loro_ffi_checksum_method_loromovablelist_to_vec();
 uint16_t uniffi_loro_ffi_checksum_method_lorotext_apply_delta();
+uint16_t uniffi_loro_ffi_checksum_method_lorotext_char_at();
 uint16_t uniffi_loro_ffi_checksum_method_lorotext_delete();
 uint16_t uniffi_loro_ffi_checksum_method_lorotext_delete_utf8();
 uint16_t uniffi_loro_ffi_checksum_method_lorotext_doc();
@@ -1616,6 +1641,7 @@ uint16_t uniffi_loro_ffi_checksum_method_lorotext_mark();
 uint16_t uniffi_loro_ffi_checksum_method_lorotext_push_str();
 uint16_t uniffi_loro_ffi_checksum_method_lorotext_slice();
 uint16_t uniffi_loro_ffi_checksum_method_lorotext_splice();
+uint16_t uniffi_loro_ffi_checksum_method_lorotext_subscribe();
 uint16_t uniffi_loro_ffi_checksum_method_lorotext_to_delta();
 uint16_t uniffi_loro_ffi_checksum_method_lorotext_to_string();
 uint16_t uniffi_loro_ffi_checksum_method_lorotext_unmark();
@@ -1648,6 +1674,7 @@ uint16_t uniffi_loro_ffi_checksum_method_lorotree_mov_to();
 uint16_t uniffi_loro_ffi_checksum_method_lorotree_nodes();
 uint16_t uniffi_loro_ffi_checksum_method_lorotree_parent();
 uint16_t uniffi_loro_ffi_checksum_method_lorotree_roots();
+uint16_t uniffi_loro_ffi_checksum_method_lorotree_subscribe();
 uint16_t uniffi_loro_ffi_checksum_method_lorounknown_id();
 uint16_t uniffi_loro_ffi_checksum_method_lorovaluelike_as_loro_value();
 uint16_t uniffi_loro_ffi_checksum_method_onpop_on_pop();
@@ -9315,6 +9342,17 @@ NativeLoro::NativeLoro(
             return this->cpp_uniffi_loro_ffi_fn_method_lorocounter_is_deleted(
                 rt, thisVal, args, count);
           });
+  props["ubrn_uniffi_loro_ffi_fn_method_lorocounter_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_lorocounter_subscribe"),
+          2,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_lorocounter_subscribe(
+                rt, thisVal, args, count);
+          });
   props["ubrn_uniffi_loro_ffi_fn_clone_lorodoc"] =
       jsi::Function::createFromHostFunction(
           rt,
@@ -10611,6 +10649,17 @@ NativeLoro::NativeLoro(
             return this->cpp_uniffi_loro_ffi_fn_method_lorolist_push(
                 rt, thisVal, args, count);
           });
+  props["ubrn_uniffi_loro_ffi_fn_method_lorolist_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_lorolist_subscribe"),
+          2,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_lorolist_subscribe(
+                rt, thisVal, args, count);
+          });
   props["ubrn_uniffi_loro_ffi_fn_method_lorolist_to_vec"] =
       jsi::Function::createFromHostFunction(
           rt,
@@ -10966,6 +11015,17 @@ NativeLoro::NativeLoro(
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_loro_ffi_fn_method_loromap_len(rt, thisVal,
                                                                    args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_loromap_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_loromap_subscribe"),
+          2,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_loromap_subscribe(
+                rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_fn_method_loromap_values"] =
       jsi::Function::createFromHostFunction(
@@ -11400,6 +11460,18 @@ NativeLoro::NativeLoro(
                 ->cpp_uniffi_loro_ffi_fn_method_loromovablelist_set_tree_container(
                     rt, thisVal, args, count);
           });
+  props["ubrn_uniffi_loro_ffi_fn_method_loromovablelist_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_loromovablelist_subscribe"),
+          2,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_fn_method_loromovablelist_subscribe(
+                    rt, thisVal, args, count);
+          });
   props["ubrn_uniffi_loro_ffi_fn_method_loromovablelist_to_vec"] =
       jsi::Function::createFromHostFunction(
           rt,
@@ -11453,6 +11525,17 @@ NativeLoro::NativeLoro(
           [this](jsi::Runtime &rt, const jsi::Value &thisVal,
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_loro_ffi_fn_method_lorotext_apply_delta(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_lorotext_char_at"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_lorotext_char_at"),
+          2,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_lorotext_char_at(
                 rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_fn_method_lorotext_delete"] =
@@ -11675,6 +11758,17 @@ NativeLoro::NativeLoro(
           [this](jsi::Runtime &rt, const jsi::Value &thisVal,
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_loro_ffi_fn_method_lorotext_splice(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_lorotext_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_lorotext_subscribe"),
+          2,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_lorotext_subscribe(
                 rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_fn_method_lorotext_to_delta"] =
@@ -12067,6 +12161,17 @@ NativeLoro::NativeLoro(
           [this](jsi::Runtime &rt, const jsi::Value &thisVal,
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_loro_ffi_fn_method_lorotree_roots(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_fn_method_lorotree_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_fn_method_lorotree_subscribe"),
+          2,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_fn_method_lorotree_subscribe(
                 rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_fn_clone_lorounknown"] =
@@ -13733,6 +13838,18 @@ NativeLoro::NativeLoro(
                 ->cpp_uniffi_loro_ffi_checksum_method_lorocounter_is_deleted(
                     rt, thisVal, args, count);
           });
+  props["ubrn_uniffi_loro_ffi_checksum_method_lorocounter_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_checksum_method_lorocounter_subscribe"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_lorocounter_subscribe(
+                    rt, thisVal, args, count);
+          });
   props["ubrn_uniffi_loro_ffi_checksum_method_lorodoc_apply_diff"] =
       jsi::Function::createFromHostFunction(
           rt,
@@ -14987,6 +15104,17 @@ NativeLoro::NativeLoro(
             return this->cpp_uniffi_loro_ffi_checksum_method_lorolist_push(
                 rt, thisVal, args, count);
           });
+  props["ubrn_uniffi_loro_ffi_checksum_method_lorolist_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_checksum_method_lorolist_subscribe"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_checksum_method_lorolist_subscribe(
+                rt, thisVal, args, count);
+          });
   props["ubrn_uniffi_loro_ffi_checksum_method_lorolist_to_vec"] =
       jsi::Function::createFromHostFunction(
           rt,
@@ -15312,6 +15440,17 @@ NativeLoro::NativeLoro(
           [this](jsi::Runtime &rt, const jsi::Value &thisVal,
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_loro_ffi_checksum_method_loromap_len(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_loromap_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_checksum_method_loromap_subscribe"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_checksum_method_loromap_subscribe(
                 rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_checksum_method_loromap_values"] =
@@ -15726,6 +15865,19 @@ NativeLoro::NativeLoro(
             ->cpp_uniffi_loro_ffi_checksum_method_loromovablelist_set_tree_container(
                 rt, thisVal, args, count);
       });
+  props["ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt,
+              "ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_subscribe"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this
+                ->cpp_uniffi_loro_ffi_checksum_method_loromovablelist_subscribe(
+                    rt, thisVal, args, count);
+          });
   props["ubrn_uniffi_loro_ffi_checksum_method_loromovablelist_to_vec"] =
       jsi::Function::createFromHostFunction(
           rt,
@@ -15750,6 +15902,17 @@ NativeLoro::NativeLoro(
             return this
                 ->cpp_uniffi_loro_ffi_checksum_method_lorotext_apply_delta(
                     rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_lorotext_char_at"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_checksum_method_lorotext_char_at"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_checksum_method_lorotext_char_at(
+                rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_checksum_method_lorotext_delete"] =
       jsi::Function::createFromHostFunction(
@@ -15978,6 +16141,17 @@ NativeLoro::NativeLoro(
           [this](jsi::Runtime &rt, const jsi::Value &thisVal,
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_loro_ffi_checksum_method_lorotext_splice(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_lorotext_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_checksum_method_lorotext_subscribe"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_checksum_method_lorotext_subscribe(
                 rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_checksum_method_lorotext_to_delta"] =
@@ -16347,6 +16521,17 @@ NativeLoro::NativeLoro(
           [this](jsi::Runtime &rt, const jsi::Value &thisVal,
                  const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_loro_ffi_checksum_method_lorotree_roots(
+                rt, thisVal, args, count);
+          });
+  props["ubrn_uniffi_loro_ffi_checksum_method_lorotree_subscribe"] =
+      jsi::Function::createFromHostFunction(
+          rt,
+          jsi::PropNameID::forAscii(
+              rt, "ubrn_uniffi_loro_ffi_checksum_method_lorotree_subscribe"),
+          0,
+          [this](jsi::Runtime &rt, const jsi::Value &thisVal,
+                 const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_loro_ffi_checksum_method_lorotree_subscribe(
                 rt, thisVal, args, count);
           });
   props["ubrn_uniffi_loro_ffi_checksum_method_lorounknown_id"] =
@@ -19744,6 +19929,19 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorocounter_is_deleted(
 
   return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorocounter_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_lorocounter_subscribe(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[1]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi::loro::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_clone_lorodoc(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
@@ -21235,6 +21433,19 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorolist_push(
 
   return jsi::Value::undefined();
 }
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorolist_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_lorolist_subscribe(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[1]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi::loro::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorolist_to_vec(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
@@ -21653,6 +21864,19 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_loromap_len(
                                                      args[count - 1]);
 
   return uniffi_jsi::Bridging<uint32_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_loromap_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_loromap_subscribe(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[1]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi::loro::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
 }
 jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_loromap_values(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
@@ -22167,6 +22391,19 @@ NativeLoro::cpp_uniffi_loro_ffi_fn_method_loromovablelist_set_tree_container(
 
   return uniffi_jsi::Bridging<void *>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_loromovablelist_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_loromovablelist_subscribe(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[1]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi::loro::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_loromovablelist_to_vec(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
@@ -22227,6 +22464,20 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorotext_apply_delta(
                                                      args[count - 1]);
 
   return jsi::Value::undefined();
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorotext_char_at(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_lorotext_char_at(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi_jsi::Bridging<uint32_t>::fromJs(rt, callInvoker, args[1]),
+      &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi::loro::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
 }
 jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorotext_delete(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
@@ -22495,6 +22746,19 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorotext_splice(
       uniffi_jsi::Bridging<uint32_t>::fromJs(rt, callInvoker, args[2]),
       uniffi::loro::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[3]),
       &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi::loro::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorotext_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_lorotext_subscribe(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[1]), &status);
   uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
                                                      args[count - 1]);
 
@@ -22965,6 +23229,19 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorotree_roots(
       uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
   auto value = uniffi_loro_ffi_fn_method_lorotree_roots(
       uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]), &status);
+  uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
+                                                     args[count - 1]);
+
+  return uniffi::loro::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_fn_method_lorotree_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  RustCallStatus status =
+      uniffi::loro::Bridging<RustCallStatus>::rustSuccess(rt);
+  auto value = uniffi_loro_ffi_fn_method_lorotree_subscribe(
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[0]),
+      uniffi_jsi::Bridging<void *>::fromJs(rt, callInvoker, args[1]), &status);
   uniffi::loro::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status,
                                                      args[count - 1]);
 
@@ -24562,6 +24839,14 @@ NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorocounter_is_deleted(
 
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorocounter_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_lorocounter_subscribe();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorodoc_apply_diff(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
@@ -25379,6 +25664,13 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorolist_push(
 
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorolist_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_lorolist_subscribe();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorolist_to_vec(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
@@ -25594,6 +25886,13 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_loromap_len(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
   auto value = uniffi_loro_ffi_checksum_method_loromap_len();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_loromap_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_loromap_subscribe();
 
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
@@ -25875,6 +26174,14 @@ jsi::Value NativeLoro::
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
 jsi::Value
+NativeLoro::cpp_uniffi_loro_ffi_checksum_method_loromovablelist_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_loromovablelist_subscribe();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value
 NativeLoro::cpp_uniffi_loro_ffi_checksum_method_loromovablelist_to_vec(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
@@ -25886,6 +26193,13 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorotext_apply_delta(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
   auto value = uniffi_loro_ffi_checksum_method_lorotext_apply_delta();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorotext_char_at(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_lorotext_char_at();
 
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
@@ -26030,6 +26344,13 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorotext_splice(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
   auto value = uniffi_loro_ffi_checksum_method_lorotext_splice();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorotext_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_lorotext_subscribe();
 
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
@@ -26267,6 +26588,13 @@ jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorotree_roots(
     jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
     size_t count) {
   auto value = uniffi_loro_ffi_checksum_method_lorotree_roots();
+
+  return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativeLoro::cpp_uniffi_loro_ffi_checksum_method_lorotree_subscribe(
+    jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args,
+    size_t count) {
+  auto value = uniffi_loro_ffi_checksum_method_lorotree_subscribe();
 
   return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
