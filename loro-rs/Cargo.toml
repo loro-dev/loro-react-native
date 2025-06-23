@@ -19,3 +19,10 @@ uniffi = { version = "0.28.3", features = ["build"] }
 
 [features]
 cli = ["uniffi/cli"]
+
+[profile.release]
+lto = true
+strip = true
+opt-level = "z"
+codegen-units = 1
+panic = "abort"
