@@ -1,6 +1,6 @@
 {
   "name": "loro-react-native",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "React native binding for Loro",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -44,9 +44,8 @@
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
-    "prepare": "bob build",
-    "release": "release-it --only-version",
-    "postinstall": "patch-package"
+    "prepare": "patch-package && bob build",
+    "release": "release-it --only-version"
   },
   "keywords": [
     "react-native",
