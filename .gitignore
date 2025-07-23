@@ -92,7 +92,7 @@ target/
 *.podspec
 rust_modules/
 *.a
-cpp/
+cpp/generated/*
 *.podspec
 src/gen/
 *.tgz

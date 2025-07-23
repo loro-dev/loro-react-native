@@ -1745,6 +1745,18 @@ interface NativeModuleInterface {
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
+  ubrn_uniffi_loro_ffi_fn_method_undomanager_group_end(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_loro_ffi_fn_method_undomanager_group_start(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_loro_ffi_fn_method_undomanager_peer(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
   ubrn_uniffi_loro_ffi_fn_method_undomanager_record_new_checkpoint(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -2300,6 +2312,9 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_add_exclude_origin_prefix(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_can_redo(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_can_undo(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_undomanager_group_end(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_undomanager_group_start(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_undomanager_peer(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_record_new_checkpoint(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_redo(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_redo_count(): number;
