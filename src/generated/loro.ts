@@ -17032,6 +17032,23 @@ export interface UndoManagerInterface {
    */
   canUndo(): boolean;
   /**
+   * Ends the current group, calling UndoManager::undo() after this will
+   * undo all changes that occurred during the group.
+   */
+  groupEnd(): void;
+  /**
+   * Will start a new group of changes, all subsequent changes will be merged
+   * into a new item on the undo stack. If we receive remote changes, we determine
+   * wether or not they are conflicting. If the remote changes are conflicting
+   * we split the undo item and close the group. If there are no conflict
+   * in changed container ids we continue the group merge.
+   */
+  groupStart() /*throws*/ : void;
+  /**
+   * Get the peer id of the undo manager
+   */
+  peer(): /*u64*/ bigint;
+  /**
    * Record a new checkpoint.
    */
   recordNewCheckpoint() /*throws*/ : void;
@@ -17139,6 +17156,61 @@ export class UndoManager
       uniffiCaller.rustCall(
         /*caller:*/ (callStatus) => {
           return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_can_undo(
+            uniffiTypeUndoManagerObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Ends the current group, calling UndoManager::undo() after this will
+   * undo all changes that occurred during the group.
+   */
+  public groupEnd(): void {
+    uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_group_end(
+          uniffiTypeUndoManagerObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift
+    );
+  }
+
+  /**
+   * Will start a new group of changes, all subsequent changes will be merged
+   * into a new item on the undo stack. If we receive remote changes, we determine
+   * wether or not they are conflicting. If the remote changes are conflicting
+   * we split the undo item and close the group. If there are no conflict
+   * in changed container ids we continue the group merge.
+   */
+  public groupStart(): void /*throws*/ {
+    uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+        FfiConverterTypeLoroError
+      ),
+      /*caller:*/ (callStatus) => {
+        nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_group_start(
+          uniffiTypeUndoManagerObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift
+    );
+  }
+
+  /**
+   * Get the peer id of the undo manager
+   */
+  public peer(): /*u64*/ bigint {
+    return FfiConverterUInt64.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_peer(
             uniffiTypeUndoManagerObjectFactory.clonePointer(this),
             callStatus
           );
@@ -21124,6 +21196,30 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_undomanager_can_undo'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_group_end() !==
+    37541
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_undomanager_group_end'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_group_start() !==
+    64372
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_undomanager_group_start'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_peer() !==
+    45180
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_undomanager_peer'
     );
   }
   if (
