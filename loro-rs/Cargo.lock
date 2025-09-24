@@ -703,32 +703,32 @@ dependencies = [
 
 [[package]]
 name = "loro"
-version = "1.5.10"
+version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c80ff1e46afaf129b05e1ffb11651007ce0a442f02a30c1cc539dc5dbbf905a3"
+checksum = "218f2e4429474eae53a7fc71fac8e4566e0765fd1ec043546cf8ec62b3dc8902"
 dependencies = [
  "enum-as-inner 0.6.1",
- "fxhash",
  "generic-btree",
  "loro-common",
  "loro-delta",
  "loro-internal",
  "loro-kv-store",
+ "rustc-hash",
  "tracing",
 ]
 
 [[package]]
 name = "loro-common"
-version = "1.5.8"
+version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b0b84787030d7925d43f125841d3ce7e4850ffac80d2687cdaa9fd571e67129b"
+checksum = "5a5b8ede4e1afbf1ea509aec27216126a1b12aae165f983354c7f78a94bb2dca"
 dependencies = [
  "arbitrary",
  "enum-as-inner 0.6.1",
- "fxhash",
  "leb128",
  "loro-rle",
  "nonmax",
+ "rustc-hash",
  "serde",
  "serde_columnar",
  "serde_json",
@@ -737,9 +737,9 @@ dependencies = [
 
 [[package]]
 name = "loro-delta"
-version = "1.5.6"
+version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e9b920ad564430b2e392ac6f0e8f97ef5745960cc40edc482be57a407db1c243"
+checksum = "c28890ffa0aff47ec5311aa1f55a6c3dfd39bbcac9dc8996106b7882e8fb1d26"
 dependencies = [
  "arrayvec",
  "enum-as-inner 0.5.1",
@@ -749,9 +749,9 @@ dependencies = [
 
 [[package]]
 name = "loro-ffi"
-version = "1.5.10"
+version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8a575d13823924d52a10e9ac6c045149f84e52440b164955eca5d1090242e437"
+checksum = "3e90cb3d7c93bddb3f517fecc4ffd978b053a01497ba5bcf0a49f51ed05a5e28"
 dependencies = [
  "loro",
  "serde_json",
@@ -760,9 +760,9 @@ dependencies = [
 
 [[package]]
 name = "loro-internal"
-version = "1.5.8"
+version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1467b6b499e3d41909cbf524a5000bcbbc21af1205d2ee20290bed140395124b"
+checksum = "c7c99e5b3617d0a2b586704de6086e986a4fae2194c7cd7ac17f2fdf70a48740"
 dependencies = [
  "append-only-bytes",
  "arref",
@@ -771,7 +771,6 @@ dependencies = [
  "ensure-cov",
  "enum-as-inner 0.6.1",
  "enum_dispatch",
- "fxhash",
  "generic-btree",
  "getrandom 0.2.16",
  "im",
@@ -791,6 +790,7 @@ dependencies = [
  "postcard",
  "pretty_assertions",
  "rand",
+ "rustc-hash",
  "serde",
  "serde_columnar",
  "serde_json",
@@ -804,26 +804,26 @@ dependencies = [
 
 [[package]]
 name = "loro-kv-store"
-version = "1.5.8"
+version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fa1e5fe58c0245e62775784b6ac69cbe04a081f3348ec3b9742ecc7901085c18"
+checksum = "dd4e676f21f790c574fdb397b0f13f32fe6a3fe7d85440be0ce0a4f713628525"
 dependencies = [
  "bytes",
  "ensure-cov",
- "fxhash",
  "loro-common",
  "lz4_flex",
  "once_cell",
  "quick_cache",
+ "rustc-hash",
  "tracing",
  "xxhash-rust",
 ]
 
 [[package]]
 name = "loro-rle"
-version = "1.2.7"
+version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "077b51e4eac04e7f18574f7e6ac0201ffd98ff65015343eee3702bc3e7c49dc8"
+checksum = "76400c3eea6bb39b013406acce964a8db39311534e308286c8d8721baba8ee20"
 dependencies = [
  "append-only-bytes",
  "num",
@@ -846,9 +846,9 @@ checksum = "3f3d053a135388e6b1df14e8af1212af5064746e9b87a06a345a7a779ee9695a"
 
 [[package]]
 name = "loro_fractional_index"
-version = "1.2.7"
+version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e387a04d7d6a74ebb3434c906c84ddcae4413e5ef8bcd8e7d5138959d416a512"
+checksum = "427c8ea186958094052b971fe7e322a934b034c3bf62f0458ccea04fcd687ba1"
 dependencies = [
  "once_cell",
  "rand",
@@ -1226,6 +1226,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2b15c43186be67a4fd63bee50d0303afffcef381492ebe2c5d87f324e1b8815c"
 
 [[package]]
+name = "rustc-hash"
+version = "2.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "357703d41365b4b27c590e3ed91eabb1b663f07c4c084095e60cbed4362dff0d"
+
+[[package]]
 name = "rustc_version"
 version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1298,9 +1304,9 @@ dependencies = [
 
 [[package]]
 name = "serde_columnar"
-version = "0.3.11"
+version = "0.3.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5910a00acc21b3f106b9e3977cabf8d4c15b62ea585664f08ec6fedb118d88e0"
+checksum = "2a16e404f17b16d0273460350e29b02d76ba0d70f34afdc9a4fa034c97d6c6eb"
 dependencies = [
  "itertools 0.11.0",
  "postcard",
@@ -1311,9 +1317,9 @@ dependencies = [
 
 [[package]]
 name = "serde_columnar_derive"
-version = "0.3.6"
+version = "0.3.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "44cea1995b758f1b344f484e77a02d9d85c8a62c9ce0e5f1850e27e2f7eebbc9"
+checksum = "45958fce4903f67e871fbf15ac78e289269b21ebd357d6fecacdba233629112e"
 dependencies = [
  "darling",
  "proc-macro2",

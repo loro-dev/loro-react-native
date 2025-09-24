@@ -335,6 +335,14 @@ interface NativeModuleInterface {
     other: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): number;
+  ubrn_uniffi_loro_ffi_fn_method_frontiers_is_empty(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_loro_ffi_fn_method_frontiers_to_vec(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_clone_localephemerallistener(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -697,10 +705,6 @@ interface NativeModuleInterface {
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_loro_ffi_fn_method_lorodoc_log_estimate_size(
-    ptr: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): void;
   ubrn_uniffi_loro_ffi_fn_method_lorodoc_minimize_frontiers(
     ptr: bigint,
     frontiers: bigint,
@@ -1789,6 +1793,22 @@ interface NativeModuleInterface {
     onPush: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
+  ubrn_uniffi_loro_ffi_fn_method_undomanager_top_redo_meta(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_undomanager_top_redo_value(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_undomanager_top_undo_meta(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_undomanager_top_undo_value(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_method_undomanager_undo(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -2013,6 +2033,15 @@ interface NativeModuleInterface {
     id: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
+  ubrn_uniffi_loro_ffi_fn_method_versionvector_to_hashmap(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_versionvector_try_update_last(
+    ptr: bigint,
+    id: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
   ubrn_uniffi_loro_ffi_fn_func_decode_import_blob_meta(
     bytes: Uint8Array,
     checkChecksum: number,
@@ -2060,6 +2089,8 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_fractionalindex_to_string(): number;
   ubrn_uniffi_loro_ffi_checksum_method_frontiers_encode(): number;
   ubrn_uniffi_loro_ffi_checksum_method_frontiers_eq(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_frontiers_is_empty(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_frontiers_to_vec(): number;
   ubrn_uniffi_loro_ffi_checksum_method_localephemerallistener_on_ephemeral_update(): number;
   ubrn_uniffi_loro_ffi_checksum_method_localupdatecallback_on_local_update(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorocounter_decrement(): number;
@@ -2129,7 +2160,6 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_jsonpath(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_len_changes(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_len_ops(): number;
-  ubrn_uniffi_loro_ffi_checksum_method_lorodoc_log_estimate_size(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_minimize_frontiers(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_oplog_frontiers(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_oplog_vv(): number;
@@ -2322,6 +2352,10 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_merge_interval(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_on_pop(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_set_on_push(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_undomanager_top_redo_meta(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_undomanager_top_redo_value(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_undomanager_top_undo_meta(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_undomanager_top_undo_value(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_undo(): number;
   ubrn_uniffi_loro_ffi_checksum_method_undomanager_undo_count(): number;
   ubrn_uniffi_loro_ffi_checksum_method_unsubscriber_on_unsubscribe(): number;
@@ -2361,6 +2395,8 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_versionvector_partial_cmp(): number;
   ubrn_uniffi_loro_ffi_checksum_method_versionvector_set_end(): number;
   ubrn_uniffi_loro_ffi_checksum_method_versionvector_set_last(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionvector_to_hashmap(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_versionvector_try_update_last(): number;
   ubrn_uniffi_loro_ffi_checksum_constructor_awareness_new(): number;
   ubrn_uniffi_loro_ffi_checksum_constructor_cursor_decode(): number;
   ubrn_uniffi_loro_ffi_checksum_constructor_cursor_new(): number;

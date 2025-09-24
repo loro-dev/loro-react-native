@@ -6203,6 +6203,12 @@ const FfiConverterTypeUpdateTimeoutError = (() => {
   return new FfiConverter();
 })();
 
+// FfiConverter for Map</*u64*/bigint, /*i32*/number>
+const FfiConverterMapUInt64Int32 = new FfiConverterMap(
+  FfiConverterUInt64,
+  FfiConverterInt32
+);
+
 // FfiConverter for Map</*u64*/bigint, CounterSpan>
 const FfiConverterMapUInt64TypeCounterSpan = new FfiConverterMap(
   FfiConverterUInt64,
@@ -7416,7 +7422,7 @@ const FfiConverterTypeDiffBatch = new FfiConverterObject(
 );
 
 export interface EphemeralStoreInterface {
-  apply(data: ArrayBuffer): void;
+  apply(data: ArrayBuffer) /*throws*/ : void;
   delete_(key: string): void;
   encode(key: string): ArrayBuffer;
   encodeAll(): ArrayBuffer;
@@ -7452,8 +7458,11 @@ export class EphemeralStore
       uniffiTypeEphemeralStoreObjectFactory.bless(pointer);
   }
 
-  public apply(data: ArrayBuffer): void {
-    uniffiCaller.rustCall(
+  public apply(data: ArrayBuffer): void /*throws*/ {
+    uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+        FfiConverterTypeLoroError
+      ),
       /*caller:*/ (callStatus) => {
         nativeModule().ubrn_uniffi_loro_ffi_fn_method_ephemeralstore_apply(
           uniffiTypeEphemeralStoreObjectFactory.clonePointer(this),
@@ -8171,6 +8180,8 @@ const FfiConverterTypeFractionalIndex = new FfiConverterObject(
 export interface FrontiersInterface {
   encode(): ArrayBuffer;
   eq(other: FrontiersInterface): boolean;
+  isEmpty(): boolean;
+  toVec(): Array<Id>;
 }
 
 export class Frontiers
@@ -8261,6 +8272,34 @@ export class Frontiers
           return nativeModule().ubrn_uniffi_loro_ffi_fn_method_frontiers_eq(
             uniffiTypeFrontiersObjectFactory.clonePointer(this),
             FfiConverterTypeFrontiers.lower(other),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  public isEmpty(): boolean {
+    return FfiConverterBool.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_frontiers_is_empty(
+            uniffiTypeFrontiersObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  public toVec(): Array<Id> {
+    return FfiConverterArrayTypeID.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_frontiers_to_vec(
+            uniffiTypeFrontiersObjectFactory.clonePointer(this),
             callStatus
           );
         },
@@ -9443,10 +9482,6 @@ export interface LoroDocInterface {
    * Get the total number of operations in the `OpLog`
    */
   lenOps(): /*u64*/ bigint;
-  /**
-   * Estimate the size of the document states in memory.
-   */
-  logEstimateSize(): void;
   /**
    * Minimize the frontiers by removing the unnecessary entries.
    */
@@ -10902,21 +10937,6 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocInterface {
         },
         /*liftString:*/ FfiConverterString.lift
       )
-    );
-  }
-
-  /**
-   * Estimate the size of the document states in memory.
-   */
-  public logEstimateSize(): void {
-    uniffiCaller.rustCall(
-      /*caller:*/ (callStatus) => {
-        nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_log_estimate_size(
-          uniffiTypeLoroDocObjectFactory.clonePointer(this),
-          callStatus
-        );
-      },
-      /*liftString:*/ FfiConverterString.lift
     );
   }
 
@@ -17079,6 +17099,22 @@ export interface UndoManagerInterface {
    */
   setOnPush(onPush: OnPush | undefined): void;
   /**
+   * Get the metadata of the top redo stack item, if any.
+   */
+  topRedoMeta(): UndoItemMeta | undefined;
+  /**
+   * Get the value associated with the top redo stack item, if any.
+   */
+  topRedoValue(): LoroValue | undefined;
+  /**
+   * Get the metadata of the top undo stack item, if any.
+   */
+  topUndoMeta(): UndoItemMeta | undefined;
+  /**
+   * Get the value associated with the top undo stack item, if any.
+   */
+  topUndoValue(): LoroValue | undefined;
+  /**
    * Undo the last change made by the peer.
    */
   undo() /*throws*/ : boolean;
@@ -17338,6 +17374,74 @@ export class UndoManager
         );
       },
       /*liftString:*/ FfiConverterString.lift
+    );
+  }
+
+  /**
+   * Get the metadata of the top redo stack item, if any.
+   */
+  public topRedoMeta(): UndoItemMeta | undefined {
+    return FfiConverterOptionalTypeUndoItemMeta.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_top_redo_meta(
+            uniffiTypeUndoManagerObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Get the value associated with the top redo stack item, if any.
+   */
+  public topRedoValue(): LoroValue | undefined {
+    return FfiConverterOptionalTypeLoroValue.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_top_redo_value(
+            uniffiTypeUndoManagerObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Get the metadata of the top undo stack item, if any.
+   */
+  public topUndoMeta(): UndoItemMeta | undefined {
+    return FfiConverterOptionalTypeUndoItemMeta.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_top_undo_meta(
+            uniffiTypeUndoManagerObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Get the value associated with the top undo stack item, if any.
+   */
+  public topUndoValue(): LoroValue | undefined {
+    return FfiConverterOptionalTypeLoroValue.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_undomanager_top_undo_value(
+            uniffiTypeUndoManagerObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
     );
   }
 
@@ -18294,6 +18398,11 @@ export interface VersionVectorInterface {
   partialCmp(other: VersionVectorInterface): Ordering | undefined;
   setEnd(id: Id): void;
   setLast(id: Id): void;
+  toHashmap(): Map</*u64*/ bigint, /*i32*/ number>;
+  /**
+   * Update the end counter of the given client if the end is greater. Return whether updated
+   */
+  tryUpdateLast(id: Id): boolean;
 }
 
 export class VersionVector
@@ -18521,6 +18630,38 @@ export class VersionVector
     );
   }
 
+  public toHashmap(): Map</*u64*/ bigint, /*i32*/ number> {
+    return FfiConverterMapUInt64Int32.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_to_hashmap(
+            uniffiTypeVersionVectorObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Update the end counter of the given client if the end is greater. Return whether updated
+   */
+  public tryUpdateLast(id: Id): boolean {
+    return FfiConverterBool.lift(
+      uniffiCaller.rustCall(
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_versionvector_try_update_last(
+            uniffiTypeVersionVectorObjectFactory.clonePointer(this),
+            FfiConverterTypeID.lower(id),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
   /**
    * {@inheritDoc uniffi-bindgen-react-native#UniffiAbstractObject.uniffiDestroy}
    */
@@ -18638,6 +18779,11 @@ const FfiConverterOptionalTypeID = new FfiConverterOptional(FfiConverterTypeID);
 // FfiConverter for StyleConfig | undefined
 const FfiConverterOptionalTypeStyleConfig = new FfiConverterOptional(
   FfiConverterTypeStyleConfig
+);
+
+// FfiConverter for UndoItemMeta | undefined
+const FfiConverterOptionalTypeUndoItemMeta = new FfiConverterOptional(
+  FfiConverterTypeUndoItemMeta
 );
 
 // FfiConverter for string | undefined
@@ -19075,7 +19221,7 @@ function uniffiEnsureInitialized() {
   }
   if (
     nativeModule().ubrn_uniffi_loro_ffi_checksum_method_ephemeralstore_apply() !==
-    28698
+    1107
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_ephemeralstore_apply'
@@ -19198,6 +19344,22 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_frontiers_eq'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_frontiers_is_empty() !==
+    14722
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_frontiers_is_empty'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_frontiers_to_vec() !==
+    15210
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_frontiers_to_vec'
     );
   }
   if (
@@ -19748,14 +19910,6 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_lorodoc_len_ops'
-    );
-  }
-  if (
-    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_log_estimate_size() !==
-    14588
-  ) {
-    throw new UniffiInternalError.ApiChecksumMismatch(
-      'uniffi_loro_ffi_checksum_method_lorodoc_log_estimate_size'
     );
   }
   if (
@@ -21279,6 +21433,38 @@ function uniffiEnsureInitialized() {
     );
   }
   if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_top_redo_meta() !==
+    15306
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_undomanager_top_redo_meta'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_top_redo_value() !==
+    57224
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_undomanager_top_redo_value'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_top_undo_meta() !==
+    26343
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_undomanager_top_undo_meta'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_top_undo_value() !==
+    42818
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_undomanager_top_undo_value'
+    );
+  }
+  if (
     nativeModule().ubrn_uniffi_loro_ffi_checksum_method_undomanager_undo() !==
     51407
   ) {
@@ -21588,6 +21774,22 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_versionvector_set_last'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_to_hashmap() !==
+    56398
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionvector_to_hashmap'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_versionvector_try_update_last() !==
+    58412
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_versionvector_try_update_last'
     );
   }
   if (
