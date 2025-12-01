@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      loro-react-native:
-        specifier: file:../loro-react-native-0.2.2.tgz
-        version: file:../loro-react-native-0.2.2.tgz(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@18.0.0)(@types/react@19.1.6)(react@19.0.0))(react@19.0.0)
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -1892,13 +1889,6 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
-  loro-react-native@file:../loro-react-native-0.2.2.tgz:
-    resolution: {integrity: sha512-pJhzBwT6GOWx5szJY2JtRo+rqod+R6WOT7pZL1quNYW86XBhSVHeDo6v1MLceu4FabGMJjxM6H/+LxM8/Q9NkQ==, tarball: file:../loro-react-native-0.2.2.tgz}
-    version: 0.2.2
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
@@ -2593,10 +2583,6 @@ packages:
   unicode-property-aliases-ecmascript@2.1.0:
     resolution: {integrity: sha512-6t3foTQI9qne+OZoVQB/8x8rk2k1eVy1gRXhV3oFQ5T6R1dqQ1xtin3XqSlx3+ATBkliTaR/hHyJBm+LVPNM8w==}
     engines: {node: '>=4'}
-
-  uniffi-bindgen-react-native@0.28.3-5:
-    resolution: {integrity: sha512-IOgKr4D+iHYmigAoV03Yuti94l8egKLADXqw/sE0Oyk7FOVexczFr+Kztnx2aHiCBnNv39gSfRCmLGd3i9AFaw==}
-    hasBin: true
 
   universalify@0.1.2:
     resolution: {integrity: sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==}
@@ -4998,12 +4984,6 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  loro-react-native@file:../loro-react-native-0.2.2.tgz(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@18.0.0)(@types/react@19.1.6)(react@19.0.0))(react@19.0.0):
-    dependencies:
-      react: 19.0.0
-      react-native: 0.79.2(@babel/core@7.27.3)(@react-native-community/cli@18.0.0)(@types/react@19.1.6)(react@19.0.0)
-      uniffi-bindgen-react-native: 0.28.3-5
-
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
@@ -5959,8 +5939,6 @@ snapshots:
   unicode-match-property-value-ecmascript@2.2.0: {}
 
   unicode-property-aliases-ecmascript@2.1.0: {}
-
-  uniffi-bindgen-react-native@0.28.3-5: {}
 
   universalify@0.1.2: {}
 

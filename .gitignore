@@ -92,6 +92,7 @@ target/
 *.podspec
 rust_modules/
 *.a
+src/generated
 cpp/generated/*
 *.podspec
 src/gen/

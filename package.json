@@ -1,6 +1,6 @@
 {
   "name": "loro-react-native",
-  "version": "1.8.1",
+  "version": "1.10.0",
   "description": "React native binding for Loro",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
