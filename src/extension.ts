@@ -9,7 +9,7 @@ import {
     Awareness, EphemeralStore
 } from './generated/loro';
 
-import type { ChangeAncestorsTraveler, ChangeMeta } from './generated/loro';
+import type { ChangeAncestorsTraveler, ChangeMeta, JsonPathSubscriber } from './generated/loro';
 
 export type Value =
     | ContainerId
@@ -38,6 +38,7 @@ declare module "./generated/loro" {
         subscribeLocalUpdate(cb: (update: ArrayBuffer) => void): SubscriptionInterface;
         subscribeFirstCommitFromPeer(cb: (payload: FirstCommitFromPeerPayload) => void): SubscriptionInterface;
         subscribePreCommit(cb: (payload: PreCommitCallbackPayload) => void): SubscriptionInterface;
+        subscribeJsonpath(path: string, cb: () => void): SubscriptionInterface;
         toJSON(): any;
         oplogVersion(): VersionVector;
         version(): VersionVector;
@@ -167,6 +168,14 @@ LoroDoc.prototype.export = function (mode: ExportMode): ArrayBuffer {
             return this.exportSnapshotAt(mode.frontiers);
     }
 }
+
+const _subscribeJsonpathRaw = LoroDoc.prototype.subscribeJsonpath;
+LoroDoc.prototype.subscribeJsonpath = function (path: string, cb: () => void): SubscriptionInterface {
+    const listener: JsonPathSubscriber = {
+        onJsonpathMaybeChanged: cb,
+    };
+    return _subscribeJsonpathRaw.call(this, path, listener);
+};
 
 const originalGetText = LoroDoc.prototype.getText;
 LoroDoc.prototype.getText = function (id: ContainerId | string): LoroText {
