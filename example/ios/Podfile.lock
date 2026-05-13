@@ -8,7 +8,7 @@ PODS:
   - hermes-engine (0.79.2):
     - hermes-engine/Pre-built (= 0.79.2)
   - hermes-engine/Pre-built (0.79.2)
-  - loro-react-native (1.10.3):
+  - loro-react-native (1.12.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -31,7 +31,7 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - uniffi-bindgen-react-native (= 0.28.3-5)
+    - uniffi-bindgen-react-native (= 0.31.0-2)
     - Yoga
   - RCT-Folly (2024.11.18.00):
     - boost
@@ -1680,7 +1680,7 @@ PODS:
     - React-perflogger (= 0.79.2)
     - React-utils (= 0.79.2)
   - SocketRocket (0.7.1)
-  - uniffi-bindgen-react-native (0.28.3-5):
+  - uniffi-bindgen-react-native (0.31.0-2):
     - React-Core
   - Yoga (0.0.0)
 
@@ -1917,7 +1917,7 @@ SPEC CHECKSUMS:
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
   hermes-engine: 314be5250afa5692b57b4dd1705959e1973a8ebe
-  loro-react-native: ef58f3d1b3bf19efb88e422080ed52552bf5c693
+  loro-react-native: 2808df0cb6889cb4a64a5ba093907545873a39a4
   RCT-Folly: 36fe2295e44b10d831836cc0d1daec5f8abcf809
   RCTDeprecation: 83ffb90c23ee5cea353bd32008a7bca100908f8c
   RCTRequired: eb7c0aba998009f47a540bec9e9d69a54f68136e
@@ -1981,7 +1981,7 @@ SPEC CHECKSUMS:
   ReactCodegen: b9c6802762046e8000655cee5ba22f6422620f03
   ReactCommon: 4d0da92a5eb8da86c08e3ec34bd23ab439fb2461
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  uniffi-bindgen-react-native: 018090e6c342b31e1189eb4d098860e9d44caa86
+  uniffi-bindgen-react-native: 205a15613d97a49fe17d5bda57f7fa46a7bbafd0
   Yoga: c758bfb934100bb4bf9cbaccb52557cee35e8bdf
 
 PODFILE CHECKSUM: a5ca260180a96f18394d1d29176689cad6469ad8

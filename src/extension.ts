@@ -32,6 +32,12 @@ declare module "./generated/loro" {
         getMap(id: ContainerId | string): LoroMap;
         getTree(id: ContainerId | string): LoroTree;
         getMovableList(id: ContainerId | string): LoroMovableList;
+        tryGetText(id: ContainerId | string): LoroText | undefined;
+        tryGetCounter(id: ContainerId | string): LoroCounter | undefined;
+        tryGetList(id: ContainerId | string): LoroList | undefined;
+        tryGetMap(id: ContainerId | string): LoroMap | undefined;
+        tryGetTree(id: ContainerId | string): LoroTree | undefined;
+        tryGetMovableList(id: ContainerId | string): LoroMovableList | undefined;
         travelChangeAncestors(ids: Array<Id>, travel: (change: ChangeMeta) => boolean): void;
         subscribeRoot(cb: (diff: DiffEvent) => void): SubscriptionInterface;
         subscribe(containerId: ContainerId, cb: (diff: DiffEvent) => void): SubscriptionInterface;
@@ -172,7 +178,7 @@ LoroDoc.prototype.export = function (mode: ExportMode): ArrayBuffer {
 const _subscribeJsonpathRaw = LoroDoc.prototype.subscribeJsonpath;
 LoroDoc.prototype.subscribeJsonpath = function (path: string, cb: () => void): SubscriptionInterface {
     const listener: JsonPathSubscriber = {
-        onJsonpathMaybeChanged: cb,
+        onJsonpathChanged: cb,
     };
     return _subscribeJsonpathRaw.call(this, path, listener);
 };
@@ -240,6 +246,72 @@ LoroDoc.prototype.getMovableList = function (id: ContainerId | string): LoroMova
         });
     }
     return originalGetMovableList.call(this, id);
+}
+
+const originalTryGetText = LoroDoc.prototype.tryGetText;
+LoroDoc.prototype.tryGetText = function (id: ContainerId | string): LoroText | undefined {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.Text(),
+        });
+    }
+    return originalTryGetText.call(this, id);
+}
+
+const originalTryGetCounter = LoroDoc.prototype.tryGetCounter;
+LoroDoc.prototype.tryGetCounter = function (id: ContainerId | string): LoroCounter | undefined {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.Counter(),
+        });
+    }
+    return originalTryGetCounter.call(this, id);
+}
+
+const originalTryGetList = LoroDoc.prototype.tryGetList;
+LoroDoc.prototype.tryGetList = function (id: ContainerId | string): LoroList | undefined {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.List(),
+        });
+    }
+    return originalTryGetList.call(this, id);
+}
+
+const originalTryGetMap = LoroDoc.prototype.tryGetMap;
+LoroDoc.prototype.tryGetMap = function (id: ContainerId | string): LoroMap | undefined {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.Map(),
+        });
+    }
+    return originalTryGetMap.call(this, id);
+}
+
+const originalTryGetTree = LoroDoc.prototype.tryGetTree;
+LoroDoc.prototype.tryGetTree = function (id: ContainerId | string): LoroTree | undefined {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.Tree(),
+        });
+    }
+    return originalTryGetTree.call(this, id);
+}
+
+const originalTryGetMovableList = LoroDoc.prototype.tryGetMovableList;
+LoroDoc.prototype.tryGetMovableList = function (id: ContainerId | string): LoroMovableList | undefined {
+    if (typeof id === 'string') {
+        id = new ContainerId.Root({
+            name: id,
+            containerType: new ContainerType.MovableList(),
+        });
+    }
+    return originalTryGetMovableList.call(this, id);
 }
 
 

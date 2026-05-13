@@ -1,6 +1,6 @@
 {
   "name": "loro-react-native",
-  "version": "1.10.3",
+  "version": "1.12.0",
   "description": "React native binding for Loro",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -172,6 +172,6 @@
     "version": "0.48.5"
   },
   "dependencies": {
-    "uniffi-bindgen-react-native": "0.28.3-5"
+    "uniffi-bindgen-react-native": "0.31.0-2"
   }
 }
