@@ -1062,6 +1062,36 @@ interface NativeModuleInterface {
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_counter(
+    ptr: bigint,
+    key: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_list(
+    ptr: bigint,
+    key: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_map(
+    ptr: bigint,
+    key: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_movable_list(
+    ptr: bigint,
+    key: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_text(
+    ptr: bigint,
+    key: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_tree(
+    ptr: bigint,
+    key: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
   ubrn_uniffi_loro_ffi_fn_method_loromap_get(
     ptr: bigint,
     key: Uint8Array,
@@ -2384,6 +2414,12 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_loromap_clear(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromap_delete(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromap_doc(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_counter(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_list(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_map(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_movable_list(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_text(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_tree(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromap_get(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromap_get_attached(): number;
   ubrn_uniffi_loro_ffi_checksum_method_loromap_get_deep_value(): number;

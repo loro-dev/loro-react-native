@@ -12705,6 +12705,12 @@ export interface LoroMapLike {
    * Get the LoroDoc from this container
    */
   doc(): LoroDocLike | undefined;
+  ensureMergeableCounter(key: string) /*throws*/ : LoroCounterLike;
+  ensureMergeableList(key: string) /*throws*/ : LoroListLike;
+  ensureMergeableMap(key: string) /*throws*/ : LoroMapLike;
+  ensureMergeableMovableList(key: string) /*throws*/ : LoroMovableListLike;
+  ensureMergeableText(key: string) /*throws*/ : LoroTextLike;
+  ensureMergeableTree(key: string) /*throws*/ : LoroTreeLike;
   /**
    * Get the value of the map with the given key.
    */
@@ -12899,6 +12905,114 @@ export class LoroMap extends UniffiAbstractObject implements LoroMapLike {
         /*caller:*/ (callStatus) => {
           return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_doc(
             uniffiTypeLoroMapObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  ensureMergeableCounter(key: string): LoroCounterLike /*throws*/ {
+    return FfiConverterTypeLoroCounter.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+          FfiConverterTypeLoroError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_counter(
+            uniffiTypeLoroMapObjectFactory.clonePointer(this),
+            FfiConverterString.lower(key),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  ensureMergeableList(key: string): LoroListLike /*throws*/ {
+    return FfiConverterTypeLoroList.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+          FfiConverterTypeLoroError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_list(
+            uniffiTypeLoroMapObjectFactory.clonePointer(this),
+            FfiConverterString.lower(key),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  ensureMergeableMap(key: string): LoroMapLike /*throws*/ {
+    return FfiConverterTypeLoroMap.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+          FfiConverterTypeLoroError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_map(
+            uniffiTypeLoroMapObjectFactory.clonePointer(this),
+            FfiConverterString.lower(key),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  ensureMergeableMovableList(key: string): LoroMovableListLike /*throws*/ {
+    return FfiConverterTypeLoroMovableList.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+          FfiConverterTypeLoroError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_movable_list(
+            uniffiTypeLoroMapObjectFactory.clonePointer(this),
+            FfiConverterString.lower(key),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  ensureMergeableText(key: string): LoroTextLike /*throws*/ {
+    return FfiConverterTypeLoroText.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+          FfiConverterTypeLoroError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_text(
+            uniffiTypeLoroMapObjectFactory.clonePointer(this),
+            FfiConverterString.lower(key),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  ensureMergeableTree(key: string): LoroTreeLike /*throws*/ {
+    return FfiConverterTypeLoroTree.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+          FfiConverterTypeLoroError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_loromap_ensure_mergeable_tree(
+            uniffiTypeLoroMapObjectFactory.clonePointer(this),
+            FfiConverterString.lower(key),
             callStatus
           );
         },
@@ -21211,6 +21325,54 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_loromap_doc'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_counter() !==
+    45050
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_counter'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_list() !==
+    52705
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_list'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_map() !==
+    9978
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_map'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_movable_list() !==
+    54435
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_movable_list'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_text() !==
+    48183
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_text'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_tree() !==
+    32019
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_loromap_ensure_mergeable_tree'
     );
   }
   if (
