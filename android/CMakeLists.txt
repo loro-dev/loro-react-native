@@ -11,10 +11,9 @@ execute_process(
     OUTPUT_VARIABLE UNIFFI_BINDGEN_PATH
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
-string(REGEX
-  REPLACE "/package\\.json$" ""
-  UNIFFI_BINDGEN_PATH ${UNIFFI_BINDGEN_PATH}
-)
+# Get the directory; get_filename_component and cmake_path will normalize
+# paths with Windows path separators.
+get_filename_component(UNIFFI_BINDGEN_PATH "${UNIFFI_BINDGEN_PATH}" DIRECTORY)
 
 # Specifies a path to native header files.
 include_directories(
@@ -37,6 +36,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frtti")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-all")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+
+# Set linker flags for 16KB page size alignment (required for Android 15+)
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,max-page-size=16384")
 
 cmake_path(
   SET MY_RUST_LIB
