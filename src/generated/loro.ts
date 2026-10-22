@@ -1674,6 +1674,7 @@ export enum CannotFindRelativePosition_Tags {
   ContainerDeleted = 'ContainerDeleted',
   HistoryCleared = 'HistoryCleared',
   IdNotFound = 'IdNotFound',
+  HistoryUnreadable = 'HistoryUnreadable',
 }
 export const CannotFindRelativePosition = (() => {
   class ContainerDeleted extends UniffiError {
@@ -1742,6 +1743,28 @@ export const CannotFindRelativePosition = (() => {
       return instanceOf(e) && (e as any)[variantOrdinalSymbol] === 3;
     }
   }
+  class HistoryUnreadable extends UniffiError {
+    /**
+     * @private
+     * This field is private and should not be used.
+     */
+    readonly [uniffiTypeNameSymbol]: string = 'CannotFindRelativePosition';
+    /**
+     * @private
+     * This field is private and should not be used.
+     */
+    readonly [variantOrdinalSymbol] = 4;
+
+    readonly tag = CannotFindRelativePosition_Tags.HistoryUnreadable;
+
+    constructor(message: string) {
+      super('CannotFindRelativePosition', 'HistoryUnreadable', message);
+    }
+
+    static instanceOf(e: any): e is HistoryUnreadable {
+      return instanceOf(e) && (e as any)[variantOrdinalSymbol] === 4;
+    }
+  }
 
   // Utility function which does not rely on instanceof.
   function instanceOf(e: any): e is CannotFindRelativePosition {
@@ -1751,6 +1774,7 @@ export const CannotFindRelativePosition = (() => {
     ContainerDeleted,
     HistoryCleared,
     IdNotFound,
+    HistoryUnreadable,
     instanceOf,
   };
 })();
@@ -1785,6 +1809,11 @@ const FfiConverterTypeCannotFindRelativePosition = (() => {
             FfiConverterString.read(from)
           );
 
+        case 4:
+          return new CannotFindRelativePosition.HistoryUnreadable(
+            FfiConverterString.read(from)
+          );
+
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
@@ -1805,6 +1834,7 @@ const FfiConverterTypeCannotFindRelativePosition = (() => {
 export enum ChangeTravelError_Tags {
   TargetIdNotFound = 'TargetIdNotFound',
   TargetVersionNotIncluded = 'TargetVersionNotIncluded',
+  HistoryUnreadable = 'HistoryUnreadable',
 }
 export const ChangeTravelError = (() => {
   class TargetIdNotFound extends UniffiError {
@@ -1851,6 +1881,28 @@ export const ChangeTravelError = (() => {
       return instanceOf(e) && (e as any)[variantOrdinalSymbol] === 2;
     }
   }
+  class HistoryUnreadable extends UniffiError {
+    /**
+     * @private
+     * This field is private and should not be used.
+     */
+    readonly [uniffiTypeNameSymbol]: string = 'ChangeTravelError';
+    /**
+     * @private
+     * This field is private and should not be used.
+     */
+    readonly [variantOrdinalSymbol] = 3;
+
+    readonly tag = ChangeTravelError_Tags.HistoryUnreadable;
+
+    constructor(message: string) {
+      super('ChangeTravelError', 'HistoryUnreadable', message);
+    }
+
+    static instanceOf(e: any): e is HistoryUnreadable {
+      return instanceOf(e) && (e as any)[variantOrdinalSymbol] === 3;
+    }
+  }
 
   // Utility function which does not rely on instanceof.
   function instanceOf(e: any): e is ChangeTravelError {
@@ -1859,6 +1911,7 @@ export const ChangeTravelError = (() => {
   return {
     TargetIdNotFound,
     TargetVersionNotIncluded,
+    HistoryUnreadable,
     instanceOf,
   };
 })();
@@ -1882,6 +1935,11 @@ const FfiConverterTypeChangeTravelError = (() => {
 
         case 2:
           return new ChangeTravelError.TargetVersionNotIncluded(
+            FfiConverterString.read(from)
+          );
+
+        case 3:
+          return new ChangeTravelError.HistoryUnreadable(
             FfiConverterString.read(from)
           );
 
@@ -3592,6 +3650,8 @@ export enum LoroEncodeError_Tags {
   FrontiersNotFound = 'FrontiersNotFound',
   ShallowSnapshotIncompatibleWithOldFormat = 'ShallowSnapshotIncompatibleWithOldFormat',
   UnknownContainer = 'UnknownContainer',
+  InternalError = 'InternalError',
+  DecodeError = 'DecodeError',
 }
 export const LoroEncodeError = (() => {
   class FrontiersNotFound extends UniffiError {
@@ -3665,6 +3725,50 @@ export const LoroEncodeError = (() => {
       return instanceOf(e) && (e as any)[variantOrdinalSymbol] === 3;
     }
   }
+  class InternalError extends UniffiError {
+    /**
+     * @private
+     * This field is private and should not be used.
+     */
+    readonly [uniffiTypeNameSymbol]: string = 'LoroEncodeError';
+    /**
+     * @private
+     * This field is private and should not be used.
+     */
+    readonly [variantOrdinalSymbol] = 4;
+
+    readonly tag = LoroEncodeError_Tags.InternalError;
+
+    constructor(message: string) {
+      super('LoroEncodeError', 'InternalError', message);
+    }
+
+    static instanceOf(e: any): e is InternalError {
+      return instanceOf(e) && (e as any)[variantOrdinalSymbol] === 4;
+    }
+  }
+  class DecodeError extends UniffiError {
+    /**
+     * @private
+     * This field is private and should not be used.
+     */
+    readonly [uniffiTypeNameSymbol]: string = 'LoroEncodeError';
+    /**
+     * @private
+     * This field is private and should not be used.
+     */
+    readonly [variantOrdinalSymbol] = 5;
+
+    readonly tag = LoroEncodeError_Tags.DecodeError;
+
+    constructor(message: string) {
+      super('LoroEncodeError', 'DecodeError', message);
+    }
+
+    static instanceOf(e: any): e is DecodeError {
+      return instanceOf(e) && (e as any)[variantOrdinalSymbol] === 5;
+    }
+  }
 
   // Utility function which does not rely on instanceof.
   function instanceOf(e: any): e is LoroEncodeError {
@@ -3674,6 +3778,8 @@ export const LoroEncodeError = (() => {
     FrontiersNotFound,
     ShallowSnapshotIncompatibleWithOldFormat,
     UnknownContainer,
+    InternalError,
+    DecodeError,
     instanceOf,
   };
 })();
@@ -3704,6 +3810,14 @@ const FfiConverterTypeLoroEncodeError = (() => {
           return new LoroEncodeError.UnknownContainer(
             FfiConverterString.read(from)
           );
+
+        case 4:
+          return new LoroEncodeError.InternalError(
+            FfiConverterString.read(from)
+          );
+
+        case 5:
+          return new LoroEncodeError.DecodeError(FfiConverterString.read(from));
 
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
@@ -9444,9 +9558,37 @@ export interface LoroDocLike {
     startVv: VersionVectorLike,
     endVv: VersionVectorLike
   ): string;
+  /**
+   * Export imported remote updates waiting for missing causal dependencies.
+   *
+   * These are received remote operations, not uncommitted local transactions.
+   * Returns native nil/None when none remain pending, not empty bytes, or bytes
+   * in the ordinary updates format. The bytes preserve the pending operations,
+   * not necessarily the original blob.
+   *
+   * This is read-only: it does not consume pending updates, commit local edits,
+   * emit events, or advance the applied version vector/frontiers. Ordinary
+   * snapshot/update exports exclude these updates; snapshot export still
+   * commits local edits as usual.
+   *
+   * Prevent mutations/imports between exporting a snapshot and these bytes:
+   * the calls are not an atomic pair. Save or replace both as one consistent
+   * checkpoint, only after both exports succeed. nil/None must clear any older
+   * pending record; an export error must not replace the previous checkpoint.
+   * Encoding failures, including `LoroEncodeError.InternalError`, are thrown
+   * with the core's error message rather than returned as absent bytes.
+   *
+   * Restore the snapshot first, then pass any pending bytes to ordinary `import`.
+   * They remain pending until the real missing dependencies arrive. This API
+   * does not fetch or invent those dependencies, establish that the document
+   * is synced, or make advancing a transport cursor or compaction safe.
+   */
+  exportPendingUpdates() /*throws*/ : ArrayBuffer | undefined;
   exportShallowSnapshot(frontiers: FrontiersLike) /*throws*/ : ArrayBuffer;
   /**
    * Export the current state and history of the document.
+   * Remote updates waiting for missing dependencies are excluded; save them
+   * separately with `export_pending_updates`. This export commits local edits.
    */
   exportSnapshot() /*throws*/ : ArrayBuffer;
   exportSnapshotAt(frontiers: FrontiersLike) /*throws*/ : ArrayBuffer;
@@ -9454,7 +9596,9 @@ export interface LoroDocLike {
     frontiers: FrontiersLike | undefined
   ) /*throws*/ : ArrayBuffer;
   /**
-   * Export all the ops not included in the given `VersionVector`
+   * Export all applied ops not included in the given `VersionVector`.
+   * Remote updates waiting for missing dependencies are excluded; save them
+   * separately with `export_pending_updates`.
    */
   exportUpdates(vv: VersionVectorLike) /*throws*/ : ArrayBuffer;
   exportUpdatesInRange(spans: Array<IdSpan>) /*throws*/ : ArrayBuffer;
@@ -9653,7 +9797,8 @@ export interface LoroDocLike {
   hasContainer(id: ContainerId): boolean;
   hasHistoryCache(): boolean;
   /**
-   * Import updates/snapshot exported by [`LoroDoc::export_snapshot`] or [`LoroDoc::export_from`].
+   * Import a snapshot, ordinary updates, or bytes from `export_pending_updates`.
+   * Pending updates still wait for their actual missing causal dependencies.
    */
   import_(bytes: ArrayBuffer) /*throws*/ : ImportStatus;
   /**
@@ -9664,7 +9809,8 @@ export interface LoroDocLike {
   importBatch(bytes: Array<ArrayBuffer>) /*throws*/ : ImportStatus;
   importJsonUpdates(json: string) /*throws*/ : ImportStatus;
   /**
-   * Import updates/snapshot exported by [`LoroDoc::export_snapshot`] or [`LoroDoc::export_from`].
+   * Import a snapshot, ordinary updates, or bytes from `export_pending_updates`.
+   * Pending updates still wait for their actual missing causal dependencies.
    *
    * It marks the import with a custom `origin` string. It can be used to track the import source
    * in the generated events.
@@ -9902,6 +10048,20 @@ export interface LoroDocLike {
     ids: Array<Id>,
     f: ChangeAncestorsTraveler
   ) /*throws*/ : void;
+  /**
+   * Export JSON updates, reporting unreadable history as LoroError.
+   */
+  tryExportJsonUpdates(
+    startVv: VersionVectorLike,
+    endVv: VersionVectorLike
+  ) /*throws*/ : string;
+  /**
+   * Export JSON updates without peer compression, reporting unreadable history as LoroError.
+   */
+  tryExportJsonUpdatesWithoutPeerCompression(
+    startVv: VersionVectorLike,
+    endVv: VersionVectorLike
+  ) /*throws*/ : string;
   /**
    * Try to get a [LoroCounter] by container id.
    *
@@ -10388,6 +10548,48 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocLike {
     );
   }
 
+  /**
+   * Export imported remote updates waiting for missing causal dependencies.
+   *
+   * These are received remote operations, not uncommitted local transactions.
+   * Returns native nil/None when none remain pending, not empty bytes, or bytes
+   * in the ordinary updates format. The bytes preserve the pending operations,
+   * not necessarily the original blob.
+   *
+   * This is read-only: it does not consume pending updates, commit local edits,
+   * emit events, or advance the applied version vector/frontiers. Ordinary
+   * snapshot/update exports exclude these updates; snapshot export still
+   * commits local edits as usual.
+   *
+   * Prevent mutations/imports between exporting a snapshot and these bytes:
+   * the calls are not an atomic pair. Save or replace both as one consistent
+   * checkpoint, only after both exports succeed. nil/None must clear any older
+   * pending record; an export error must not replace the previous checkpoint.
+   * Encoding failures, including `LoroEncodeError.InternalError`, are thrown
+   * with the core's error message rather than returned as absent bytes.
+   *
+   * Restore the snapshot first, then pass any pending bytes to ordinary `import`.
+   * They remain pending until the real missing dependencies arrive. This API
+   * does not fetch or invent those dependencies, establish that the document
+   * is synced, or make advancing a transport cursor or compaction safe.
+   */
+  exportPendingUpdates(): ArrayBuffer | undefined /*throws*/ {
+    return FfiConverterOptionalArrayBuffer.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroEncodeError.lift.bind(
+          FfiConverterTypeLoroEncodeError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_pending_updates(
+            uniffiTypeLoroDocObjectFactory.clonePointer(this),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
   exportShallowSnapshot(frontiers: FrontiersLike): ArrayBuffer /*throws*/ {
     return FfiConverterArrayBuffer.lift(
       uniffiCaller.rustCallWithError(
@@ -10408,6 +10610,8 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocLike {
 
   /**
    * Export the current state and history of the document.
+   * Remote updates waiting for missing dependencies are excluded; save them
+   * separately with `export_pending_updates`. This export commits local edits.
    */
   exportSnapshot(): ArrayBuffer /*throws*/ {
     return FfiConverterArrayBuffer.lift(
@@ -10465,7 +10669,9 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocLike {
   }
 
   /**
-   * Export all the ops not included in the given `VersionVector`
+   * Export all applied ops not included in the given `VersionVector`.
+   * Remote updates waiting for missing dependencies are excluded; save them
+   * separately with `export_pending_updates`.
    */
   exportUpdates(vv: VersionVectorLike): ArrayBuffer /*throws*/ {
     return FfiConverterArrayBuffer.lift(
@@ -11047,7 +11253,8 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocLike {
   }
 
   /**
-   * Import updates/snapshot exported by [`LoroDoc::export_snapshot`] or [`LoroDoc::export_from`].
+   * Import a snapshot, ordinary updates, or bytes from `export_pending_updates`.
+   * Pending updates still wait for their actual missing causal dependencies.
    */
   import_(bytes: ArrayBuffer): ImportStatus /*throws*/ {
     return FfiConverterTypeImportStatus.lift(
@@ -11109,7 +11316,8 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocLike {
   }
 
   /**
-   * Import updates/snapshot exported by [`LoroDoc::export_snapshot`] or [`LoroDoc::export_from`].
+   * Import a snapshot, ordinary updates, or bytes from `export_pending_updates`.
+   * Pending updates still wait for their actual missing causal dependencies.
    *
    * It marks the import with a custom `origin` string. It can be used to track the import source
    * in the generated events.
@@ -11763,6 +11971,56 @@ export class LoroDoc extends UniffiAbstractObject implements LoroDocLike {
         );
       },
       /*liftString:*/ FfiConverterString.lift
+    );
+  }
+
+  /**
+   * Export JSON updates, reporting unreadable history as LoroError.
+   */
+  tryExportJsonUpdates(
+    startVv: VersionVectorLike,
+    endVv: VersionVectorLike
+  ): string /*throws*/ {
+    return FfiConverterString.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+          FfiConverterTypeLoroError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_try_export_json_updates(
+            uniffiTypeLoroDocObjectFactory.clonePointer(this),
+            FfiConverterTypeVersionVector.lower(startVv),
+            FfiConverterTypeVersionVector.lower(endVv),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
+    );
+  }
+
+  /**
+   * Export JSON updates without peer compression, reporting unreadable history as LoroError.
+   */
+  tryExportJsonUpdatesWithoutPeerCompression(
+    startVv: VersionVectorLike,
+    endVv: VersionVectorLike
+  ): string /*throws*/ {
+    return FfiConverterString.lift(
+      uniffiCaller.rustCallWithError(
+        /*liftError:*/ FfiConverterTypeLoroError.lift.bind(
+          FfiConverterTypeLoroError
+        ),
+        /*caller:*/ (callStatus) => {
+          return nativeModule().ubrn_uniffi_loro_ffi_fn_method_lorodoc_try_export_json_updates_without_peer_compression(
+            uniffiTypeLoroDocObjectFactory.clonePointer(this),
+            FfiConverterTypeVersionVector.lower(startVv),
+            FfiConverterTypeVersionVector.lower(endVv),
+            callStatus
+          );
+        },
+        /*liftString:*/ FfiConverterString.lift
+      )
     );
   }
 
@@ -19680,6 +19938,11 @@ const FfiConverterTypeVersionVector = new FfiConverterObject(
   uniffiTypeVersionVectorObjectFactory
 );
 
+// FfiConverter for ArrayBuffer | undefined
+const FfiConverterOptionalArrayBuffer = new FfiConverterOptional(
+  FfiConverterArrayBuffer
+);
+
 // FfiConverter for /*f64*/number | undefined
 const FfiConverterOptionalFloat64 = new FfiConverterOptional(
   FfiConverterFloat64
@@ -20543,6 +20806,14 @@ function uniffiEnsureInitialized() {
     );
   }
   if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_pending_updates() !==
+    11778
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_lorodoc_export_pending_updates'
+    );
+  }
+  if (
     nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_shallow_snapshot() !==
     39593
   ) {
@@ -21051,6 +21322,22 @@ function uniffiEnsureInitialized() {
   ) {
     throw new UniffiInternalError.ApiChecksumMismatch(
       'uniffi_loro_ffi_checksum_method_lorodoc_travel_change_ancestors'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_try_export_json_updates() !==
+    16562
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_lorodoc_try_export_json_updates'
+    );
+  }
+  if (
+    nativeModule().ubrn_uniffi_loro_ffi_checksum_method_lorodoc_try_export_json_updates_without_peer_compression() !==
+    7325
+  ) {
+    throw new UniffiInternalError.ApiChecksumMismatch(
+      'uniffi_loro_ffi_checksum_method_lorodoc_try_export_json_updates_without_peer_compression'
     );
   }
   if (

@@ -562,6 +562,10 @@ interface NativeModuleInterface {
     endVv: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_pending_updates(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_method_lorodoc_export_shallow_snapshot(
     ptr: bigint,
     frontiers: bigint,
@@ -870,6 +874,18 @@ interface NativeModuleInterface {
     f: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
+  ubrn_uniffi_loro_ffi_fn_method_lorodoc_try_export_json_updates(
+    ptr: bigint,
+    startVv: bigint,
+    endVv: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_loro_ffi_fn_method_lorodoc_try_export_json_updates_without_peer_compression(
+    ptr: bigint,
+    startVv: bigint,
+    endVv: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_loro_ffi_fn_method_lorodoc_try_get_counter(
     ptr: bigint,
     id: bigint,
@@ -2315,6 +2331,7 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_json_in_id_span(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_json_updates(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_json_updates_without_peer_compression(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_pending_updates(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_shallow_snapshot(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_snapshot(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_export_snapshot_at(): number;
@@ -2379,6 +2396,8 @@ interface NativeModuleInterface {
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_subscribe_pre_commit(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_subscribe_root(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_travel_change_ancestors(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_lorodoc_try_export_json_updates(): number;
+  ubrn_uniffi_loro_ffi_checksum_method_lorodoc_try_export_json_updates_without_peer_compression(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_try_get_counter(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_try_get_list(): number;
   ubrn_uniffi_loro_ffi_checksum_method_lorodoc_try_get_map(): number;

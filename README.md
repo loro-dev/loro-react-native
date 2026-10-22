@@ -35,6 +35,18 @@ You can find an editor demo [here](https://github.com/Leeeon233/loro-react-nativ
 
 ## Dev
 
+### Release 1.17.1
+
+Uses Loro core and FFI 1.17.1, including `exportPendingUpdates()` for saving
+received updates waiting for dependencies. Save these bytes with a consistent
+snapshot and restore the snapshot first. Clear older saved pending bytes when
+the method returns `undefined`.
+
+Version tags run `.github/workflows/release.yml`: build release libraries for
+iOS and Android, regenerate bindings, check TypeScript, and verify the npm
+tarball contains both platforms before publishing. npm publishing requires a
+trusted publisher for that workflow or the repository's `NPM_TOKEN` secret.
+
 Follow the [getting started](https://jhugman.github.io/uniffi-bindgen-react-native/guides/pre-installation.html) to set up the environment.
 
 ### IOS
@@ -64,4 +76,3 @@ MIT
 ---
 
 Made with [uniffi-bindgen-react-native](https://github.com/jhugman/uniffi-bindgen-react-native)
-
