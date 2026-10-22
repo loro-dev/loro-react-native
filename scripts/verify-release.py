@@ -3,6 +3,7 @@
 
 import json
 from pathlib import Path
+import re
 import sys
 import tarfile
 import tomllib
@@ -13,7 +14,8 @@ def main():
     with tarfile.open(tarball, "r:gz") as archive:
         names = set(archive.getnames())
         package = json.load(archive.extractfile("package/package.json"))
-        assert tag == "v" + package["version"], "tag and package version differ"
+        expected_tag = re.escape("v" + package["version"]) + r"(?:-build\.\d+)?"
+        assert re.fullmatch(expected_tag, tag), "tag and package version differ"
         required = {
             "package/build/LoroFfiFramework.xcframework/Info.plist",
             "package/android/src/main/jniLibs/arm64-v8a/libloro_rs.a",

@@ -69,8 +69,9 @@ jobs:
           tar -xzf native-ios.tgz
           corepack yarn typecheck
           corepack yarn prepare
-          npm pack --ignore-scripts --json > pack.json
-          python3 scripts/verify-release.py "$(node -p "require('./pack.json')[0].filename")" "$GITHUB_REF_NAME"
+          npm pack --ignore-scripts
+          RN_TARBALL="loro-react-native-$(node -p "require('./package.json').version").tgz"
+          python3 scripts/verify-release.py "$RN_TARBALL" "$GITHUB_REF_NAME"
       - uses: actions/upload-artifact@v4
         with:
           name: npm-package
@@ -85,4 +86,5 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm install --global npm@11
-          npm publish "$(node -p "require('./pack.json')[0].filename")" --access public --provenance
+          RN_TARBALL="loro-react-native-$(node -p "require('./package.json').version").tgz"
+          npm publish "$RN_TARBALL" --access public --provenance
