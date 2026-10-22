@@ -1,0 +1,88 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: android
+            runner: ubuntu-latest
+          - platform: ios
+            runner: macos-15
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-js
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: loro-rs
+      - name: Install Android targets
+        if: matrix.platform == 'android'
+        run: |
+          cargo install cargo-ndk --locked
+          rustup target add aarch64-linux-android armv7-linux-androideabi
+      - name: Install iOS targets
+        if: matrix.platform == 'ios'
+        run: rustup target add aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios
+      - name: Build native library and regenerate bindings
+        run: |
+          corepack yarn ubrn build ${{ matrix.platform }} --release --config ubrn.config.yaml --and-generate
+          bash scripts/add-extension.sh
+      - name: Collect Android files
+        if: matrix.platform == 'android'
+        run: tar -czf native-android.tgz android
+      - name: Collect iOS and generated binding files
+        if: matrix.platform == 'ios'
+        run: tar -czf native-ios.tgz build ios cpp src *.podspec
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-${{ matrix.platform }}
+          path: native-${{ matrix.platform }}.tgz
+          if-no-files-found: error
+          compression-level: 0
+
+  publish:
+    needs: native
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-js
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: native-*
+          merge-multiple: true
+      - name: Assemble and check package
+        run: |
+          tar -xzf native-android.tgz
+          tar -xzf native-ios.tgz
+          corepack yarn typecheck
+          corepack yarn prepare
+          npm pack --ignore-scripts --json > pack.json
+          python3 scripts/verify-release.py "$(node -p "require('./pack.json')[0].filename")" "$GITHUB_REF_NAME"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: npm-package
+          path: loro-react-native-*.tgz
+          if-no-files-found: error
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - name: Publish verified tarball
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm install --global npm@11
+          npm publish "$(node -p "require('./pack.json')[0].filename")" --access public --provenance

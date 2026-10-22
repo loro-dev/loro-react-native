@@ -1,6 +1,6 @@
 {
   "name": "loro-react-native",
-  "version": "1.13.2",
+  "version": "1.17.1",
   "description": "React native binding for Loro",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -54,14 +54,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Leeeon233/loro-react-native.git"
+    "url": "git+https://github.com/loro-dev/loro-react-native.git"
   },
   "author": "Leon Zhao <lz@loro.dev> (https://github.com/Leeeon233)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Leeeon233/loro-react-native/issues"
+    "url": "https://github.com/loro-dev/loro-react-native/issues"
   },
-  "homepage": "https://github.com/Leeeon233/loro-react-native#readme",
+  "homepage": "https://github.com/loro-dev/loro-react-native#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
